@@ -1,0 +1,22 @@
+version: '2'
+services:
+    blackhole-app:
+        image: blackhole
+        external_links:
+            - blackhole-mysql:mysql
+            - blackhole-elasticsearch:elasticsearch
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/blackhole?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=elasticsearch:9300
+        ports:
+            - 8080:8080
+    blackhole-mysql:
+        extends:
+            file: mysql.yml
+            service: blackhole-mysql
+    blackhole-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: blackhole-elasticsearch

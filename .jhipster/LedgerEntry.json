@@ -1,0 +1,46 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "entrydate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "transaction",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dacctno",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cacctno",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dadebit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dacredit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cadebit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cacredit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "notes",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160811201253",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "ledger_entry",
+    "pagination": "pagination"
+}

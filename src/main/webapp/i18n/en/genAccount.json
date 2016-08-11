@@ -1,0 +1,25 @@
+{
+    "blackholeApp": {
+        "genAccount" : {
+            "home": {
+                "title": "Gen Accounts",
+                "createLabel": "Create a new Gen Account",
+                "createOrEditLabel": "Create or edit a Gen Account",
+                "search": "Search for Gen Account"
+            },
+            "created": "A new Gen Account is created with identifier {{ param }}",
+            "updated": "A Gen Account is updated with identifier {{ param }}",
+            "deleted": "A Gen Account is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Gen Account {{ id }}?"
+            },
+            "detail": {
+                "title": "Gen Account"
+            },
+            "name": "Name",
+            "type": "Type",
+            "dc": "Dc",
+            "cno": "Cno"
+        }
+    }
+}

@@ -1,0 +1,8 @@
+version: '2'
+services:
+    blackhole-sonar:
+        container_name: blackhole-sonar
+        image: sonarqube:5.6-alpine
+        ports:
+            - 9000:9000
+            - 9092:9092

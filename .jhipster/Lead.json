@@ -1,0 +1,42 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "referringco",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "referringname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "opp",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "oppwhere",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "oppwho",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "notes",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160811203926",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "lead",
+    "pagination": "pagination"
+}

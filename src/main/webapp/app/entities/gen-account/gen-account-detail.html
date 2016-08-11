@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span translate="blackholeApp.genAccount.detail.title">Gen Account</span> {{vm.genAccount.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="blackholeApp.genAccount.name">Name</span></dt>
+        <dd>
+            <span>{{vm.genAccount.name}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genAccount.type">Type</span></dt>
+        <dd>
+            <span>{{vm.genAccount.type}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genAccount.dc">Dc</span></dt>
+        <dd>
+            <span>{{vm.genAccount.dc}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genAccount.cno">Cno</span></dt>
+        <dd>
+            <span>{{vm.genAccount.cno}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="gen-account-detail.edit({id:vm.genAccount.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,93 @@
+<div>
+    <h2 translate="blackholeApp.ledgerEntry.home.title">Ledger Entries</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="ledger-entry.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs"  translate="blackholeApp.ledgerEntry.home.createLabel">
+                        Create new Ledger Entry
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'blackholeApp.ledgerEntry.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="entrydate"><span translate="blackholeApp.ledgerEntry.entrydate">Entrydate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="transaction"><span translate="blackholeApp.ledgerEntry.transaction">Transaction</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dacctno"><span translate="blackholeApp.ledgerEntry.dacctno">Dacctno</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cacctno"><span translate="blackholeApp.ledgerEntry.cacctno">Cacctno</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dadebit"><span translate="blackholeApp.ledgerEntry.dadebit">Dadebit</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dacredit"><span translate="blackholeApp.ledgerEntry.dacredit">Dacredit</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cadebit"><span translate="blackholeApp.ledgerEntry.cadebit">Cadebit</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cacredit"><span translate="blackholeApp.ledgerEntry.cacredit">Cacredit</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="notes"><span translate="blackholeApp.ledgerEntry.notes">Notes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ledgerEntry in vm.ledgerEntries track by ledgerEntry.id">
+                    <td><a ui-sref="ledger-entry-detail({id:ledgerEntry.id})">{{ledgerEntry.id}}</a></td>
+                        <td>{{ledgerEntry.entrydate | date:'mediumDate'}}</td>
+                    <td>{{ledgerEntry.transaction}}</td>
+                    <td>{{ledgerEntry.dacctno}}</td>
+                    <td>{{ledgerEntry.cacctno}}</td>
+                    <td>{{ledgerEntry.dadebit}}</td>
+                    <td>{{ledgerEntry.dacredit}}</td>
+                    <td>{{ledgerEntry.cadebit}}</td>
+                    <td>{{ledgerEntry.cacredit}}</td>
+                    <td>{{ledgerEntry.notes}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="ledger-entry-detail({id:ledgerEntry.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="ledger-entry.edit({id:ledgerEntry.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="ledger-entry.delete({id:ledgerEntry.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

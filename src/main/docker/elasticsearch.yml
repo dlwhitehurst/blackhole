@@ -1,0 +1,10 @@
+version: '2'
+services:
+    blackhole-elasticsearch:
+        container_name: blackhole-elasticsearch
+        image: elasticsearch:1.7.5
+        # volumes:
+        #     - ~/volumes/jhipster/blackhole/elasticsearch/:/usr/share/elasticsearch/data/
+        ports:
+            - 9200:9200
+            - 9300:9300

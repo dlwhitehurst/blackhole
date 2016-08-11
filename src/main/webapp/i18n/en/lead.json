@@ -1,0 +1,29 @@
+{
+    "blackholeApp": {
+        "lead" : {
+            "home": {
+                "title": "Leads",
+                "createLabel": "Create a new Lead",
+                "createOrEditLabel": "Create or edit a Lead",
+                "search": "Search for Lead"
+            },
+            "created": "A new Lead is created with identifier {{ param }}",
+            "updated": "A Lead is updated with identifier {{ param }}",
+            "deleted": "A Lead is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Lead {{ id }}?"
+            },
+            "detail": {
+                "title": "Lead"
+            },
+            "referringco": "Referringco",
+            "referringname": "Referringname",
+            "email": "Email",
+            "phone": "Phone",
+            "opp": "Opp",
+            "oppwhere": "Oppwhere",
+            "oppwho": "Oppwho",
+            "notes": "Notes"
+        }
+    }
+}

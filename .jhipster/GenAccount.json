@@ -1,0 +1,26 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cno",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160811200159",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "gen_account",
+    "pagination": "pagination"
+}

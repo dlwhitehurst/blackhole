@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span translate="blackholeApp.lead.detail.title">Lead</span> {{vm.lead.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="blackholeApp.lead.referringco">Referringco</span></dt>
+        <dd>
+            <span>{{vm.lead.referringco}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.lead.referringname">Referringname</span></dt>
+        <dd>
+            <span>{{vm.lead.referringname}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.lead.email">Email</span></dt>
+        <dd>
+            <span>{{vm.lead.email}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.lead.phone">Phone</span></dt>
+        <dd>
+            <span>{{vm.lead.phone}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.lead.opp">Opp</span></dt>
+        <dd>
+            <span>{{vm.lead.opp}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.lead.oppwhere">Oppwhere</span></dt>
+        <dd>
+            <span>{{vm.lead.oppwhere}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.lead.oppwho">Oppwho</span></dt>
+        <dd>
+            <span>{{vm.lead.oppwho}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.lead.notes">Notes</span></dt>
+        <dd>
+            <span>{{vm.lead.notes}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="lead-detail.edit({id:vm.lead.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
