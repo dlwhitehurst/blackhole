@@ -49,18 +49,14 @@
                         <td>{{ledgerEntry.entrydate | date:'mediumDate'}}</td>
                     <td>{{ledgerEntry.transaction}}</td>
 		    <td>
-		        <select ng-model="ledgerEntry.dacctno" ng-disabled="true">
-				<option ng-selected="{{genAccount.cno == ledgerEntry.dacctno}}" ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno">{{genAccount.name}}</option>
-			</select>
-			<div class="dc-container">
-			<div class="debit">{{ledgerEntry.dadebit | currency}}</div><div class="credit">{{ledgerEntry.dacredit | currency}}</div></div>
+          {{genAccounts | chartName: ledgerEntry.dacctno}}
+			    <div class="dc-container">
+			    <div class="debit">{{ledgerEntry.dadebit | currency}}</div><div class="credit">{{ledgerEntry.dacredit | currency}}</div></div>
 		    </td>
 		    <td>
-		        <select ng-model="ledgerEntry.cacctno" ng-disabled="true">
-				<option ng-selected="{{genAccount.cno == ledgerEntry.cacctno}}" ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno">{{genAccount.name}}</option>
-			</select>
-			<div class="dc-container">
-			<div class="debit">{{ledgerEntry.cadebit | currency}}</div><div class="credit">{{ledgerEntry.cacredit | currency}}</div></div>
+          {{genAccounts | chartName: ledgerEntry.cacctno}}
+			    <div class="dc-container">
+			    <div class="debit">{{ledgerEntry.cadebit | currency}}</div><div class="credit">{{ledgerEntry.cacredit | currency}}</div></div>
 		    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

@@ -4,7 +4,6 @@
     angular
         .module('blackholeApp')
         .controller('HomeController', HomeController);
-
     HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
     function HomeController ($scope, Principal, LoginService, $state) {

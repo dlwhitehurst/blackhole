@@ -3,9 +3,9 @@
 
     angular
         .module('blackholeApp', [
-            'ngStorage', 
+            'ngStorage',
             'tmh.dynamicLocale',
-            'pascalprecht.translate', 
+            'pascalprecht.translate',
             'ngResource',
             'ngCookies',
             'ngAria',
@@ -18,6 +18,7 @@
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar'
         ])
+
         .run(run);
 
     run.$inject = ['stateHandler', 'translationHandler'];

@@ -9,7 +9,7 @@
 
     function LedgerEntryController ($scope, $state, GenAccount, LedgerEntry, LedgerEntrySearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
-        
+
         vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
@@ -20,7 +20,8 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-	$scope.genAccounts = GenAccount.query({size:200});
+        $scope.genAccounts = GenAccount.query({size:200});
+        
         loadAll();
 
         function loadAll () {
