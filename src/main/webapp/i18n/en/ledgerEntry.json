@@ -3,7 +3,7 @@
         "ledgerEntry" : {
             "home": {
                 "title": "Ledger Entries",
-                "createLabel": "Create a new Ledger Entry",
+                "createLabel": "Create",
                 "createOrEditLabel": "Create or edit a Ledger Entry",
                 "search": "Search for Ledger Entry"
             },
@@ -18,12 +18,12 @@
             },
             "entrydate": "Entrydate",
             "transaction": "Transaction",
-            "dacctno": "Dacctno",
-            "cacctno": "Cacctno",
-            "dadebit": "Dadebit",
-            "dacredit": "Dacredit",
-            "cadebit": "Cadebit",
-            "cacredit": "Cacredit",
+            "dacctno": "Debit Account",
+            "cacctno": "Credit Account",
+            "dadebit": "DD",
+            "dacredit": "DC",
+            "cadebit": "CD",
+            "cacredit": "CC",
             "notes": "Notes"
         }
     }

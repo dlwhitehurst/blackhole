@@ -330,5 +330,30 @@ ui bootstrap tweaks
 }
 
 
+/* ==========================================================================
+ dlwhitehurst custom styles
+========================================================================== */
+.dc-container {
+float:bottom;
+}
 
+.debit {
+background-color: #D4E6F1;
+float : left;
+height: 23px;
+width: 85px;
+vertical-align: middle;
+text-align:right;
+padding-right: 4px;
+}
+
+.credit {
+background-color: #A9CCE3;
+float : left;
+height: 23px;
+width: 85px;
+vertical-align: middle;
+text-align:right;
+padding-right: 4px;
+}
 /* jhipster-needle-css-add-main JHipster will add new css style */

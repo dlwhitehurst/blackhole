@@ -40,11 +40,6 @@
                     <th jh-sort-by="transaction"><span translate="blackholeApp.ledgerEntry.transaction">Transaction</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="dacctno"><span translate="blackholeApp.ledgerEntry.dacctno">Dacctno</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cacctno"><span translate="blackholeApp.ledgerEntry.cacctno">Cacctno</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="dadebit"><span translate="blackholeApp.ledgerEntry.dadebit">Dadebit</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="dacredit"><span translate="blackholeApp.ledgerEntry.dacredit">Dacredit</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="cadebit"><span translate="blackholeApp.ledgerEntry.cadebit">Cadebit</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="cacredit"><span translate="blackholeApp.ledgerEntry.cacredit">Cacredit</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="notes"><span translate="blackholeApp.ledgerEntry.notes">Notes</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -53,13 +48,20 @@
                     <td><a ui-sref="ledger-entry-detail({id:ledgerEntry.id})">{{ledgerEntry.id}}</a></td>
                         <td>{{ledgerEntry.entrydate | date:'mediumDate'}}</td>
                     <td>{{ledgerEntry.transaction}}</td>
-                    <td>{{ledgerEntry.dacctno}}</td>
-                    <td>{{ledgerEntry.cacctno}}</td>
-                    <td>{{ledgerEntry.dadebit}}</td>
-                    <td>{{ledgerEntry.dacredit}}</td>
-                    <td>{{ledgerEntry.cadebit}}</td>
-                    <td>{{ledgerEntry.cacredit}}</td>
-                    <td>{{ledgerEntry.notes}}</td>
+		    <td>
+		        <select ng-model="ledgerEntry.dacctno" ng-disabled="true">
+				<option ng-selected="{{genAccount.cno == ledgerEntry.dacctno}}" ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno">{{genAccount.name}}</option>
+			</select>
+			<div class="dc-container">
+			<div class="debit">{{ledgerEntry.dadebit | currency}}</div><div class="credit">{{ledgerEntry.dacredit | currency}}</div></div>
+		    </td>
+		    <td>
+		        <select ng-model="ledgerEntry.cacctno" ng-disabled="true">
+				<option ng-selected="{{genAccount.cno == ledgerEntry.cacctno}}" ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno">{{genAccount.name}}</option>
+			</select>
+			<div class="dc-container">
+			<div class="debit">{{ledgerEntry.cadebit | currency}}</div><div class="credit">{{ledgerEntry.cacredit | currency}}</div></div>
+		    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

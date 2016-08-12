@@ -2,8 +2,8 @@
     "blackholeApp": {
         "lead" : {
             "home": {
-                "title": "Leads",
-                "createLabel": "Create a new Lead",
+                "title": "Business Leads",
+                "createLabel": "Create",
                 "createOrEditLabel": "Create or edit a Lead",
                 "search": "Search for Lead"
             },

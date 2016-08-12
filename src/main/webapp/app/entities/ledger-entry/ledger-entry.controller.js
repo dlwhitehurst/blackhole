@@ -5,9 +5,9 @@
         .module('blackholeApp')
         .controller('LedgerEntryController', LedgerEntryController);
 
-    LedgerEntryController.$inject = ['$scope', '$state', 'LedgerEntry', 'LedgerEntrySearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    LedgerEntryController.$inject = ['$scope', '$state', 'GenAccount','LedgerEntry', 'LedgerEntrySearch', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function LedgerEntryController ($scope, $state, LedgerEntry, LedgerEntrySearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function LedgerEntryController ($scope, $state, GenAccount, LedgerEntry, LedgerEntrySearch, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
         
         vm.loadPage = loadPage;
@@ -20,7 +20,7 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-
+	$scope.genAccounts = GenAccount.query({size:200});
         loadAll();
 
         function loadAll () {

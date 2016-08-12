@@ -7,10 +7,10 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
-                "genAccount": "Gen Account",
-                "ledgerEntry": "Ledger Entry",
-                "contact": "Contact",
-                "lead": "Lead",
+                "genAccount": "Accounts",
+                "ledgerEntry": "Ledger Entries",
+                "contact": "Contacts",
+                "lead": "Leads",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -88,11 +88,11 @@
             "addimage": "Add image",
             "back": "Back",
             "cancel": "Cancel",
-            "delete": "Delete",
-            "edit": "Edit",
+            "delete": "",
+            "edit": "",
             "open": "Open",
             "save": "Save",
-            "view": "View"
+            "view": ""
         },
         "detail": {
             "field": "Field",
