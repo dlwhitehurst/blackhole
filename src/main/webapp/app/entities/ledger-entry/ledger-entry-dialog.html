@@ -31,15 +31,15 @@
         </div>
         <div class="form-group">
             <label class="control-label" translate="blackholeApp.ledgerEntry.dacctno" for="field_dacctno">Dacctno</label>
-            <input type="text" class="form-control" name="dacctno" id="field_dacctno"
-                    ng-model="vm.ledgerEntry.dacctno"
-                     />
+            <select class="form-control" ng-model="vm.ledgerEntry.dacctno" name="dacctno" id="field_dacctno">
+         				<option ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno}}">{{genAccount.name}}</option>
+         		</select>
         </div>
         <div class="form-group">
             <label class="control-label" translate="blackholeApp.ledgerEntry.cacctno" for="field_cacctno">Cacctno</label>
-            <input type="text" class="form-control" name="cacctno" id="field_cacctno"
-                    ng-model="vm.ledgerEntry.cacctno"
-                     />
+            <select class="form-control" ng-model="vm.ledgerEntry.cacctno" name="cacctno" id="field_cacctno">
+         				<option ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno}}">{{genAccount.name}}</option>
+         		</select>
         </div>
         <div class="form-group">
             <label class="control-label" translate="blackholeApp.ledgerEntry.dadebit" for="field_dadebit">Dadebit</label>

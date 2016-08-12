@@ -5,9 +5,9 @@
         .module('blackholeApp')
         .controller('LedgerEntryDialogController', LedgerEntryDialogController);
 
-    LedgerEntryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'LedgerEntry'];
+    LedgerEntryDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GenAccount','LedgerEntry'];
 
-    function LedgerEntryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, LedgerEntry) {
+    function LedgerEntryDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, GenAccount, LedgerEntry) {
         var vm = this;
 
         vm.ledgerEntry = entity;
@@ -15,6 +15,7 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+        $scope.genAccounts = GenAccount.query({size:200});
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
