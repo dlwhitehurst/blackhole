@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span translate="blackholeApp.idea.detail.title">Idea</span> {{vm.idea.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="blackholeApp.idea.entrydate">Entrydate</span></dt>
+        <dd>
+            <span>{{vm.idea.entrydate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.idea.idea">Idea</span></dt>
+        <dd>
+            <span>{{vm.idea.idea}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.idea.inprocess">Inprocess</span></dt>
+        <dd>
+            <span>{{vm.idea.inprocess}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="idea-detail.edit({id:vm.idea.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

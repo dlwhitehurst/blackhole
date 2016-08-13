@@ -1,0 +1,22 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "entrydate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "idea",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inprocess",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20160813180440",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "idea",
+    "pagination": "pagination"
+}
