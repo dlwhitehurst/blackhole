@@ -1,19 +1,19 @@
 {
     "home": {
-        "title": "Welcome, Java Hipster!",
-        "subtitle": "This is your homepage",
+        "title": "Welcome to CI Wise!",
+        "subtitle": "Your Dreams, Our Designs.",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
-        "question": "If you have any question on JHipster:",
+        "question": "If you have any question about our Blackhole application:",
         "link": {
-            "homepage": "JHipster homepage",
+            "homepage": "CI Wise Homepage",
             "stackoverflow": "JHipster on Stack Overflow",
             "bugtracker": "JHipster bug tracker",
             "chat": "JHipster public chat room",
             "follow": "follow @java_hipster on Twitter"
         },
-        "like": "If you like JHipster, don't forget to give us a star on",
+        "like": "If you like the Blackhole application, don't forget to feed us another star on",
         "github": "GitHub"
     }
 }
