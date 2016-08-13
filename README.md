@@ -1,6 +1,23 @@
 # blackhole
 
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
+With two goals in mind, I started Blackhole to learn AngularJS and the modern-side of web development. And, I needed an application to keep
+records for my consulting business. I chose to name my application Blackhole. Blackholes eat everything in their proximity. That is what I want.
+I want any application to be easy to use and just eat my data. I want the process of data entry to be as painless and mindless as possible. I can
+imagine being sucked into a blackhole is quick and painless.
+
+I wrestled with my choice of data capture and what service the application would provide. The application will accept my data and store it in a
+relational database for later analysis. Also, the application will provide real-time viewing of the data I have entered. I decided to focus on
+financial things (accounting). That is important to any business. And, I am NOT going to pay for an electronic accountant in a green box. My wife
+is an accountant and I don't believe accountants should be required to know a particular accounting software product. If your education or work
+experience is not sufficient to operate a corporate accounting system, then I truly believe the system or software is a failure. Forcing the craft
+of a professional in the direction of commercial software products is WRONG! Corporations are you listening?
+
+I also created the ability to capture entrepreneurial ideas, work leads, and clients or contacts. I am sure I will add more features as the
+application matures. I have spent my career working on applications that I personally do not use. This will be different.
+
+Blackhole was written for me but you can download the source at the Github link below. It may suit your needs as an entrepreneur or independent
+consultant too.
 
 ## Development
 
