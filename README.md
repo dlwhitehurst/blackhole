@@ -4,7 +4,7 @@ This application was generated using JHipster, you can find documentation and he
 With two goals in mind, I started Blackhole to learn AngularJS and the modern-side of web development. And, I needed an application to keep
 records for my consulting business. I chose to name my application Blackhole. Blackholes eat everything in their proximity. That is what I want.
 I want any application to be easy to use and just eat my data. I want the process of data entry to be as painless and mindless as possible. I can
-imagine being sucked into a blackhole is quick and painless.
+imagine being sucked into a blackhole quickly and painlessly.
 
 I wrestled with my choice of data capture and what service the application would provide. The application will accept my data and store it in a
 relational database for later analysis. Also, the application will provide real-time viewing of the data I have entered. I decided to focus on
