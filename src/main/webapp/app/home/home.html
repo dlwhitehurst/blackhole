@@ -4,8 +4,20 @@
             <span class="hipster img-responsive img-rounded"></span>
         </div>
         <div class="col-md-8">
-            <h1 translate="home.title">Welcome, Java Hipster!</h1>
-            <p class="lead" translate="home.subtitle">This is your homepage</p>
+            <h1 translate="home.title">Welcome to the Blackhole</h1>
+	           <p>With two goals in mind, I started Blackhole to learn AngularJS and the modern-side of web development. And, I needed an application to keep records for my consulting business.
+               I chose to name my application Blackhole. Blackholes eat everything in their proximity. That is what I want. I want the application to be easy
+               to use and just eat my data. I want the process of data entry to be as painless and mindless as possible. I imagine being sucked into a blackhole is quick and painless.</p>
+             <p>I wrestled with my choice of data capture and what service the application would provide. The application will accept my data and keep (persist) it in a relational database for
+               later analysis. Also, the application will provide real-time viewing of the data I have entered. I decided to focus on financial things (accounting). That is important to any business. And, I am
+               not going to pay for an electronic accountant in a green box. My wife is an accountant and I don't believe accountants should be required to know a particular accounting software
+               product. If your education or experience is not sufficient to operate the corporate accounting system, then I truly believe the system or software is a failure. Forcing the craft of a
+               professional in the direction of commercial software products is WRONG!<p>
+             <p>I have also created the ability to capture entrepreneurial ideas, work leads, and contacts. I will probably add more entities and features as I use this application. I have spent my career
+               working on applications that I personally do not use. This will be different. Blackhole was written for me but you can download the source at the Github link below. It may suit your needs
+               as an entrepreneur or independent consultant too.</p>
+
+            <p class="lead" translate="home.subtitle">See Home.json</p>
 
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true" translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">

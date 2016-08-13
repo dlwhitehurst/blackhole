@@ -33,15 +33,21 @@
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active" >
+                          <a ui-sref="ledger-entry" ng-click="vm.collapseNavbar()">
+                              <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                              <span translate="global.menu.entities.ledgerEntry">General Journal</span>
+                          </a>
+                        </li>
+                        <li ui-sref-active="active" >
+                          <a ui-sref="account-entry" ng-click="vm.collapseNavbar()">
+                              <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                              <span translate="global.menu.entities.accountEntry">General Ledger</span>
+                          </a>
+                        </li>
+                        <li ui-sref-active="active" >
                             <a ui-sref="gen-account" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span translate="global.menu.entities.genAccount">Gen Account</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" >
-                            <a ui-sref="ledger-entry" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                <span translate="global.menu.entities.ledgerEntry">Ledger Entry</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" >

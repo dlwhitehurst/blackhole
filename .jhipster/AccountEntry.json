@@ -1,0 +1,50 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "entrydate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "transaction",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reconcile",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "postingref",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "debit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "credit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "debitbalance",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creditbalance",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "notes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cno",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160813191416",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "account_entry",
+    "pagination": "pagination"
+}

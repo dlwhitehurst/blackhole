@@ -1,17 +1,17 @@
 {
     "home": {
-        "title": "Welcome to CI Wise!",
-        "subtitle": "Your Dreams, Our Designs.",
+        "title": "Welcome to the Blackhole Application",
+        "subtitle": "By CI Wise Inc. - Your Dreams, Our Designs.",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
         "question": "If you have any question about our Blackhole application:",
         "link": {
             "homepage": "CI Wise Homepage",
-            "stackoverflow": "JHipster on Stack Overflow",
-            "bugtracker": "JHipster bug tracker",
-            "chat": "JHipster public chat room",
-            "follow": "follow @java_hipster on Twitter"
+            "stackoverflow": "Blackhole on Stack Overflow",
+            "bugtracker": "Blackhole Issues",
+            "chat": "Blackhole public chat room",
+            "follow": "follow @ci_wise on Twitter"
         },
         "like": "If you like the Blackhole application, don't forget to feed us another star on",
         "github": "GitHub"
