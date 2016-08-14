@@ -1,9 +1,14 @@
 package org.ciwise.blackhole.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.inject.Inject;
+
 import org.ciwise.blackhole.domain.LedgerEntry;
-import org.ciwise.blackhole.repository.LedgerEntryRepository;
-import org.ciwise.blackhole.repository.search.LedgerEntrySearchRepository;
+import org.ciwise.blackhole.service.LedgerEntryService;
 import org.ciwise.blackhole.web.rest.util.HeaderUtil;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -14,17 +19,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import com.codahale.metrics.annotation.Timed;
 
 /**
  * REST controller for managing LedgerEntry.
@@ -36,10 +38,7 @@ public class LedgerEntryResource {
     private final Logger log = LoggerFactory.getLogger(LedgerEntryResource.class);
         
     @Inject
-    private LedgerEntryRepository ledgerEntryRepository;
-    
-    @Inject
-    private LedgerEntrySearchRepository ledgerEntrySearchRepository;
+    private LedgerEntryService ledgerEntryService;
     
     /**
      * POST  /ledger-entries : Create a new ledgerEntry.
@@ -57,8 +56,8 @@ public class LedgerEntryResource {
         if (ledgerEntry.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ledgerEntry", "idexists", "A new ledgerEntry cannot already have an ID")).body(null);
         }
-        LedgerEntry result = ledgerEntryRepository.save(ledgerEntry);
-        ledgerEntrySearchRepository.save(result);
+  
+        LedgerEntry result = ledgerEntryService.save(ledgerEntry);
         return ResponseEntity.created(new URI("/api/ledger-entries/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ledgerEntry", result.getId().toString()))
             .body(result);
@@ -82,8 +81,9 @@ public class LedgerEntryResource {
         if (ledgerEntry.getId() == null) {
             return createLedgerEntry(ledgerEntry);
         }
-        LedgerEntry result = ledgerEntryRepository.save(ledgerEntry);
-        ledgerEntrySearchRepository.save(result);
+
+        LedgerEntry result = ledgerEntryService.save(ledgerEntry);
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("ledgerEntry", ledgerEntry.getId().toString()))
             .body(result);
@@ -103,7 +103,9 @@ public class LedgerEntryResource {
     public ResponseEntity<List<LedgerEntry>> getAllLedgerEntries(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of LedgerEntries");
-        Page<LedgerEntry> page = ledgerEntryRepository.findAll(pageable); 
+        
+        Page<LedgerEntry> page = ledgerEntryService.findAll(pageable); 
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/ledger-entries");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -120,7 +122,9 @@ public class LedgerEntryResource {
     @Timed
     public ResponseEntity<LedgerEntry> getLedgerEntry(@PathVariable Long id) {
         log.debug("REST request to get LedgerEntry : {}", id);
-        LedgerEntry ledgerEntry = ledgerEntryRepository.findOne(id);
+
+        LedgerEntry ledgerEntry = ledgerEntryService.findOne(id);
+
         return Optional.ofNullable(ledgerEntry)
             .map(result -> new ResponseEntity<>(
                 result,
@@ -140,8 +144,9 @@ public class LedgerEntryResource {
     @Timed
     public ResponseEntity<Void> deleteLedgerEntry(@PathVariable Long id) {
         log.debug("REST request to delete LedgerEntry : {}", id);
-        ledgerEntryRepository.delete(id);
-        ledgerEntrySearchRepository.delete(id);
+
+        ledgerEntryService.delete(id);
+        
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("ledgerEntry", id.toString())).build();
     }
 
@@ -159,7 +164,8 @@ public class LedgerEntryResource {
     public ResponseEntity<List<LedgerEntry>> searchLedgerEntries(@RequestParam String query, Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to search for a page of LedgerEntries for query {}", query);
-        Page<LedgerEntry> page = ledgerEntrySearchRepository.search(queryStringQuery(query), pageable);
+
+        Page<LedgerEntry> page = ledgerEntryService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/ledger-entries");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

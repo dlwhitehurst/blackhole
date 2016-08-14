@@ -1,9 +1,14 @@
 package org.ciwise.blackhole.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.inject.Inject;
+
 import org.ciwise.blackhole.domain.AccountEntry;
-import org.ciwise.blackhole.repository.AccountEntryRepository;
-import org.ciwise.blackhole.repository.search.AccountEntrySearchRepository;
+import org.ciwise.blackhole.service.AccountEntryService;
 import org.ciwise.blackhole.web.rest.util.HeaderUtil;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -14,17 +19,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import com.codahale.metrics.annotation.Timed;
 
 /**
  * REST controller for managing AccountEntry.
@@ -34,13 +36,10 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class AccountEntryResource {
 
     private final Logger log = LoggerFactory.getLogger(AccountEntryResource.class);
+
+    @Inject
+    private AccountEntryService accountEntryService;
         
-    @Inject
-    private AccountEntryRepository accountEntryRepository;
-    
-    @Inject
-    private AccountEntrySearchRepository accountEntrySearchRepository;
-    
     /**
      * POST  /account-entries : Create a new accountEntry.
      *
@@ -57,8 +56,7 @@ public class AccountEntryResource {
         if (accountEntry.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("accountEntry", "idexists", "A new accountEntry cannot already have an ID")).body(null);
         }
-        AccountEntry result = accountEntryRepository.save(accountEntry);
-        accountEntrySearchRepository.save(result);
+        AccountEntry result = accountEntryService.save(accountEntry);
         return ResponseEntity.created(new URI("/api/account-entries/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("accountEntry", result.getId().toString()))
             .body(result);
@@ -82,8 +80,7 @@ public class AccountEntryResource {
         if (accountEntry.getId() == null) {
             return createAccountEntry(accountEntry);
         }
-        AccountEntry result = accountEntryRepository.save(accountEntry);
-        accountEntrySearchRepository.save(result);
+        AccountEntry result = accountEntryService.save(accountEntry);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("accountEntry", accountEntry.getId().toString()))
             .body(result);
@@ -103,7 +100,7 @@ public class AccountEntryResource {
     public ResponseEntity<List<AccountEntry>> getAllAccountEntries(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of AccountEntries");
-        Page<AccountEntry> page = accountEntryRepository.findAll(pageable); 
+        Page<AccountEntry> page = accountEntryService.findAll(pageable); 
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/account-entries");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -120,7 +117,7 @@ public class AccountEntryResource {
     @Timed
     public ResponseEntity<AccountEntry> getAccountEntry(@PathVariable Long id) {
         log.debug("REST request to get AccountEntry : {}", id);
-        AccountEntry accountEntry = accountEntryRepository.findOne(id);
+        AccountEntry accountEntry = accountEntryService.findOne(id);
         return Optional.ofNullable(accountEntry)
             .map(result -> new ResponseEntity<>(
                 result,
@@ -140,8 +137,7 @@ public class AccountEntryResource {
     @Timed
     public ResponseEntity<Void> deleteAccountEntry(@PathVariable Long id) {
         log.debug("REST request to delete AccountEntry : {}", id);
-        accountEntryRepository.delete(id);
-        accountEntrySearchRepository.delete(id);
+        accountEntryService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("accountEntry", id.toString())).build();
     }
 
@@ -159,7 +155,7 @@ public class AccountEntryResource {
     public ResponseEntity<List<AccountEntry>> searchAccountEntries(@RequestParam String query, Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to search for a page of AccountEntries for query {}", query);
-        Page<AccountEntry> page = accountEntrySearchRepository.search(queryStringQuery(query), pageable);
+        Page<AccountEntry> page = accountEntryService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/account-entries");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
