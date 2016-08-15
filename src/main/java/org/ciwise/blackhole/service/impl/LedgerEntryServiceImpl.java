@@ -24,6 +24,9 @@ import org.ciwise.blackhole.repository.search.AccountEntrySearchRepository;
 import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
 import org.ciwise.blackhole.repository.search.LedgerEntrySearchRepository;
 import org.ciwise.blackhole.service.LedgerEntryService;
+import org.ciwise.blackhole.service.util.CurrencyUtil;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -93,6 +96,111 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         debitAccountEntry.setCredit(ledgerEntry.getDacredit());
         creditAccountEntry.setDebit(ledgerEntry.getCadebit());
         creditAccountEntry.setCredit(ledgerEntry.getCacredit());
+        
+        QueryBuilder qb_d = QueryBuilders.termQuery("cno", ledgerEntry.getDacctno());
+        QueryBuilder qb_c = QueryBuilders.termQuery("cno", ledgerEntry.getCacctno());
+        
+        Iterable<AccountEntry> debitAccountEntries = accountEntrySearchRepository.search(qb_d); // need only by ledgerEntry.getDacctno()
+        Iterable<AccountEntry> creditAccountEntries = accountEntrySearchRepository.search(qb_c);
+        // Debit Balance Section
+        // ###################################################################################################################
+        
+        AccountEntry debitLatest = null;
+        int maxDebitId = 0;
+        
+        while (debitAccountEntries.iterator().hasNext()) {
+            AccountEntry entry = debitAccountEntries.iterator().next();
+            if (entry.getId().intValue() > maxDebitId) {
+                maxDebitId = entry.getId().intValue();
+                debitLatest = entry;
+                System.out.println("DEBUG: " + entry.getId());
+            }
+        } // null pointer ln 118
+        String lastDebitOperationDebitBalance = debitLatest.getDebitbalance(); // not null Debit(+) type account
+        String lastDebitOperationCreditBalance = debitLatest.getCreditbalance(); // not null Credit(+) type account
+        
+        String debitOperationDebitBalance = null;
+        String debitOperationCreditBalance = null;
+        
+        
+        if (lastDebitOperationDebitBalance != null) { // Debit(+) Type Account (Assumes initializing balance rows all accounts)
+            if (debitAccountEntry.getDebit() != null) {
+                // adding
+                debitOperationDebitBalance = CurrencyUtil.addCurrency(lastDebitOperationDebitBalance, debitAccountEntry.getDebit());
+                debitAccountEntry.setDebitbalance(debitOperationDebitBalance);
+
+            } else {
+                // subtracting
+                debitOperationDebitBalance = CurrencyUtil.subtractCurrency(lastDebitOperationDebitBalance, debitAccountEntry.getCredit());
+                debitAccountEntry.setDebitbalance(debitOperationDebitBalance);
+
+            }
+        } else if (lastDebitOperationCreditBalance != null) { // Credit(+) Type Account
+            if (debitAccountEntry.getCredit() != null) {
+                // adding
+                debitOperationCreditBalance = CurrencyUtil.subtractCurrency(lastDebitOperationCreditBalance, debitAccountEntry.getDebit());
+                debitAccountEntry.setCreditbalance(debitOperationCreditBalance);
+
+            } else {
+                // subtracting
+                debitOperationCreditBalance = CurrencyUtil.addCurrency(lastDebitOperationCreditBalance, debitAccountEntry.getCredit());
+                debitAccountEntry.setCreditbalance(debitOperationCreditBalance);
+
+            }
+        } else { // Error - Something is wrong
+            throw new RuntimeException("FATAL: Possible initializing ledger account rows not available or missing!");
+        }
+        
+
+        // Credit Balance Section
+        // ###################################################################################################################
+
+        AccountEntry creditLatest = null;
+        int maxCreditId = 0;
+        
+        while (creditAccountEntries.iterator().hasNext()) {
+            AccountEntry entry = creditAccountEntries.iterator().next();
+            if (entry.getId().intValue() > maxCreditId) {
+                maxCreditId = entry.getId().intValue();
+                creditLatest = entry;
+            }
+        }
+
+        String lastCreditOperationCreditBalance = creditLatest.getCreditbalance();
+        String lastCreditOperationDebitBalance = creditLatest.getCreditbalance();
+        
+        String creditOperationCreditBalance = null;
+        String creditOperationDebitBalance = null;
+        
+        if (lastCreditOperationCreditBalance != null) { // Credit(+) Type Account (Assumes initializing balance rows all accounts)
+            if (creditAccountEntry.getCredit() != null) {
+                // adding
+                creditOperationCreditBalance = CurrencyUtil.addCurrency(lastCreditOperationCreditBalance, creditAccountEntry.getCredit());
+                creditAccountEntry.setCreditbalance(creditOperationCreditBalance);
+
+            } else {
+                // subtracting
+                creditOperationCreditBalance = CurrencyUtil.subtractCurrency(lastCreditOperationCreditBalance, creditAccountEntry.getDebit());
+                creditAccountEntry.setCreditbalance(creditOperationCreditBalance);
+
+            }
+        } else if (lastCreditOperationDebitBalance != null) { // Debit(+) Type Account
+            if (creditAccountEntry.getCredit() != null) {
+                // adding
+                creditOperationDebitBalance = CurrencyUtil.subtractCurrency(lastCreditOperationDebitBalance, creditAccountEntry.getCredit());
+                creditAccountEntry.setDebitbalance(creditOperationDebitBalance);
+
+            } else {
+                // subtracting
+                creditOperationDebitBalance = CurrencyUtil.addCurrency(lastCreditOperationDebitBalance, creditAccountEntry.getDebit());
+                creditAccountEntry.setDebitbalance(creditOperationDebitBalance);
+
+            }
+        } else { // Error - Something is wrong
+            throw new RuntimeException("FATAL: Possible initializing ledger account rows not available or missing!");
+        }
+        
+        // ###################################################################################################################
         
         // Get balance from accounts
    /*     

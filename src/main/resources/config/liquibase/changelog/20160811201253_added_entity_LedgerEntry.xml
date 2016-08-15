@@ -59,6 +59,5 @@
             
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
     </changeSet>
 </databaseChangeLog>

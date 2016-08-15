@@ -16,7 +16,8 @@
     <!--
         Added the entity GenAccount.
     -->
-    <changeSet id="20160811200159-1" author="jhipster">
+    <changeSet id="20160815000000-1" author="jhipster">
+
         <createTable tableName="gen_account">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -39,6 +40,11 @@
             
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/gen_account.csv"
+                  separator=";"
+                  tableName="gen_account"/>
         
     </changeSet>
 </databaseChangeLog>

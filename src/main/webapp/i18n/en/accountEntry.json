@@ -20,8 +20,12 @@
             "transaction": "Transaction",
             "reconcile": "Bal",
             "postingref": "Ref",
-            "debit": "D/C",
-            "debitbalance": "D/C Balance",
+            "debit": "Debit",
+            "credit": "Credit",
+            "debitbalance": "Debit Balance",
+            "creditbalance": "Credit Balance",
+            "debitcredit": "D/C",
+            "debitcreditbalance": "D/C Balance",
             "notes": "Notes",
             "cno": "Acct"
         }

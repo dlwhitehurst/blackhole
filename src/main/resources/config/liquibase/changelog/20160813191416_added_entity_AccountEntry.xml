@@ -63,6 +63,11 @@
             
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
+ 
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/init_account_entries.csv"
+                  separator=";"
+                  tableName="account_entry"/>
         
     </changeSet>
 </databaseChangeLog>
