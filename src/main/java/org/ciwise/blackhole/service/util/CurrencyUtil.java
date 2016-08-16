@@ -61,7 +61,11 @@ public final class CurrencyUtil {
         String bdcs = nf.format(money);
         
         // DO NOT FORGET THIS IS HERE FOR THE REMOVAL OF THE DOLLAR SIGN FOR US CURRENCY
-        bdcs = bdcs.substring(1, bdcs.length());
+        if (bdcs.contains("(")) {
+            bdcs = bdcs.replaceAll("\\$", "");
+        } else {
+            bdcs = bdcs.substring(1, bdcs.length());
+        }
         return bdcs;
     }
 
@@ -110,9 +114,7 @@ public final class CurrencyUtil {
     }
     
 //    public static void main(String[] args) {
-// 
-//        System.out.println(subtractCurrency("145.23","45.237857"));
-//       
+//        System.out.println(subtractCurrency("0.00","100"));
 //    }
 }
 
