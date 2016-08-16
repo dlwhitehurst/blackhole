@@ -34,6 +34,15 @@ public interface AccountEntryService {
     Page<AccountEntry> findAll(Pageable pageable);
 
     /**
+     * Get all the accountEntries by Chart Number (cno)
+     * 
+     * @param chartNumber
+     * @param pageable
+     * @return
+     */
+    Page<AccountEntry> findByCno(String chartNumber, Pageable pageable);
+    
+    /**
      *  Get the "id" accountEntry.
      *  
      *  @param id the id of the entity

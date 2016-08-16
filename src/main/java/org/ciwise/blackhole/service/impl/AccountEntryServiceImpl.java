@@ -78,6 +78,13 @@ public class AccountEntryServiceImpl implements AccountEntryService {
         return accountEntry;
     }
 
+    @Transactional(readOnly = true) 
+    public Page<AccountEntry> findByCno(String chartNumber, Pageable pageable) {
+        log.debug("Request to get AccountEntry by cno: {}", chartNumber);
+        Page<AccountEntry> result = accountEntryRepository.findByCno(chartNumber, pageable);
+        return result;
+    }
+    
     /**
      *  Delete the  accountEntry by id.
      *  

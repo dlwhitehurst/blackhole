@@ -1,7 +1,8 @@
 package org.ciwise.blackhole.repository;
 
 import org.ciwise.blackhole.domain.AccountEntry;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
@@ -12,4 +13,11 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface AccountEntryRepository extends JpaRepository<AccountEntry,Long> {
 
+    /**
+     * Method to find all by chart number
+     * @param cno
+     * @param pageable
+     * @return
+     */
+    Page<AccountEntry> findByCno (String cno, Pageable pageable);
 }

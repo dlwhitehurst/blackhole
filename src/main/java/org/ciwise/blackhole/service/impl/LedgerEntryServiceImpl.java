@@ -23,6 +23,7 @@ import org.ciwise.blackhole.repository.LedgerEntryRepository;
 import org.ciwise.blackhole.repository.search.AccountEntrySearchRepository;
 import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
 import org.ciwise.blackhole.repository.search.LedgerEntrySearchRepository;
+import org.ciwise.blackhole.service.AccountEntryService;
 import org.ciwise.blackhole.service.LedgerEntryService;
 import org.ciwise.blackhole.service.util.CurrencyUtil;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -52,17 +53,20 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
     @Inject
     private LedgerEntrySearchRepository ledgerEntrySearchRepository;
 
-    @Inject
-    private AccountEntryRepository accountEntryRepository;
+//    @Inject
+//    private AccountEntryRepository accountEntryRepository;
     
-    @Inject
-    private AccountEntrySearchRepository accountEntrySearchRepository;
+//    @Inject
+//    private AccountEntrySearchRepository accountEntrySearchRepository;
 
     @Inject
-    private GenAccountRepository genAccountRepository;
+    private AccountEntryService accountEntryService;
+
+//    @Inject
+//    private GenAccountRepository genAccountRepository;
     
-    @Inject
-    private GenAccountSearchRepository genAccountSearchRepository;
+//    @Inject
+//    private GenAccountSearchRepository genAccountSearchRepository;
     
     /**
      * Save a Ledger.
@@ -73,77 +77,66 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
     public LedgerEntry save(LedgerEntry ledgerEntry) {
         log.debug("Request to save LedgerEntry : {}", ledgerEntry);
         
-        LedgerEntry result = ledgerEntryRepository.save(ledgerEntry);
-        ledgerEntrySearchRepository.save(result);
+        // create both account entry records, load what we can
+        AccountEntry debitAccountEntry = loadDebitAccountData(ledgerEntry);
+        AccountEntry creditAccountEntry = loadCreditAccountData(ledgerEntry);
 
-        // create both account entry records
-        AccountEntry debitAccountEntry = new AccountEntry();
-        AccountEntry creditAccountEntry = new AccountEntry();
+        Page<AccountEntry> debitAccountEntries = accountEntryService.findByCno(ledgerEntry.getDacctno(),new PageRequest(0,10)); 
+        Page<AccountEntry> creditAccountEntries = accountEntryService.findByCno(ledgerEntry.getCacctno(), new PageRequest(0,10));
         
-        debitAccountEntry.setCno(ledgerEntry.getDacctno());
-        creditAccountEntry.setCno(ledgerEntry.getCacctno());
+        List<AccountEntry> debitList = debitAccountEntries.getContent();
+        List<AccountEntry> creditList = creditAccountEntries.getContent();
+       
+        System.out.println("The size of the debit list=" + debitList.size());
+        System.out.println("The size of the credit list=" + debitList.size());
         
-        debitAccountEntry.setTransaction(ledgerEntry.getTransaction());
-        creditAccountEntry.setTransaction(ledgerEntry.getTransaction());
-
-        debitAccountEntry.setPostingref(ledgerEntry.getId());
-        creditAccountEntry.setPostingref(ledgerEntry.getId());
         
-        debitAccountEntry.setEntrydate(ledgerEntry.getEntrydate());
-        creditAccountEntry.setEntrydate(ledgerEntry.getEntrydate());
-        
-        debitAccountEntry.setDebit(ledgerEntry.getDadebit());
-        debitAccountEntry.setCredit(ledgerEntry.getDacredit());
-        creditAccountEntry.setDebit(ledgerEntry.getCadebit());
-        creditAccountEntry.setCredit(ledgerEntry.getCacredit());
-        
-        QueryBuilder qb_d = QueryBuilders.termQuery("cno", ledgerEntry.getDacctno());
-        QueryBuilder qb_c = QueryBuilders.termQuery("cno", ledgerEntry.getCacctno());
-        
-        Iterable<AccountEntry> debitAccountEntries = accountEntrySearchRepository.search(qb_d); // need only by ledgerEntry.getDacctno()
-        Iterable<AccountEntry> creditAccountEntries = accountEntrySearchRepository.search(qb_c);
-        // Debit Balance Section
+        // Debit Operation Running Balance Section
         // ###################################################################################################################
         
-        AccountEntry debitLatest = null;
+        AccountEntry debitLatest = new AccountEntry();
         int maxDebitId = 0;
         
-        while (debitAccountEntries.iterator().hasNext()) {
-            AccountEntry entry = debitAccountEntries.iterator().next();
+        for (AccountEntry entry: debitList) {
             if (entry.getId().intValue() > maxDebitId) {
                 maxDebitId = entry.getId().intValue();
-                debitLatest = entry;
-                System.out.println("DEBUG: " + entry.getId());
+                debitLatest.setDebitbalance(entry.getDebitbalance());
+                debitLatest.setCreditbalance(entry.getCreditbalance());
             }
-        } // null pointer ln 118
-        String lastDebitOperationDebitBalance = debitLatest.getDebitbalance(); // not null Debit(+) type account
-        String lastDebitOperationCreditBalance = debitLatest.getCreditbalance(); // not null Credit(+) type account
+        }
         
-        String debitOperationDebitBalance = null;
-        String debitOperationCreditBalance = null;
+        if (debitLatest.getDebitbalance() != null) {
+            System.out.println("LASTDEBITDEBITBAL=" + debitLatest.getDebitbalance());
+        }
+        if (debitLatest.getCreditbalance() != null) {
+            System.out.println("LASTDEBITCREDITBAL=" + debitLatest.getCreditbalance());
+        }
+        
+        String debitOperationDebitBalance = new String();
+        String debitOperationCreditBalance = new String();
         
         
-        if (lastDebitOperationDebitBalance != null) { // Debit(+) Type Account (Assumes initializing balance rows all accounts)
-            if (debitAccountEntry.getDebit() != null) {
+        if (debitLatest.getDebitbalance() != null) { // Debit(+) Type Account (Assumes initializing balance rows all accounts)
+            if (debitAccountEntry.getDebit() != null) { // addition to balance
                 // adding
-                debitOperationDebitBalance = CurrencyUtil.addCurrency(lastDebitOperationDebitBalance, debitAccountEntry.getDebit());
+                debitOperationDebitBalance = CurrencyUtil.addCurrency(debitLatest.getDebitbalance(), debitAccountEntry.getDebit());
                 debitAccountEntry.setDebitbalance(debitOperationDebitBalance);
 
             } else {
                 // subtracting
-                debitOperationDebitBalance = CurrencyUtil.subtractCurrency(lastDebitOperationDebitBalance, debitAccountEntry.getCredit());
+                debitOperationDebitBalance = CurrencyUtil.subtractCurrency(debitLatest.getDebitbalance(), debitAccountEntry.getCredit());
                 debitAccountEntry.setDebitbalance(debitOperationDebitBalance);
 
             }
-        } else if (lastDebitOperationCreditBalance != null) { // Credit(+) Type Account
+        } else if (debitLatest.getCreditbalance()  != null) { // Credit(+) Type Account
             if (debitAccountEntry.getCredit() != null) {
                 // adding
-                debitOperationCreditBalance = CurrencyUtil.subtractCurrency(lastDebitOperationCreditBalance, debitAccountEntry.getDebit());
+                debitOperationCreditBalance = CurrencyUtil.subtractCurrency(debitLatest.getCreditbalance(), debitAccountEntry.getDebit());
                 debitAccountEntry.setCreditbalance(debitOperationCreditBalance);
 
             } else {
                 // subtracting
-                debitOperationCreditBalance = CurrencyUtil.addCurrency(lastDebitOperationCreditBalance, debitAccountEntry.getCredit());
+                debitOperationCreditBalance = CurrencyUtil.addCurrency(debitLatest.getCreditbalance(), debitAccountEntry.getCredit());
                 debitAccountEntry.setCreditbalance(debitOperationCreditBalance);
 
             }
@@ -152,47 +145,51 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         }
         
 
-        // Credit Balance Section
+        // Credit Operation Running Balance Section
         // ###################################################################################################################
 
-        AccountEntry creditLatest = null;
+        AccountEntry creditLatest = new AccountEntry();
         int maxCreditId = 0;
         
-        while (creditAccountEntries.iterator().hasNext()) {
-            AccountEntry entry = creditAccountEntries.iterator().next();
+        for (AccountEntry entry: creditList) {
             if (entry.getId().intValue() > maxCreditId) {
                 maxCreditId = entry.getId().intValue();
-                creditLatest = entry;
+                creditLatest.setDebitbalance(entry.getDebitbalance());
+                creditLatest.setCreditbalance(entry.getCreditbalance());
             }
         }
-
-        String lastCreditOperationCreditBalance = creditLatest.getCreditbalance();
-        String lastCreditOperationDebitBalance = creditLatest.getCreditbalance();
         
-        String creditOperationCreditBalance = null;
-        String creditOperationDebitBalance = null;
+        if (creditLatest.getCreditbalance() != null) {
+            System.out.println("LASTCREDITDEBITBAL=" + creditLatest.getCreditbalance());
+        }
+        if (creditLatest.getDebitbalance() != null) {
+            System.out.println("LASTCREDITCREDITBAL=" + creditLatest.getDebitbalance());
+        }
         
-        if (lastCreditOperationCreditBalance != null) { // Credit(+) Type Account (Assumes initializing balance rows all accounts)
+        String creditOperationCreditBalance = new String();
+        String creditOperationDebitBalance = new String();
+        
+        if (creditLatest.getCreditbalance() != null) { // Credit(+) Type Account (Assumes initializing balance rows all accounts)
             if (creditAccountEntry.getCredit() != null) {
                 // adding
-                creditOperationCreditBalance = CurrencyUtil.addCurrency(lastCreditOperationCreditBalance, creditAccountEntry.getCredit());
+                creditOperationCreditBalance = CurrencyUtil.addCurrency(creditLatest.getCreditbalance(), creditAccountEntry.getCredit());
                 creditAccountEntry.setCreditbalance(creditOperationCreditBalance);
 
             } else {
                 // subtracting
-                creditOperationCreditBalance = CurrencyUtil.subtractCurrency(lastCreditOperationCreditBalance, creditAccountEntry.getDebit());
+                creditOperationCreditBalance = CurrencyUtil.subtractCurrency(creditLatest.getCreditbalance(), creditAccountEntry.getDebit());
                 creditAccountEntry.setCreditbalance(creditOperationCreditBalance);
 
             }
-        } else if (lastCreditOperationDebitBalance != null) { // Debit(+) Type Account
-            if (creditAccountEntry.getCredit() != null) {
-                // adding
-                creditOperationDebitBalance = CurrencyUtil.subtractCurrency(lastCreditOperationDebitBalance, creditAccountEntry.getCredit());
+        } else if (creditLatest.getDebitbalance() != null) { // Debit(+) Type Account
+            if (creditAccountEntry.getCredit() != null) { // subtraction from balance
+                // subtracting
+                creditOperationDebitBalance = CurrencyUtil.subtractCurrency(creditLatest.getDebitbalance(), creditAccountEntry.getCredit());
                 creditAccountEntry.setDebitbalance(creditOperationDebitBalance);
 
             } else {
-                // subtracting
-                creditOperationDebitBalance = CurrencyUtil.addCurrency(lastCreditOperationDebitBalance, creditAccountEntry.getDebit());
+                // adding
+                creditOperationDebitBalance = CurrencyUtil.addCurrency(creditLatest.getDebitbalance(), creditAccountEntry.getDebit());
                 creditAccountEntry.setDebitbalance(creditOperationDebitBalance);
 
             }
@@ -202,33 +199,44 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         
         // ###################################################################################################################
         
-        // Get balance from accounts
-   /*     
-        Page<GenAccount> debitAccounts = genAccountSearchRepository.search(queryStringQuery(ledgerEntry.getDacctno()), new PageRequest(1,10));
-        Page<GenAccount> creditAccounts = genAccountSearchRepository.search(queryStringQuery(ledgerEntry.getCacctno()), new PageRequest(1,10));
-        
-        List<GenAccount> debitList = debitAccounts.getContent();
-        List<GenAccount> creditList = creditAccounts.getContent();
-        
-        String debitBal = null;
-        String creditBal = null;
-        
-        for (GenAccount acct: debitList) {
-            debitBal = acct.getBalance();
-        }
-        
-        for (GenAccount acct: creditList) {
-            creditBal = acct.getBalance();
-        }
-   */     
-        accountEntryRepository.save(debitAccountEntry);
-        accountEntryRepository.save(creditAccountEntry);
-        accountEntrySearchRepository.save(debitAccountEntry);
-        accountEntrySearchRepository.save(creditAccountEntry);
-        
-        
+        accountEntryService.save(debitAccountEntry);
+        accountEntryService.save(creditAccountEntry);
+
+        // Now save LedgerEntry (General Journal Entry)
+        LedgerEntry result = ledgerEntryRepository.save(ledgerEntry);
+        ledgerEntrySearchRepository.save(result);
         
         return result;
+    }
+
+    /**
+     * @param ledgerEntry
+     * @return
+     */
+    private AccountEntry loadCreditAccountData(LedgerEntry ledgerEntry) {
+        AccountEntry creditAccountEntry = new AccountEntry();
+        creditAccountEntry.setCno(ledgerEntry.getCacctno());
+        creditAccountEntry.setTransaction(ledgerEntry.getTransaction());
+        creditAccountEntry.setPostingref(ledgerEntry.getId());
+        creditAccountEntry.setEntrydate(ledgerEntry.getEntrydate());
+        creditAccountEntry.setDebit(ledgerEntry.getCadebit());
+        creditAccountEntry.setCredit(ledgerEntry.getCacredit());
+        return creditAccountEntry;
+    }
+
+    /**
+     * @param ledgerEntry
+     * @return
+     */
+    private AccountEntry loadDebitAccountData(LedgerEntry ledgerEntry) {
+        AccountEntry debitAccountEntry = new AccountEntry();
+        debitAccountEntry.setCno(ledgerEntry.getDacctno());
+        debitAccountEntry.setTransaction(ledgerEntry.getTransaction());
+        debitAccountEntry.setPostingref(ledgerEntry.getId());
+        debitAccountEntry.setEntrydate(ledgerEntry.getEntrydate());
+        debitAccountEntry.setDebit(ledgerEntry.getDadebit());
+        debitAccountEntry.setCredit(ledgerEntry.getDacredit());
+        return debitAccountEntry;
     }
 
     /**
