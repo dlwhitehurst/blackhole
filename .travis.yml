@@ -26,7 +26,6 @@ script:
   - ./mvnw test
   - gulp test
   - ./mvnw package -Pprod -DskipTests
-  - ./runSonarQubeAnalysis.sh
 notifications:
   email: false
   webhooks:
