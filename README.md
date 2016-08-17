@@ -1,4 +1,4 @@
-# blackhole
+# blackhole by David L. Whitehurst
 
 [![Build status](https://travis-ci.org/dlwhitehurst/blackhole.svg?branch=master)](https://travis-ci.org/dlwhitehurst/blackhole) [![Quality Gate](https://sonarqube.com/api/badges/gate?key=test:blackhole)](https://sonarqube.com/dashboard/index/test:blackhole)
 
