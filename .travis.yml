@@ -20,10 +20,10 @@ before_install:
   - java -version
 install: npm install
 script:
-  - ./mvnw clean
-  - ./mvnw test
+  - mvn clean
+  - mvn test
   - gulp test
-  - ./mvnw package -Pprod -DskipTests
+  - mvn package -Pprod -DskipTests
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
