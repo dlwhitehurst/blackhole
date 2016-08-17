@@ -1,5 +1,7 @@
 # blackhole
 
+[![Build status](https://travis-ci.org/dlwhitehurst/blackhole.svg?branch=master)](https://travis-ci.org/dlwhitehurst/blackhole) [![Quality Gate](https://sonarqube.com/api/badges/gate?key=test:blackhole)](https://sonarqube.com/dashboard/index/test:blackhole)
+
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 With two goals in mind, I started Blackhole to learn AngularJS and the modern-side of web development. And, I needed an application to keep
 records for my consulting business. I chose to name my application Blackhole. Blackholes eat everything in their proximity. That is what I want.
