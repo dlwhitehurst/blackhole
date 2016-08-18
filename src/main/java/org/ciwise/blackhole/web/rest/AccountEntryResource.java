@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.AccountEntry;
+import org.ciwise.blackhole.repository.AccountEntryRepository;
+import org.ciwise.blackhole.repository.search.AccountEntrySearchRepository;
 import org.ciwise.blackhole.service.AccountEntryService;
 import org.ciwise.blackhole.web.rest.util.HeaderUtil;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
@@ -39,7 +41,13 @@ public class AccountEntryResource {
 
     @Inject
     private AccountEntryService accountEntryService;
-        
+
+    @Inject
+    private AccountEntryRepository accountEntryRepository;
+    
+    @Inject
+    private AccountEntrySearchRepository accountEntrySearchRepository;
+
     /**
      * POST  /account-entries : Create a new accountEntry.
      *

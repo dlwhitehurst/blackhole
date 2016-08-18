@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="account-entry.new" >
+                <button class="btn btn-success" ui-sref="account-entry.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="hidden-xs"  translate="blackholeApp.accountEntry.home.createLabel">
                         Create new Account Entry
@@ -16,12 +16,12 @@
                     <div class="input-group pull-right" >
                         <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'blackholeApp.accountEntry.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
-                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                            <button class="btn btn-success" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
                         <span class="input-group-btn width-min" ng-if="vm.currentSearch">
-                            <button class="btn btn-info" ng-click="vm.clear()">
+                            <button class="btn btn-success" ng-click="vm.clear()">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </span>
@@ -32,7 +32,7 @@
     </div>
     <br/>
     <div class="table-responsive">
-        <table class="jh-table table table-striped">
+        <table class="jh-table table custom-table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -47,44 +47,50 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="accountEntry in vm.accountEntries track by accountEntry.id">
+                <tr ng-repeat="accountEntry in vm.accountEntries track by accountEntry.id" class="base-class" ng-class="myVar">
                     <td><a ui-sref="account-entry-detail({id:accountEntry.id})">{{accountEntry.id}}</a></td>
-                        <td>{{accountEntry.entrydate | date:'mediumDate'}}</td>
-                    <td>{{accountEntry.transaction}}</td>
-                    <td>{{accountEntry.reconcile}}</td>
+                        <td>{{accountEntry.entrydate | date:'shortDate'}}</td>
+                    <td width="200px">{{accountEntry.transaction}}</td>
+                    <td><span ng-class="{{accountEntry.reconcile}} ? 'glyphicon glyphicon-ok' : ''"></span></td>
                     <td>{{accountEntry.postingref}}</td>
                     <td width="200px">
-		   	 <div class="dc-container">
-			  <div class="debit-acct">{{accountEntry.debit | currency}}</div>
-			  <div class="credit-acct">{{accountEntry.credit | currency}}</div>
-			</div>
-		    </td>
+		   	              <div class="dc-container">
+			                  <div class="debit-acct">{{accountEntry.debit | mycurrency}}</div>
+			                  <div class="credit-acct">{{accountEntry.credit | mycurrency}}</div>
+			                </div>
+		                </td>
                     <td width="200px">
 		   	<div class="dc-container">
-			  <div class="debit-acct">{{accountEntry.debitbalance | currency}}</div>
-			  <div class="credit-acct">{{accountEntry.creditbalance | currency}}</div>
-			</div>
+			    <div ng-class="{{accountEntry.debitbalance | boolNegative}} ? 'debit-acct-red' : 'debit-acct'" class="debit-acct">{{accountEntry.debitbalance | mycurrency}}</div>
+			    <div ng-class="{{accountEntry.creditbalance | boolNegative}} ? 'credit-acct-red' : 'credit-acct'" class="credit-acct">{{accountEntry.creditbalance | mycurrency}}</div>
+			  </div>
 		    </td>
                     <td width="250px">{{genAccounts | chartName:accountEntry.cno}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="account-entry-detail({id:accountEntry.id})"
-                                    class="btn btn-info btn-sm">
+                                    class="btn btn-default">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="account-entry.edit({id:accountEntry.id})"
-                                    class="btn btn-primary btn-sm">
+                                    class="btn btn-default">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="account-entry.delete({id:accountEntry.id})"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-default">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                            <button id="setbtn" class="btn btn-default" ng-click="myVar='my-class'">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button id="clearbtn" class="btn btn-default" ng-click="myVar=''">
+                                <span class="glyphicon glyphicon-minus"></span>
                             </button>
                         </div>
                     </td>

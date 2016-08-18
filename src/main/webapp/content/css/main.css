@@ -1,5 +1,5 @@
 body {
-    background: #fafafa;
+    background: #62B7CC; /* #A9CCE3; */ /*  #fafafa; */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -51,7 +51,7 @@ Developement Ribbon
 Version number in navbar
 ========================================================================== */
 .navbar-version {
-    font-size: 10px;
+    font-size: 15px;
     color: #ccc
 }
 
@@ -101,7 +101,7 @@ Main page styles
     display: inline-block;
     width: 347px;
     height: 497px;
-    background: url("../images/hipster.png") no-repeat center top;
+    background: url("../images/owl.png") no-repeat center top;
     background-size: contain;
 }
 
@@ -114,7 +114,7 @@ only screen and (        min-device-pixel-ratio: 2),
 only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) {
     .hipster {
-        background: url("../images/hipster2x.png") no-repeat center top;
+        background: url("../images/owl2x.png") no-repeat center top;
         background-size: contain;
     }
 }
@@ -331,7 +331,7 @@ ui bootstrap tweaks
 
 
 /* ==========================================================================
- dlwhitehurst custom styles
+ blackhole custom styles
 ========================================================================== */
 .dc-container {
 float:bottom;
@@ -340,40 +340,84 @@ float:bottom;
 .debit {
 background-color: #D4E6F1;
 float : left;
-height: 23px;
-width: 85px;
+height: 18px;
+width: 70px;
 vertical-align: middle;
 text-align:right;
+font-size:90%;
 padding-right: 4px;
 }
 
 .credit {
 background-color: #A9CCE3;
 float : left;
-height: 23px;
-width: 85px;
+height: 18px;
+width: 70px;
 vertical-align: middle;
 text-align:right;
+font-size:90%;
 padding-right: 4px;
 }
+
 .debit-acct {
-background-color: #DAF7A6;
-float : left;
-height: 23px;
-width: 85px;
-vertical-align: middle;
-text-align:right;
-padding-right: 4px;
+  background-color: #DAF7A6;
+  float : left;
+  height: 18px;
+  width: 70px; /* 85px */
+  vertical-align: middle;
+  text-align:right;
+  font-size:90%;
+  padding-right: 4px;
 }
 
 .credit-acct {
 background-color: #ABEBC6;
 float : left;
-height: 23px;
-width: 85px;
+height: 18px;
+width: 70px;
 vertical-align: middle;
 text-align:right;
+font-size:90%;
 padding-right: 4px;
 }
 
+.debit-acct-red {
+background-color: #DAF7A6;
+float : left;
+height: 18px;
+width: 70px;
+vertical-align: middle;
+text-align:right;
+color:red;
+font-size:90%;
+font-weight: bold;
+padding-right: 4px;
+}
+
+.credit-acct-red {
+background-color: #ABEBC6;
+float : left;
+height: 18px;
+width: 70px;
+vertical-align: middle;
+text-align:right;
+font-size:90%;
+color:red;
+font-weight:bold;
+padding-right: 4px;
+}
+
+.base-class {
+  font-size:90%;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.base-class.my-class {
+  font-weight:bold;
+  font-size:110%;
+}
+
+.custom-table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #F2F0E5; /* #D8D9D8; */
+}
 /* jhipster-needle-css-add-main JHipster will add new css style */

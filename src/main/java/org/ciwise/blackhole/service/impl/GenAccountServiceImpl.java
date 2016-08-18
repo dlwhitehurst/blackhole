@@ -13,7 +13,6 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.GenAccount;
-import org.ciwise.blackhole.domain.GenAccount;
 import org.ciwise.blackhole.repository.GenAccountRepository;
 import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
 import org.ciwise.blackhole.service.GenAccountService;

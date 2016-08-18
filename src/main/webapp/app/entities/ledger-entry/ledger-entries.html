@@ -16,12 +16,12 @@
                     <div class="input-group pull-right" >
                         <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'blackholeApp.ledgerEntry.home.search' | translate }}">
                         <span  class="input-group-btn width-min" >
-                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                            <button class="btn btn-primary" ng-click="vm.search(vm.searchQuery)">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
                         <span class="input-group-btn width-min" ng-if="vm.currentSearch">
-                            <button class="btn btn-info" ng-click="vm.clear()">
+                            <button class="btn btn-primary" ng-click="vm.clear()">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </span>
@@ -32,7 +32,7 @@
     </div>
     <br/>
     <div class="table-responsive">
-        <table class="jh-table table table-striped">
+        <table class="jh-table table custom-table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -44,7 +44,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="ledgerEntry in vm.ledgerEntries track by ledgerEntry.id">
+                <tr ng-repeat="ledgerEntry in vm.ledgerEntries track by ledgerEntry.id" class="base-class" ng-class="myVar">
                     <td><a ui-sref="ledger-entry-detail({id:ledgerEntry.id})">{{ledgerEntry.id}}</a></td>
                         <td>{{ledgerEntry.entrydate | date:'mediumDate'}}</td>
                     <td>{{ledgerEntry.transaction}}</td>
@@ -62,21 +62,27 @@
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="ledger-entry-detail({id:ledgerEntry.id})"
-                                    class="btn btn-info btn-sm">
+                                    class="btn btn-default">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="ledger-entry.edit({id:ledgerEntry.id})"
-                                    class="btn btn-primary btn-sm">
+                                    class="btn btn-default">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="ledger-entry.delete({id:ledgerEntry.id})"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-default">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                            <button id="setbtn" class="btn btn-default" ng-click="myVar='my-class'">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button id="clearbtn" class="btn btn-default" ng-click="myVar=''">
+                                <span class="glyphicon glyphicon-minus"></span>
                             </button>
                         </div>
                     </td>

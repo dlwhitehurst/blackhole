@@ -20,6 +20,16 @@
     </prerequisites>
 
     <properties>
+        <sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+
+        <!-- For Java -->
+        <sonar.junit.reportsPath>reports/java/surefire-reports</sonar.junit.reportsPath>
+        <sonar.jacoco.reportPath>reports/java/jacoco.exec</sonar.jacoco.reportPath>
+
+        <!-- For JavaScript -->
+        <sonar.javascript.lcov.reportPath>reports/js/lcov.dat</sonar.javascript.lcov.reportPath>
+
         <hikaricp.version>2.4.6</hikaricp.version>
         <assertj-core.version>3.3.0</assertj-core.version>
         <awaitility.version>1.7.0</awaitility.version>

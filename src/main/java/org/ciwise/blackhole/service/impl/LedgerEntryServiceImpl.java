@@ -15,25 +15,17 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.AccountEntry;
-import org.ciwise.blackhole.domain.GenAccount;
 import org.ciwise.blackhole.domain.LedgerEntry;
-import org.ciwise.blackhole.repository.AccountEntryRepository;
-import org.ciwise.blackhole.repository.GenAccountRepository;
 import org.ciwise.blackhole.repository.LedgerEntryRepository;
-import org.ciwise.blackhole.repository.search.AccountEntrySearchRepository;
-import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
 import org.ciwise.blackhole.repository.search.LedgerEntrySearchRepository;
 import org.ciwise.blackhole.service.AccountEntryService;
 import org.ciwise.blackhole.service.LedgerEntryService;
 import org.ciwise.blackhole.service.util.CurrencyUtil;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -76,6 +68,9 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
      */
     public LedgerEntry save(LedgerEntry ledgerEntry) {
         log.debug("Request to save LedgerEntry : {}", ledgerEntry);
+
+        LedgerEntry result = ledgerEntryRepository.save(ledgerEntry);
+        ledgerEntrySearchRepository.save(result);
         
         // create both account entry records, load what we can
         AccountEntry debitAccountEntry = loadDebitAccountData(ledgerEntry);
@@ -160,10 +155,10 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         }
         
         if (creditLatest.getCreditbalance() != null) {
-            System.out.println("LASTCREDITDEBITBAL=" + creditLatest.getCreditbalance());
+            System.out.println("LASTCREDITDEBITBAL=" + creditLatest.getDebitbalance());
         }
         if (creditLatest.getDebitbalance() != null) {
-            System.out.println("LASTCREDITCREDITBAL=" + creditLatest.getDebitbalance());
+            System.out.println("LASTCREDITCREDITBAL=" + creditLatest.getCreditbalance());
         }
         
         String creditOperationCreditBalance = new String();
@@ -202,9 +197,6 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         accountEntryService.save(debitAccountEntry);
         accountEntryService.save(creditAccountEntry);
 
-        // Now save LedgerEntry (General Journal Entry)
-        LedgerEntry result = ledgerEntryRepository.save(ledgerEntry);
-        ledgerEntrySearchRepository.save(result);
         
         return result;
     }
@@ -221,6 +213,7 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         creditAccountEntry.setEntrydate(ledgerEntry.getEntrydate());
         creditAccountEntry.setDebit(ledgerEntry.getCadebit());
         creditAccountEntry.setCredit(ledgerEntry.getCacredit());
+        creditAccountEntry.setPostingref(ledgerEntry.getId());
         return creditAccountEntry;
     }
 
@@ -236,6 +229,7 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         debitAccountEntry.setEntrydate(ledgerEntry.getEntrydate());
         debitAccountEntry.setDebit(ledgerEntry.getDadebit());
         debitAccountEntry.setCredit(ledgerEntry.getDacredit());
+        debitAccountEntry.setPostingref(ledgerEntry.getId());
         return debitAccountEntry;
     }
 

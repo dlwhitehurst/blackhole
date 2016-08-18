@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.LedgerEntry;
+import org.ciwise.blackhole.repository.LedgerEntryRepository;
+import org.ciwise.blackhole.repository.search.LedgerEntrySearchRepository;
 import org.ciwise.blackhole.service.LedgerEntryService;
 import org.ciwise.blackhole.web.rest.util.HeaderUtil;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
@@ -39,6 +41,12 @@ public class LedgerEntryResource {
         
     @Inject
     private LedgerEntryService ledgerEntryService;
+
+    @Inject
+    private LedgerEntryRepository ledgerEntryRepository;
+
+    @Inject
+    private LedgerEntrySearchRepository ledgerEntrySearchRepository;
     
     /**
      * POST  /ledger-entries : Create a new ledgerEntry.

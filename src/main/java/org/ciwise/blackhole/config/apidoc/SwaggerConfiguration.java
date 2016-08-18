@@ -1,23 +1,24 @@
 package org.ciwise.blackhole.config.apidoc;
 
-import org.ciwise.blackhole.config.Constants;
-import org.ciwise.blackhole.config.JHipsterProperties;
+import static springfox.documentation.builders.PathSelectors.regex;
 
 import java.util.Date;
+
+import org.ciwise.blackhole.config.Constants;
+import org.ciwise.blackhole.config.JHipsterProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.*;
-import org.springframework.data.domain.Pageable;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StopWatch;
+
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import static springfox.documentation.builders.PathSelectors.regex;
 
 /**
  * Springfox Swagger configuration.

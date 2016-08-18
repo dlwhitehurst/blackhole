@@ -11,6 +11,8 @@ package org.ciwise.blackhole.service.util;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *  @author <a href="mailto:david@ciwise.com">David L. Whitehurst</a>
@@ -63,8 +65,10 @@ public final class CurrencyUtil {
         // DO NOT FORGET THIS IS HERE FOR THE REMOVAL OF THE DOLLAR SIGN FOR US CURRENCY
         if (bdcs.contains("(")) {
             bdcs = bdcs.replaceAll("\\$", "");
+            bdcs = bdcs.replaceAll("\\,", "");
         } else {
             bdcs = bdcs.substring(1, bdcs.length());
+            bdcs = bdcs.replaceAll(",", "");
         }
         return bdcs;
     }
@@ -92,6 +96,14 @@ public final class CurrencyUtil {
      * @return
      */
     public static String addCurrency(String a, String b) {
+
+        if (a.contains("(") && a.contains(")")) {
+            a = fixNegativeCurrency(a);
+        }
+        if (b.contains("(") && b.contains(")")) {
+            a = fixNegativeCurrency(b);
+        }
+        
         BigDecimal aBDec = new BigDecimal(a);
         BigDecimal bBDec = new BigDecimal(b);
         BigDecimal resultNumeric = aBDec.add(bBDec);
@@ -106,15 +118,35 @@ public final class CurrencyUtil {
      * @return
      */
     public static String subtractCurrency(String a, String b) {
+        
+        if (a.contains("(") && a.contains(")")) {
+            a = fixNegativeCurrency(a);
+        }
+        if (b.contains("(") && b.contains(")")) {
+            a = fixNegativeCurrency(b);
+        }
+        
         BigDecimal aBDec = new BigDecimal(a);
         BigDecimal bBDec = new BigDecimal(b);
         BigDecimal resultNumeric = aBDec.subtract(bBDec);
         
         return getBigDecimalCurrencyString(resultNumeric);
     }
+
+// ####################################################################################
     
+    private static String fixNegativeCurrency(String negCurStr) {
+
+        negCurStr = negCurStr.replaceAll("\\(",""); 
+        negCurStr = negCurStr.replaceAll("\\)",""); 
+        
+        negCurStr = "-" + negCurStr;
+
+        return negCurStr;
+    }
+
 //    public static void main(String[] args) {
-//        System.out.println(subtractCurrency("0.00","100"));
+//        System.out.println(addCurrency("(100.00)","300.00"));
 //    }
 }
 

@@ -20,7 +20,7 @@
         vm.loadAll = loadAll;
         vm.searchQuery = pagingParams.search;
         vm.currentSearch = pagingParams.search;
-	$scope.genAccounts = GenAccount.query({size:200});
+	      $scope.genAccounts = GenAccount.query({size:200});
 
         loadAll();
 
