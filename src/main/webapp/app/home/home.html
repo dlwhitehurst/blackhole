@@ -20,7 +20,7 @@
             <p class="lead" translate="home.subtitle">See Home.json</p>
 
             <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
+                <div class="alert alert-warning" ng-switch-when="true" translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
                 </div>
 
@@ -32,7 +32,7 @@
                     You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                 </div>
             </div>
-
+            <p></p>
             <p translate="home.question">
                 If you have any question on JHipster:
             </p>

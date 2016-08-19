@@ -1,5 +1,5 @@
 body {
-    background: #62B7CC; /* #A9CCE3; */ /*  #fafafa; */
+    background: #000000; /* #F2F0E5; /* #62B7CC; */ /* #A9CCE3; */ /*  #fafafa; */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -51,7 +51,7 @@ Developement Ribbon
 Version number in navbar
 ========================================================================== */
 .navbar-version {
-    font-size: 15px;
+    font-size: 10px;
     color: #ccc
 }
 
@@ -99,9 +99,10 @@ Main page styles
 
 .hipster {
     display: inline-block;
-    width: 347px;
+    width: 400px; /* 347px; */
     height: 497px;
-    background: url("../images/owl.png") no-repeat center top;
+    margin-top: 26px;
+    background: url("../images/blackhole.png") no-repeat center top;
     background-size: contain;
 }
 
@@ -114,7 +115,7 @@ only screen and (        min-device-pixel-ratio: 2),
 only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) {
     .hipster {
-        background: url("../images/owl2x.png") no-repeat center top;
+        background: url("../images/blackhole2x.png") no-repeat center top;
         background-size: contain;
     }
 }
@@ -419,5 +420,12 @@ padding-right: 4px;
 
 .custom-table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #F2F0E5; /* #D8D9D8; */
+}
+
+.custom-success-alert {
+  color:red;
+}
+.white-text {
+  color: white;
 }
 /* jhipster-needle-css-add-main JHipster will add new css style */

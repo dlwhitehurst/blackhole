@@ -1,7 +1,7 @@
 {
     "home": {
         "title": "Welcome to the Blackhole Application",
-        "subtitle": "By CI Wise Inc. - Your Dreams, Our Designs.",
+        "subtitle": "Don't get too close, we might save your data!",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
