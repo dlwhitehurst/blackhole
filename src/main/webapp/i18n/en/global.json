@@ -4,16 +4,24 @@
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
-            "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+            "connect": {
+                "main": "Connect",
+                "contact": "Contacts",
+                "lead": "Leads"
+            },
             "entities": {
-                "main": "Entities",
+                "main": "Financials",
                 "ledgerEntry": "General Journal",
                 "accountEntry": "General Ledger",
-                "genAccount": "Accounts",
-                "contact": "Contacts",
-                "lead": "Leads",
-                "idea": "Ideas",
-                "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+                "genAccount": "Chart of Accounts",
+                "idea": "Ideas"
+            },
+            "reports": {
+                "main": "Reports",
+                "trial": "Trial Balance",
+                "income": "Income Statement",
+                "equity": "Equity Statment",
+                "cash": "Cash Flow"
             },
             "account": {
                 "main": "Account",
@@ -34,8 +42,7 @@
                 "logs": "Logs",
                 "audits": "Audits",
                 "apidocs": "API",
-                "database": "Database",
-                "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+                "database": "Database"
             },
             "language": "Language"
         },

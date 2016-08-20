@@ -14,24 +14,33 @@
         </div>
         <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed" ng-switch="vm.isAuthenticated()">
             <ul class="nav navbar-nav navbar-right">
+
+              <!-- HOME -->
                 <li ui-sref-active="active">
                     <a ui-sref="home" ng-click="vm.collapseNavbar()">
                         <span class="glyphicon glyphicon-home"></span>
                         <span class="hidden-sm" translate="global.menu.home">Home</span>
                     </a>
                 </li>
-                <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+
+              <!-- ENTITIES -->
                 <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="hidden-sm" translate="global.menu.entities.main">
-                                Entities
+                                Financials
                             </span>
                             <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li ui-sref-active="active" >
+                          <a ui-sref="gen-account" ng-click="vm.collapseNavbar()">
+                              <span class="glyphicon glyphicon-usd"></span>&nbsp;
+                              <span translate="global.menu.entities.genAccount">Chart of Accounts</span>
+                          </a>
+                        </li>
                         <li ui-sref-active="active" >
                           <a ui-sref="ledger-entry" ng-click="vm.collapseNavbar()">
                               <span class="glyphicon glyphicon-usd"></span>&nbsp;
@@ -44,33 +53,49 @@
                               <span translate="global.menu.entities.accountEntry">General Ledger</span>
                           </a>
                         </li>
-                        <li ui-sref-active="active" >
-                            <a ui-sref="gen-account" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-usd"></span>&nbsp;
-                                <span translate="global.menu.entities.genAccount">Gen Account</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" >
-                            <a ui-sref="contact" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                <span translate="global.menu.entities.contact">Contact</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" >
-                            <a ui-sref="lead" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                <span translate="global.menu.entities.lead">Lead</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" >
-                            <a ui-sref="idea" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                <span translate="global.menu.entities.idea">Idea</span>
-                            </a>
-                        </li>
-                        <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     </ul>
                 </li>
+
+                <!-- REPORTS -->
+                  <li ng-class="{active: vm.$state.includes('reports')}" ng-switch-when="true" uib-dropdown class="dropdown pointer">
+                      <a class="dropdown-toggle" uib-dropdown-toggle href="" id="connect-menu">
+                          <span>
+                              <span class="glyphicon glyphicon-info-sign"></span>
+                              <span class="hidden-sm" translate="global.menu.reports.main">
+                                  Reports
+                              </span>
+                              <b class="caret"></b>
+                          </span>
+                      </a>
+                      <ul class="dropdown-menu" uib-dropdown-menu>
+                          <li ui-sref-active="active" >
+                              <a ui-sref="trial" ng-click="vm.collapseNavbar()">
+                                  <span class="glyphicon glyphicon-flash"></span>&nbsp;
+                                  <span translate="global.menu.reports.trial">Trial Balance</span>
+                              </a>
+                          </li>
+                          <li ui-sref-active="active" >
+                              <a ui-sref="income" ng-click="vm.collapseNavbar()">
+                                  <span class="glyphicon glyphicon-flash"></span>&nbsp;
+                                  <span translate="global.menu.reports.income">Income Statement</span>
+                              </a>
+                          </li>
+                          <li ui-sref-active="active" >
+                              <a ui-sref="equity" ng-click="vm.collapseNavbar()">
+                                  <span class="glyphicon glyphicon-flash"></span>&nbsp;
+                                  <span translate="global.menu.reports.equity">Equity Statement</span>
+                              </a>
+                          </li>
+                          <li ui-sref-active="active" >
+                              <a ui-sref="cash" ng-click="vm.collapseNavbar()">
+                                  <span class="glyphicon glyphicon-flash"></span>&nbsp;
+                                  <span translate="global.menu.reports.cash">Cash Flow</span>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+
+              <!-- ACCOUNT -->
                 <li ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu">
                         <span>
@@ -120,6 +145,8 @@
                         </li>
                     </ul>
                 </li>
+
+              <!-- ADMINISTRATION -->
                 <li ng-class="{active: vm.$state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
                         <span>
@@ -171,9 +198,10 @@
                                 <span translate="global.menu.admin.apidocs">API</span>
                             </a>
                         </li>
-                        <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                     </ul>
                 </li>
+
+              <!-- LANGUAGE -->
                 <li ui-sref-active="active" uib-dropdown class="dropdown pointer" ng-controller="JhiLanguageController as languageVm">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" ng-if="languageVm.languages.length > 1">
                         <span>
