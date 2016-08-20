@@ -342,70 +342,76 @@ float:bottom;
 background-color: #D4E6F1;
 float : left;
 height: 18px;
-width: 70px;
+width: 80px;
 vertical-align: middle;
 text-align:right;
 font-size:90%;
 padding-right: 4px;
+border:1px solid red;
 }
 
 .credit {
 background-color: #A9CCE3;
 float : left;
 height: 18px;
-width: 70px;
+width: 80px;
 vertical-align: middle;
 text-align:right;
 font-size:90%;
 padding-right: 4px;
+border:1px solid red;
 }
 
 .debit-acct {
   background-color: #DAF7A6;
   float : left;
   height: 18px;
-  width: 70px; /* 85px */
+  width: 80px; /* 85px */
   vertical-align: middle;
   text-align:right;
   font-size:90%;
   padding-right: 4px;
+  border:1px solid red;
 }
 
 .credit-acct {
 background-color: #ABEBC6;
 float : left;
 height: 18px;
-width: 70px;
+width: 80px;
 vertical-align: middle;
 text-align:right;
 font-size:90%;
 padding-right: 4px;
+border:1px solid red;
 }
 
 .debit-acct-red {
 background-color: #DAF7A6;
 float : left;
 height: 18px;
-width: 70px;
+width: 80px;
 vertical-align: middle;
 text-align:right;
 color:red;
 font-size:90%;
 font-weight: bold;
 padding-right: 4px;
+border:1px solid red;
 }
 
 .credit-acct-red {
 background-color: #ABEBC6;
 float : left;
 height: 18px;
-width: 70px;
+width: 80px;
 vertical-align: middle;
 text-align:right;
 font-size:90%;
 color:red;
 font-weight:bold;
 padding-right: 4px;
+border:1px solid red;
 }
 
 .base-class {
@@ -419,7 +425,15 @@ padding-right: 4px;
 }
 
 .custom-table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #F2F0E5; /* #D8D9D8; */
+  background-color: #B0DAA0; /*#F2F0E5; /* #D8D9D8; */
+}
+
+.journal-table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #6594F8;
+}
+
+.chart-table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #DAF7A6;
 }
 
 .custom-success-alert {
