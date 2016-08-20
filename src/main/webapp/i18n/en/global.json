@@ -20,7 +20,7 @@
                 "main": "Reports",
                 "trial": "Trial Balance",
                 "income": "Income Statement",
-                "equity": "Equity Statment",
+                "equity": "Owners Equity",
                 "cash": "Cash Flow"
             },
             "account": {
