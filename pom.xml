@@ -580,7 +580,7 @@
                     <url>jdbc:mysql://localhost:3306/blackhole</url>
                     <defaultSchemaName>blackhole</defaultSchemaName>
                     <username>root</username>
-                    <password>OwlSpit0403</password>
+                    <password></password>
                     <referenceUrl>hibernate:spring:org.ciwise.blackhole.domain?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.ejb.naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>
