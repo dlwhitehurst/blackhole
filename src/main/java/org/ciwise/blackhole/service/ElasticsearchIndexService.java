@@ -6,24 +6,15 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.AccountEntry;
-import org.ciwise.blackhole.domain.Contact;
 import org.ciwise.blackhole.domain.GenAccount;
-import org.ciwise.blackhole.domain.Idea;
-import org.ciwise.blackhole.domain.Lead;
 import org.ciwise.blackhole.domain.LedgerEntry;
 import org.ciwise.blackhole.domain.User;
 import org.ciwise.blackhole.repository.AccountEntryRepository;
-import org.ciwise.blackhole.repository.ContactRepository;
 import org.ciwise.blackhole.repository.GenAccountRepository;
-import org.ciwise.blackhole.repository.IdeaRepository;
-import org.ciwise.blackhole.repository.LeadRepository;
 import org.ciwise.blackhole.repository.LedgerEntryRepository;
 import org.ciwise.blackhole.repository.UserRepository;
 import org.ciwise.blackhole.repository.search.AccountEntrySearchRepository;
-import org.ciwise.blackhole.repository.search.ContactSearchRepository;
 import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
-import org.ciwise.blackhole.repository.search.IdeaSearchRepository;
-import org.ciwise.blackhole.repository.search.LeadSearchRepository;
 import org.ciwise.blackhole.repository.search.LedgerEntrySearchRepository;
 import org.ciwise.blackhole.repository.search.UserSearchRepository;
 import org.elasticsearch.indices.IndexAlreadyExistsException;
@@ -50,28 +41,10 @@ public class ElasticsearchIndexService {
     private AccountEntrySearchRepository accountEntrySearchRepository;
 
     @Inject
-    private ContactRepository contactRepository;
-
-    @Inject
-    private ContactSearchRepository contactSearchRepository;
-
-    @Inject
     private GenAccountRepository genAccountRepository;
 
     @Inject
     private GenAccountSearchRepository genAccountSearchRepository;
-
-    @Inject
-    private IdeaRepository ideaRepository;
-
-    @Inject
-    private IdeaSearchRepository ideaSearchRepository;
-
-    @Inject
-    private LeadRepository leadRepository;
-
-    @Inject
-    private LeadSearchRepository leadSearchRepository;
 
     @Inject
     private LedgerEntryRepository ledgerEntryRepository;
@@ -92,10 +65,7 @@ public class ElasticsearchIndexService {
     @Timed
     public void reindexAll() {
         reindexForClass(AccountEntry.class, accountEntryRepository, accountEntrySearchRepository);
-        reindexForClass(Contact.class, contactRepository, contactSearchRepository);
         reindexForClass(GenAccount.class, genAccountRepository, genAccountSearchRepository);
-        reindexForClass(Idea.class, ideaRepository, ideaSearchRepository);
-        reindexForClass(Lead.class, leadRepository, leadSearchRepository);
         reindexForClass(LedgerEntry.class, ledgerEntryRepository, ledgerEntrySearchRepository);
         reindexForClass(User.class, userRepository, userSearchRepository);
 
