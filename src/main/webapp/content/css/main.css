@@ -362,6 +362,82 @@ padding-right: 4px;
 border:1px solid red;
 }
 
+.debit-red {
+background-color: #D4E6F1;
+float : left;
+height: 18px;
+width: 80px;
+vertical-align: middle;
+text-align:right;
+font-size:90%;
+padding-right: 4px;
+border:1px solid red;
+color:red;
+}
+
+.credit-red {
+background-color: #A9CCE3;
+float : left;
+height: 18px;
+width: 80px;
+vertical-align: middle;
+text-align:right;
+font-size:90%;
+padding-right: 4px;
+border:1px solid red;
+color:red;
+}
+
+.debit-bold {
+background-color: #D4E6F1;
+float : left;
+height: 18px;
+width: 80px;
+vertical-align: middle;
+text-align:right;
+font-size:90%;
+font-weight:bold;
+padding-right: 4px;
+border:1px solid red;
+}
+
+.credit-bold {
+background-color: #A9CCE3;
+float : left;
+height: 18px;
+width: 80px;
+vertical-align: middle;
+text-align:right;
+font-size:90%;
+font-weight:bold;
+padding-right: 4px;
+border:1px solid red;
+}
+
+.debit-no-border {
+background-color: #D4E6F1;
+float : left;
+height: 18px;
+width: 80px;
+vertical-align: middle;
+text-align:right;
+font-size:90%;
+padding-right: 4px;
+/* border:1px solid red; */
+}
+
+.credit-no-border {
+background-color: #A9CCE3;
+float : left;
+height: 18px;
+width: 80px;
+vertical-align: middle;
+text-align:right;
+font-size:90%;
+padding-right: 4px;
+/* border:1px solid red; */
+}
+
 .debit-acct {
   background-color: #DAF7A6;
   float : left;
@@ -384,6 +460,56 @@ text-align:right;
 font-size:90%;
 padding-right: 4px;
 border:1px solid red;
+}
+
+.debit-acct-bold {
+  background-color: #DAF7A6;
+  float : left;
+  height: 18px;
+  width: 80px; /* 85px */
+  vertical-align: middle;
+  text-align:right;
+  font-size:90%;
+  font-weight: bold;
+  padding-right: 4px;
+  border:1px solid red;
+}
+
+.credit-acct-bold {
+background-color: #ABEBC6;
+float : left;
+height: 18px;
+width: 80px;
+vertical-align: middle;
+text-align:right;
+font-size:90%;
+font-weight: bold;
+padding-right: 4px;
+border:1px solid red;
+}
+
+.debit-acct-no-border {
+  background-color: #DAF7A6;
+  float : left;
+  height: 18px;
+  width: 80px; /* 85px */
+  vertical-align: middle;
+  text-align:right;
+  font-size:90%;
+  padding-right: 4px;
+/*  border:1px solid red; */
+}
+
+.credit-acct-no-border {
+  background-color: #ABEBC6;
+  float : left;
+  height: 18px;
+  width: 80px;
+  vertical-align: middle;
+  text-align:right;
+  font-size:90%;
+  padding-right: 4px;
+/* border:1px solid red; */
 }
 
 .debit-acct-red {
@@ -425,7 +551,7 @@ border:1px solid red;
 }
 
 .custom-table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #B0DAA0; /*#F2F0E5; /* #D8D9D8; */
+  background-color: #9DDA84; /* #B0DAA0; /*#F2F0E5; /* #D8D9D8; */
 }
 
 .journal-table-striped > tbody > tr:nth-of-type(odd) {
@@ -442,4 +568,25 @@ border:1px solid red;
 .white-text {
   color: white;
 }
+
+.debit-column-lg {
+  float:left;
+  width:50%;
+  background:#9c9;
+}
+.credit-column-lg {
+  float:right;
+  width:50%;
+  background:#c9c;
+}
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+
 /* jhipster-needle-css-add-main JHipster will add new css style */

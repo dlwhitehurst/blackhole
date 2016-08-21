@@ -60,11 +60,11 @@
 			                </div>
 		                </td>
                     <td width="250px">
-		   	<div class="dc-container">
-			    <div ng-class="{{accountEntry.debitbalance | boolNegative}} ? 'debit-acct-red' : 'debit-acct'" class="debit-acct">{{accountEntry.debitbalance | mycurrency}}</div>
-			    <div ng-class="{{accountEntry.creditbalance | boolNegative}} ? 'credit-acct-red' : 'credit-acct'" class="credit-acct">{{accountEntry.creditbalance | mycurrency}}</div>
-			  </div>
-		    </td>
+		   	              <div class="dc-container">
+			                  <div ng-class="{{accountEntry.debitbalance | boolNegative}} ? 'debit-red' : 'debit'" class="debit">{{accountEntry.debitbalance | mycurrency}}</div>
+			                  <div ng-class="{{accountEntry.creditbalance | boolNegative}} ? 'credit-red' : 'credit'" class="credit">{{accountEntry.creditbalance | mycurrency}}</div>
+			                </div>
+		                </td>
                     <td width="250px">{{genAccounts | chartName:accountEntry.cno}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

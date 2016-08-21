@@ -8,8 +8,6 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.GenAccount;
-import org.ciwise.blackhole.repository.GenAccountRepository;
-import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
 import org.ciwise.blackhole.service.GenAccountService;
 import org.ciwise.blackhole.web.rest.util.HeaderUtil;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
@@ -42,12 +40,6 @@ public class GenAccountResource {
     @Inject
     private GenAccountService genAccountService;
 
-    @Inject
-    private GenAccountRepository genAccountRepository;
-    
-    @Inject
-    private GenAccountSearchRepository genAccountSearchRepository;
-    
     /**
      * POST  /gen-accounts : Create a new genAccount.
      *

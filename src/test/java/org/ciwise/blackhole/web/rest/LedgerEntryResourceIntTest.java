@@ -2,8 +2,6 @@ package org.ciwise.blackhole.web.rest;
 
 import org.ciwise.blackhole.BlackholeApp;
 import org.ciwise.blackhole.domain.LedgerEntry;
-import org.ciwise.blackhole.repository.LedgerEntryRepository;
-import org.ciwise.blackhole.repository.search.LedgerEntrySearchRepository;
 import org.ciwise.blackhole.service.LedgerEntryService;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,12 +64,6 @@ public class LedgerEntryResourceIntTest {
     private static final String DEFAULT_NOTES = "AAAAA";
     private static final String UPDATED_NOTES = "BBBBB";
 
-//    @Inject
-//    private LedgerEntryRepository ledgerEntryRepository;
-
-//    @Inject
-//    private LedgerEntrySearchRepository ledgerEntrySearchRepository;
-
     @Inject
     private LedgerEntryService ledgerEntryService;
 
@@ -89,8 +81,6 @@ public class LedgerEntryResourceIntTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         LedgerEntryResource ledgerEntryResource = new LedgerEntryResource();
-//        ReflectionTestUtils.setField(ledgerEntryResource, "ledgerEntrySearchRepository", ledgerEntrySearchRepository);
-//        ReflectionTestUtils.setField(ledgerEntryResource, "ledgerEntryRepository", ledgerEntryRepository);
         ReflectionTestUtils.setField(ledgerEntryResource, "ledgerEntryService", ledgerEntryService);
 
         this.restLedgerEntryMockMvc = MockMvcBuilders.standaloneSetup(ledgerEntryResource)
@@ -116,8 +106,7 @@ public class LedgerEntryResourceIntTest {
     @Test
     @Transactional
     public void createLedgerEntry() throws Exception {
-//        int databaseSizeBeforeCreate = ledgerEntryRepository.findAll().size();
-        int databaseSizeBeforeCreate = ledgerEntryService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeCreate = ledgerEntryService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Create the LedgerEntry
 
@@ -127,8 +116,7 @@ public class LedgerEntryResourceIntTest {
                 .andExpect(status().isCreated());
 
         // Validate the LedgerEntry in the database
-//        List<LedgerEntry> ledgerEntries = ledgerEntryRepository.findAll();
-        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,10));
+        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
         List<LedgerEntry> ledgerEntries = ledgerPageEntries.getContent();
 
         assertThat(ledgerEntries).hasSize(databaseSizeBeforeCreate + 1);
@@ -143,16 +131,12 @@ public class LedgerEntryResourceIntTest {
         assertThat(testLedgerEntry.getCacredit()).isEqualTo(DEFAULT_CACREDIT);
         assertThat(testLedgerEntry.getNotes()).isEqualTo(DEFAULT_NOTES);
 
-        // Validate the LedgerEntry in ElasticSearch
-        //LedgerEntry ledgerEntryEs = ledgerEntrySearchRepository.findOne(testLedgerEntry.getId());
-        //assertThat(ledgerEntryEs).isEqualToComparingFieldByField(testLedgerEntry);
     }
 
     @Test
     @Transactional
     public void getAllLedgerEntries() throws Exception {
         // Initialize the database
-//        ledgerEntryRepository.saveAndFlush(ledgerEntry);
         ledgerEntryService.save(ledgerEntry);
 
         // Get all the ledgerEntries
@@ -175,7 +159,6 @@ public class LedgerEntryResourceIntTest {
     @Transactional
     public void getLedgerEntry() throws Exception {
         // Initialize the database
-//        ledgerEntryRepository.saveAndFlush(ledgerEntry);
         ledgerEntryService.save(ledgerEntry);
 
         // Get the ledgerEntry
@@ -206,12 +189,9 @@ public class LedgerEntryResourceIntTest {
     @Transactional
     public void updateLedgerEntry() throws Exception {
         // Initialize the database
-//        ledgerEntryRepository.saveAndFlush(ledgerEntry);
-//        ledgerEntrySearchRepository.save(ledgerEntry);
         ledgerEntryService.save(ledgerEntry);
 
-//        int databaseSizeBeforeUpdate = ledgerEntryRepository.findAll().size();
-        int databaseSizeBeforeUpdate = ledgerEntryService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeUpdate = ledgerEntryService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Update the ledgerEntry
         LedgerEntry updatedLedgerEntry = new LedgerEntry();
@@ -232,8 +212,7 @@ public class LedgerEntryResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate the LedgerEntry in the database
-//        List<LedgerEntry> ledgerEntries = ledgerEntryRepository.findAll();
-        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,10));
+        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
         List<LedgerEntry> ledgerEntries = ledgerPageEntries.getContent();
 
         assertThat(ledgerEntries).hasSize(databaseSizeBeforeUpdate);
@@ -248,34 +227,24 @@ public class LedgerEntryResourceIntTest {
         assertThat(testLedgerEntry.getCacredit()).isEqualTo(UPDATED_CACREDIT);
         assertThat(testLedgerEntry.getNotes()).isEqualTo(UPDATED_NOTES);
 
-        // Validate the LedgerEntry in ElasticSearch
-        //LedgerEntry ledgerEntryEs = ledgerEntrySearchRepository.findOne(testLedgerEntry.getId());
-        //assertThat(ledgerEntryEs).isEqualToComparingFieldByField(testLedgerEntry);
     }
 
     @Test
     @Transactional
     public void deleteLedgerEntry() throws Exception {
         // Initialize the database
-//        ledgerEntryRepository.saveAndFlush(ledgerEntry);
-//        ledgerEntrySearchRepository.save(ledgerEntry);
         ledgerEntryService.save(ledgerEntry);
 
-//        int databaseSizeBeforeDelete = ledgerEntryRepository.findAll().size();
-        int databaseSizeBeforeDelete = ledgerEntryService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeDelete = ledgerEntryService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Get the ledgerEntry
         restLedgerEntryMockMvc.perform(delete("/api/ledger-entries/{id}", ledgerEntry.getId())
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
-        // Validate ElasticSearch is empty
-        //boolean ledgerEntryExistsInEs = ledgerEntrySearchRepository.exists(ledgerEntry.getId());
-        //assertThat(ledgerEntryExistsInEs).isFalse();
 
         // Validate the database is empty
-//        List<LedgerEntry> ledgerEntries = ledgerEntryRepository.findAll();
-        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,10));
+        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
         List<LedgerEntry> ledgerEntries = ledgerPageEntries.getContent();
 
         assertThat(ledgerEntries).hasSize(databaseSizeBeforeDelete - 1);
@@ -285,8 +254,6 @@ public class LedgerEntryResourceIntTest {
     @Transactional
     public void searchLedgerEntry() throws Exception {
         // Initialize the database
-//        ledgerEntryRepository.saveAndFlush(ledgerEntry);
-//        ledgerEntrySearchRepository.save(ledgerEntry);
         ledgerEntryService.save(ledgerEntry);
 
         // Search the ledgerEntry

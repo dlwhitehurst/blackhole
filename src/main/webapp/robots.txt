@@ -9,3 +9,7 @@ Disallow: /api/logs/
 Disallow: /api/users/
 Disallow: /management/
 Disallow: /v2/api-docs/
+Disallow: /trial
+Disallow: /cash
+Disallow: /equity
+Disallow: /income

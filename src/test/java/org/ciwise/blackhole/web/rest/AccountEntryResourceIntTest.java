@@ -2,8 +2,6 @@ package org.ciwise.blackhole.web.rest;
 
 import org.ciwise.blackhole.BlackholeApp;
 import org.ciwise.blackhole.domain.AccountEntry;
-import org.ciwise.blackhole.repository.AccountEntryRepository;
-import org.ciwise.blackhole.repository.search.AccountEntrySearchRepository;
 import org.ciwise.blackhole.service.AccountEntryService;
 import org.junit.Before;
 import org.junit.Test;
@@ -70,12 +68,6 @@ public class AccountEntryResourceIntTest {
     private static final String DEFAULT_CNO = "AAAAA";
     private static final String UPDATED_CNO = "BBBBB";
 
-//    @Inject
-//    private AccountEntryRepository accountEntryRepository;
-
-//    @Inject
-//    private AccountEntrySearchRepository accountEntrySearchRepository;
-
     @Inject
     private AccountEntryService accountEntryService;
     
@@ -93,8 +85,6 @@ public class AccountEntryResourceIntTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         AccountEntryResource accountEntryResource = new AccountEntryResource();
-//        ReflectionTestUtils.setField(accountEntryResource, "accountEntrySearchRepository", accountEntrySearchRepository);
-//        ReflectionTestUtils.setField(accountEntryResource, "accountEntryRepository", accountEntryRepository);
         ReflectionTestUtils.setField(accountEntryResource, "accountEntryService", accountEntryService);
 
         this.restAccountEntryMockMvc = MockMvcBuilders.standaloneSetup(accountEntryResource)
@@ -121,8 +111,7 @@ public class AccountEntryResourceIntTest {
     @Test
     @Transactional
     public void createAccountEntry() throws Exception {
-//        int databaseSizeBeforeCreate = accountEntryRepository.findAll().size();
-        int databaseSizeBeforeCreate = accountEntryService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeCreate = accountEntryService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Create the AccountEntry
 
@@ -132,8 +121,7 @@ public class AccountEntryResourceIntTest {
                 .andExpect(status().isCreated());
 
         // Validate the AccountEntry in the database
-//        List<AccountEntry> accountEntries = accountEntryRepository.findAll();
-        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,10));
+        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
         List<AccountEntry> accountEntries = accountPageEntries.getContent();
 
         assertThat(accountEntries).hasSize(databaseSizeBeforeCreate + 1);
@@ -149,16 +137,12 @@ public class AccountEntryResourceIntTest {
         assertThat(testAccountEntry.getNotes()).isEqualTo(DEFAULT_NOTES);
         assertThat(testAccountEntry.getCno()).isEqualTo(DEFAULT_CNO);
 
-        // Validate the AccountEntry in ElasticSearch
-        //AccountEntry accountEntryEs = accountEntrySearchRepository.findOne(testAccountEntry.getId());
-        //assertThat(accountEntryEs).isEqualToComparingFieldByField(testAccountEntry);
     }
 
     @Test
     @Transactional
     public void getAllAccountEntries() throws Exception {
         // Initialize the database
-//        accountEntryRepository.saveAndFlush(accountEntry);
         accountEntryService.save(accountEntry);
 
         // Get all the accountEntries
@@ -182,7 +166,6 @@ public class AccountEntryResourceIntTest {
     @Transactional
     public void getAccountEntry() throws Exception {
         // Initialize the database
-//        accountEntryRepository.saveAndFlush(accountEntry);
         accountEntryService.save(accountEntry);
 
         // Get the accountEntry
@@ -214,12 +197,9 @@ public class AccountEntryResourceIntTest {
     @Transactional
     public void updateAccountEntry() throws Exception {
         // Initialize the database
-//        accountEntryRepository.saveAndFlush(accountEntry);
-//        accountEntrySearchRepository.save(accountEntry);
         accountEntryService.save(accountEntry);
 
-//        int databaseSizeBeforeUpdate = accountEntryRepository.findAll().size();
-        int databaseSizeBeforeUpdate = accountEntryService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeUpdate = accountEntryService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Update the accountEntry
         AccountEntry updatedAccountEntry = new AccountEntry();
@@ -241,8 +221,7 @@ public class AccountEntryResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate the AccountEntry in the database
-//        List<AccountEntry> accountEntries = accountEntryRepository.findAll();
-        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,10));
+        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
         List<AccountEntry> accountEntries = accountPageEntries.getContent();
         
         assertThat(accountEntries).hasSize(databaseSizeBeforeUpdate);
@@ -258,34 +237,23 @@ public class AccountEntryResourceIntTest {
         assertThat(testAccountEntry.getNotes()).isEqualTo(UPDATED_NOTES);
         assertThat(testAccountEntry.getCno()).isEqualTo(UPDATED_CNO);
 
-        // Validate the AccountEntry in ElasticSearch
-        //AccountEntry accountEntryEs = accountEntrySearchRepository.findOne(testAccountEntry.getId());
-        //assertThat(accountEntryEs).isEqualToComparingFieldByField(testAccountEntry);
     }
 
     @Test
     @Transactional
     public void deleteAccountEntry() throws Exception {
         // Initialize the database
-//        accountEntryRepository.saveAndFlush(accountEntry);
-//        accountEntrySearchRepository.save(accountEntry);
         accountEntryService.save(accountEntry);
 
-//        int databaseSizeBeforeDelete = accountEntryRepository.findAll().size();
-        int databaseSizeBeforeDelete = accountEntryService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeDelete = accountEntryService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Get the accountEntry
         restAccountEntryMockMvc.perform(delete("/api/account-entries/{id}", accountEntry.getId())
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
-        // Validate ElasticSearch is empty
-        //boolean accountEntryExistsInEs = accountEntrySearchRepository.exists(accountEntry.getId());
-        //assertThat(accountEntryExistsInEs).isFalse();
-
         // Validate the database is empty
-//        List<AccountEntry> accountEntries = accountEntryRepository.findAll();
-        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,10));
+        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
         List<AccountEntry> accountEntries = accountPageEntries.getContent();
 
         assertThat(accountEntries).hasSize(databaseSizeBeforeDelete - 1);
@@ -295,8 +263,6 @@ public class AccountEntryResourceIntTest {
     @Transactional
     public void searchAccountEntry() throws Exception {
         // Initialize the database
-//        accountEntryRepository.saveAndFlush(accountEntry);
-//        accountEntrySearchRepository.save(accountEntry);
         accountEntryService.save(accountEntry);
 
         // Search the accountEntry

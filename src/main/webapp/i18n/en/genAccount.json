@@ -19,7 +19,7 @@
             "name": "Name",
             "type": "Type",
             "dc": "Debit/Credit",
-            "cno": "Chart No"
+            "cno": "CID"
         }
     }
 }

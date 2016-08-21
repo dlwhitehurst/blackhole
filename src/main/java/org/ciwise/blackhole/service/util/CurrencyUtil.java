@@ -11,8 +11,6 @@ package org.ciwise.blackhole.service.util;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *  @author <a href="mailto:david@ciwise.com">David L. Whitehurst</a>

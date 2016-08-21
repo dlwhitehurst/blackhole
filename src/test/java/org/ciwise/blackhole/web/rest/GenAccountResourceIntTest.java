@@ -2,8 +2,6 @@ package org.ciwise.blackhole.web.rest;
 
 import org.ciwise.blackhole.BlackholeApp;
 import org.ciwise.blackhole.domain.GenAccount;
-import org.ciwise.blackhole.repository.GenAccountRepository;
-import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
 import org.ciwise.blackhole.service.GenAccountService;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,12 +51,6 @@ public class GenAccountResourceIntTest {
     private static final String DEFAULT_CNO = "AAAAA";
     private static final String UPDATED_CNO = "BBBBB";
 
-//    @Inject
-//   private GenAccountRepository genAccountRepository;
-
-//    @Inject
-//    private GenAccountSearchRepository genAccountSearchRepository;
-
     @Inject
     private GenAccountService genAccountService;
 
@@ -77,7 +69,6 @@ public class GenAccountResourceIntTest {
         MockitoAnnotations.initMocks(this);
         GenAccountResource genAccountResource = new GenAccountResource();
         ReflectionTestUtils.setField(genAccountResource, "genAccountService", genAccountService);
-        //ReflectionTestUtils.setField(genAccountResource, "genAccountRepository", genAccountRepository);
         this.restGenAccountMockMvc = MockMvcBuilders.standaloneSetup(genAccountResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setMessageConverters(jacksonMessageConverter).build();
@@ -97,8 +88,7 @@ public class GenAccountResourceIntTest {
     @Test
     @Transactional
     public void createGenAccount() throws Exception {
-//        int databaseSizeBeforeCreate = genAccountRepository.findAll().size();
-        int databaseSizeBeforeCreate = genAccountService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeCreate = genAccountService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Create the GenAccount
 
@@ -108,8 +98,7 @@ public class GenAccountResourceIntTest {
                 .andExpect(status().isCreated());
 
         // Validate the GenAccount in the database
-//        List<GenAccount> genAccounts = genAccountRepository.findAll();
-        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,10));
+        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
         List<GenAccount> genAccounts = genPageAccounts.getContent();
         
         assertThat(genAccounts).hasSize(databaseSizeBeforeCreate + 1);
@@ -119,16 +108,12 @@ public class GenAccountResourceIntTest {
         assertThat(testGenAccount.getDc()).isEqualTo(DEFAULT_DC);
         assertThat(testGenAccount.getCno()).isEqualTo(DEFAULT_CNO);
 
-        // Validate the GenAccount in ElasticSearch
-        //GenAccount genAccountEs = genAccountSearchRepository.findOne(testGenAccount.getId());
-        //assertThat(genAccountEs).isEqualToComparingFieldByField(testGenAccount);
     }
 
     @Test
     @Transactional
     public void getAllGenAccounts() throws Exception {
         // Initialize the database
-//        genAccountRepository.saveAndFlush(genAccount);
         genAccountService.save(genAccount);
 
         // Get all the genAccounts
@@ -146,7 +131,6 @@ public class GenAccountResourceIntTest {
     @Transactional
     public void getGenAccount() throws Exception {
         // Initialize the database
-//        genAccountRepository.saveAndFlush(genAccount);
         genAccountService.save(genAccount);
 
         // Get the genAccount
@@ -171,13 +155,10 @@ public class GenAccountResourceIntTest {
     @Test
     @Transactional
     public void updateGenAccount() throws Exception {
-        // Initialize the database
-//        genAccountRepository.saveAndFlush(genAccount);
-//        genAccountSearchRepository.save(genAccount);
-//        int databaseSizeBeforeUpdate = genAccountRepository.findAll().size();
 
+        // Initialize the database
         genAccountService.save(genAccount);
-        int databaseSizeBeforeUpdate = genAccountService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeUpdate = genAccountService.findAll(new PageRequest(0,1000)).getContent().size();
         
         // Update the genAccount
         GenAccount updatedGenAccount = new GenAccount();
@@ -193,8 +174,7 @@ public class GenAccountResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate the GenAccount in the database
-//        List<GenAccount> genAccounts = genAccountRepository.findAll();
-        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,10));
+        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
         List<GenAccount> genAccounts = genPageAccounts.getContent();
         
         assertThat(genAccounts).hasSize(databaseSizeBeforeUpdate);
@@ -204,34 +184,24 @@ public class GenAccountResourceIntTest {
         assertThat(testGenAccount.getDc()).isEqualTo(UPDATED_DC);
         assertThat(testGenAccount.getCno()).isEqualTo(UPDATED_CNO);
 
-        // Validate the GenAccount in ElasticSearch
-        //GenAccount genAccountEs = genAccountSearchRepository.findOne(testGenAccount.getId());
-        //assertThat(genAccountEs).isEqualToComparingFieldByField(testGenAccount);
     }
 
     @Test
     @Transactional
     public void deleteGenAccount() throws Exception {
         // Initialize the database
-//        genAccountRepository.saveAndFlush(genAccount);
-//        genAccountSearchRepository.save(genAccount);
         genAccountService.save(genAccount);
 
-//        int databaseSizeBeforeDelete = genAccountRepository.findAll().size();
-        int databaseSizeBeforeDelete = genAccountService.findAll(new PageRequest(0,10)).getContent().size();
+        int databaseSizeBeforeDelete = genAccountService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Get the genAccount
         restGenAccountMockMvc.perform(delete("/api/gen-accounts/{id}", genAccount.getId())
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
-        // Validate ElasticSearch is empty
-        //boolean genAccountExistsInEs = genAccountSearchRepository.exists(genAccount.getId());
-        //assertThat(genAccountExistsInEs).isFalse();
 
         // Validate the database is empty
-//        List<GenAccount> genAccounts = genAccountRepository.findAll();
-        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,10));
+        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
         List<GenAccount> genAccounts = genPageAccounts.getContent();
         assertThat(genAccounts).hasSize(databaseSizeBeforeDelete - 1);
     }
@@ -240,8 +210,6 @@ public class GenAccountResourceIntTest {
     @Transactional
     public void searchGenAccount() throws Exception {
         // Initialize the database
-//        genAccountRepository.saveAndFlush(genAccount);
-//        genAccountSearchRepository.save(genAccount);
         genAccountService.save(genAccount);
 
         // Search the genAccount

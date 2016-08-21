@@ -1,4 +1,45 @@
-<div>
+<div class="ng-cloak">
     <h2 translate="blackholeApp.trial.title">Trial Balance</h2>
-    Hello World
+    <div>
+      {{today | date:'yyyy-MM-dd'}}
+    </div>
+    <hr>
+    <div>
+      <table class="custom-table-striped">
+        <thead>
+            <tr>
+              <th><span translate="blackholeApp.trial.cno">Chart</span></th>
+              <th><span translate="blackholeApp.trial.acct-name">Account</span></th>
+              <th><span translate="blackholeApp.trial.balance">Balances</span></th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="genAccount in genAccounts track by genAccount.cno">
+            <td width="10%">{{genAccount.cno}}</td>
+            <td width="60%">{{genAccount.name}}</td>
+            <td width="30%">
+    			    <div class="dc-container">
+    			         <div class="debit-acct-no-border">{{debitbalances | trialBalance: genAccount.cno | currency}}</div>
+                   <div class="credit-acct-no-border">{{creditbalances | trialBalance: genAccount.cno | currency}}</div>
+              </div>
+    		    </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <table>
+        <tbody>
+          <tr>
+            <td width="%10">&nbsp;</td>
+            <td width="60%">&nbsp;</td>
+            <td width="30%">
+              <div class="dc-container">
+    			         <div class="debit-acct-bold">{{debitFoot.balance | currency}}</div>
+                   <div class="credit-acct-bold">{{creditFoot.balance | currency}}</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>
