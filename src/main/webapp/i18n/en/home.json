@@ -1,17 +1,17 @@
 {
     "home": {
         "title": "Welcome to the Blackhole Application",
-        "subtitle": "Don't get too close, we might save your data!",
+        "subtitle": "Don't get too close, we might just save your data too!",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
-        "question": "If you have any question about our Blackhole application:",
+        "question": "If you have any question about the Blackhole application:",
         "link": {
-            "homepage": "CI Wise Homepage",
+            "homepage": "Blackhole Homepage",
             "stackoverflow": "Blackhole on Stack Overflow",
             "bugtracker": "Blackhole Issues",
-            "chat": "Blackhole public chat room",
-            "follow": "follow @ci_wise on Twitter"
+            "chat": "Blackhole Public Chat Room",
+            "follow": "Follow @ci_wise on Twitter"
         },
         "like": "If you like the Blackhole application, don't forget to feed us another star on",
         "github": "GitHub"
