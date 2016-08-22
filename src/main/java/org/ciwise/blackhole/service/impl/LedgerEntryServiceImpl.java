@@ -76,8 +76,8 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         AccountEntry debitAccountEntry = loadDebitAccountData(ledgerEntry);
         AccountEntry creditAccountEntry = loadCreditAccountData(ledgerEntry);
 
-        Page<AccountEntry> debitAccountEntries = accountEntryService.findByCno(ledgerEntry.getDacctno(),new PageRequest(0,10)); 
-        Page<AccountEntry> creditAccountEntries = accountEntryService.findByCno(ledgerEntry.getCacctno(), new PageRequest(0,10));
+        Page<AccountEntry> debitAccountEntries = accountEntryService.findByCno(ledgerEntry.getDacctno(),new PageRequest(0,1000)); 
+        Page<AccountEntry> creditAccountEntries = accountEntryService.findByCno(ledgerEntry.getCacctno(), new PageRequest(0,1000));
         
         List<AccountEntry> debitList = debitAccountEntries.getContent();
         List<AccountEntry> creditList = creditAccountEntries.getContent();
