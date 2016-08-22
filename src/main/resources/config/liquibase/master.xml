@@ -6,9 +6,6 @@
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160811201253_added_entity_LedgerEntry.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160811202111_added_entity_Contact.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160811203926_added_entity_Lead.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20160813180440_added_entity_Idea.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160813191416_added_entity_AccountEntry.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160815000000_added_entity_GenAccount.xml" relativeToChangelogFile="false"/>
 

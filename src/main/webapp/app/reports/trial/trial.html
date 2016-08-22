@@ -16,8 +16,8 @@
         <tbody>
           <tr ng-repeat="genAccount in genAccounts track by genAccount.cno">
             <td width="10%">{{genAccount.cno}}</td>
-            <td width="60%">{{genAccount.name}}</td>
-            <td width="30%">
+            <td width="50%">{{genAccount.name}}</td>
+            <td width="40%">
     			    <div class="dc-container">
     			         <div class="debit-acct-no-border">{{debitbalances | trialBalance: genAccount.cno | currency}}</div>
                    <div class="credit-acct-no-border">{{creditbalances | trialBalance: genAccount.cno | currency}}</div>
@@ -31,8 +31,8 @@
         <tbody>
           <tr>
             <td width="%10">&nbsp;</td>
-            <td width="60%">&nbsp;</td>
-            <td width="30%">
+            <td width="50%">&nbsp;</td>
+            <td width="40%">
               <div class="dc-container">
     			         <div class="debit-acct-bold">{{debitFoot.balance | currency}}</div>
                    <div class="credit-acct-bold">{{creditFoot.balance | currency}}</div>
