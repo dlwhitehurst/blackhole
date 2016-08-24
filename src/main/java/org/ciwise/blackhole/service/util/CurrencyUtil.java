@@ -133,7 +133,7 @@ public final class CurrencyUtil {
 
 // ####################################################################################
     
-    private static String fixNegativeCurrency(String negCurStr) {
+    public static String fixNegativeCurrency(String negCurStr) {
 
         negCurStr = negCurStr.replaceAll("\\(",""); 
         negCurStr = negCurStr.replaceAll("\\)",""); 

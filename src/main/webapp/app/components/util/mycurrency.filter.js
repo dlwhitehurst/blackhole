@@ -9,13 +9,17 @@
         return mycurrencyFilter;
 
         function mycurrencyFilter (input) {
-            if (input === null) {
-              return;
-            }
-            if (input !== null) {
-                input = '$' + input;
+          if (input !== null) {
+            if (input.includes("-")) {
+              input = input.replace("-","");
+              input = '$(' + input + ')';
+            } else {
+              input = '$' + input;
             }
             return input;
+          } else {
+            return '';
+          }
         }
     }
 })();

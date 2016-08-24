@@ -20,8 +20,6 @@ import org.ciwise.blackhole.service.GenAccountService;
 import org.ciwise.blackhole.service.TrialBalanceService;
 import org.ciwise.blackhole.service.dto.AccountBalance;
 import org.ciwise.blackhole.service.util.CurrencyUtil;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,15 +47,13 @@ public class TrialBalanceServiceImpl implements TrialBalanceService {
         List<AccountBalance> balances = new ArrayList<AccountBalance>();
         
         // get chart numbers for iteration
-        Page<GenAccount> pagedAccounts = genAccountService.findAll(new PageRequest(0,500));
-        List<GenAccount> genAccounts = pagedAccounts.getContent();
+        List<GenAccount> genAccounts = genAccountService.findAll();
         
         // load all chart numbers 
         for (GenAccount genAcct: genAccounts) {
             
             // get all entries for unique chart number
-            Page<AccountEntry> pagedAccountEntries = accountEntryService.findByCno(genAcct.getCno(), new PageRequest(0,500));
-            List<AccountEntry> accountEntries = pagedAccountEntries.getContent();
+            List<AccountEntry> accountEntries = accountEntryService.findByCno(genAcct.getCno());
 
             AccountEntry entryLatest = new AccountEntry();
                 int maxId = 0;
@@ -76,10 +72,18 @@ public class TrialBalanceServiceImpl implements TrialBalanceService {
                 balanceObj.setCno(entryLatest.getCno());
 
                 if (entryLatest.getDebitbalance() != null) {
+                    if (entryLatest.getDebitbalance().contains("(")) {
+                        String tmp = CurrencyUtil.fixNegativeCurrency(entryLatest.getDebitbalance());
+                        entryLatest.setDebitbalance(tmp);
+                    }
                     balanceObj.setBalance(entryLatest.getDebitbalance());
                     balanceObj.setType("Debit");
                 }
                 if (entryLatest.getCreditbalance() != null) {
+                    if (entryLatest.getCreditbalance().contains("(")) {
+                        String tmp = CurrencyUtil.fixNegativeCurrency(entryLatest.getCreditbalance());
+                        entryLatest.setCreditbalance(tmp);
+                    }
                     balanceObj.setBalance(entryLatest.getCreditbalance());
                     balanceObj.setType("Credit");
                 }
@@ -114,7 +118,11 @@ public class TrialBalanceServiceImpl implements TrialBalanceService {
         String total= "0.00";
         // String addCurrency(String a, String b)
         for (AccountBalance bal: credits) {
-            total = CurrencyUtil.addCurrency(total, bal.getBalance());
+            if (bal.getBalance().contains("(")) {
+                total = CurrencyUtil.subtractCurrency(total, bal.getBalance());
+            } else {
+                total = CurrencyUtil.addCurrency(total, bal.getBalance());
+            }
         }
         AccountBalance balance = new AccountBalance();
         balance.setBalance(total);

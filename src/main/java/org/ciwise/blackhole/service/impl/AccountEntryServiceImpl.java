@@ -10,6 +10,8 @@ package org.ciwise.blackhole.service.impl;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.AccountEntry;
@@ -66,6 +68,18 @@ public class AccountEntryServiceImpl implements AccountEntryService {
     }
 
     /**
+     *  Get all the accountEntries (unpaged).
+     *  
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<AccountEntry> findAll() {
+        log.debug("Request to get all LedgerEntries (unpaged)");
+        List<AccountEntry> result = accountEntryRepository.findAll(); 
+        return result;
+    }
+
+    /**
      *  Get one accountEntry by id.
      *
      *  @param id the id of the entity
@@ -82,6 +96,13 @@ public class AccountEntryServiceImpl implements AccountEntryService {
     public Page<AccountEntry> findByCno(String chartNumber, Pageable pageable) {
         log.debug("Request to get AccountEntry by cno: {}", chartNumber);
         Page<AccountEntry> result = accountEntryRepository.findByCno(chartNumber, pageable);
+        return result;
+    }
+
+    @Transactional(readOnly = true) 
+    public List<AccountEntry> findByCno(String chartNumber) {
+        log.debug("Request to get AccountEntry by cno: {}", chartNumber);
+        List<AccountEntry> result = accountEntryRepository.findByCno(chartNumber);
         return result;
     }
     

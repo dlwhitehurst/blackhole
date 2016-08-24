@@ -512,6 +512,32 @@ border:1px solid red;
 /* border:1px solid red; */
 }
 
+.debit-acct-no-border-red {
+  background-color: #DAF7A6;
+  float : left;
+  height: 18px;
+  width: 80px; /* 85px */
+  vertical-align: middle;
+  text-align:right;
+  font-size:90%;
+  color:red;
+  padding-right: 4px;
+/*  border:1px solid red; */
+}
+
+.credit-acct-no-border-red {
+  background-color: #ABEBC6;
+  float : left;
+  height: 18px;
+  width: 80px;
+  vertical-align: middle;
+  text-align:right;
+  font-size:90%;
+  color:red;
+  padding-right: 4px;
+/* border:1px solid red; */
+}
+
 .debit-acct-red {
 background-color: #DAF7A6;
 float : left;

@@ -13,6 +13,9 @@
             if (input.includes("(")) {
                 retVal = true;
             }
+            if (input.includes("-")) {
+                retVal = true;
+            }
             return retVal;
         }
     }

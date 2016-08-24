@@ -20,4 +20,12 @@ public interface AccountEntryRepository extends JpaRepository<AccountEntry,Long>
      * @return
      */
     Page<AccountEntry> findByCno (String cno, Pageable pageable);
+
+    /**
+     * Method to find all by chart number
+     * @param cno
+     * @return
+     */
+    List<AccountEntry> findByCno (String cno);
+
 }

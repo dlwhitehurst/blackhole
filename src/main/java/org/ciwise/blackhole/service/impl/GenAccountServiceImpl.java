@@ -10,6 +10,8 @@ package org.ciwise.blackhole.service.impl;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.GenAccount;
@@ -65,6 +67,19 @@ public class GenAccountServiceImpl implements GenAccountService {
         return result;
     }
 
+    /**
+     *  Get all the genAccounts (unpaged).
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<GenAccount> findAll() {
+        log.debug("Request to get all LedgerEntries (unpaged)");
+        List<GenAccount> result = genAccountRepository.findAll(); 
+        return result;
+    }
+    
     /**
      *  Get one genAccount by id.
      *

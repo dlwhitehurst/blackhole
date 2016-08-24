@@ -8,6 +8,8 @@
 
 package org.ciwise.blackhole.service;
 
+import java.util.List;
+
 import org.ciwise.blackhole.domain.GenAccount;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +35,14 @@ public interface GenAccountService {
      */
     Page<GenAccount> findAll(Pageable pageable);
 
+    /**
+     *  Get all the genAccounts (unpaged).
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of genAccounts
+     */
+    List<GenAccount> findAll();
+    
     /**
      *  Get the "id" GenAccount.
      *  

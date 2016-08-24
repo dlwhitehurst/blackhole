@@ -14,6 +14,7 @@
             return input[i].balance;
           }
         }
+        return null; /* no chart no match */
       }
     }
 })();

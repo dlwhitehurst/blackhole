@@ -30,6 +30,6 @@ id;name;type;dc;cno
 29;Capital;Equity;Credit;300
 30;Retained Earnings;Equity;Credit;310
 31;Shareholder Drawing;Equity;Credit;320
-32;Income-Revenue;Revenue;Credit;400
-33;Interest Earned;Revenue;Credit;410
-
+32;Shareholder Equity;Equity;Credit;325
+33;Income-Revenue;Revenue;Credit;400
+34;Interest Earned;Revenue;Credit;410

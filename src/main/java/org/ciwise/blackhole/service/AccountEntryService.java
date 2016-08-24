@@ -8,6 +8,8 @@
 
 package org.ciwise.blackhole.service;
 
+import java.util.List;
+
 import org.ciwise.blackhole.domain.AccountEntry;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,6 +36,13 @@ public interface AccountEntryService {
     Page<AccountEntry> findAll(Pageable pageable);
 
     /**
+     *  Get all the accountEntries (unpaged).
+     *  
+     *  @return the list of entities
+     */
+    List<AccountEntry> findAll();
+    
+    /**
      * Get all the accountEntries by Chart Number (cno)
      * 
      * @param chartNumber
@@ -41,6 +50,14 @@ public interface AccountEntryService {
      * @return
      */
     Page<AccountEntry> findByCno(String chartNumber, Pageable pageable);
+
+    /**
+     * Get all the accountEntries by Chart Number (cno) (unpaged)
+     * 
+     * @param chartNumber
+     * @return
+     */
+    List<AccountEntry> findByCno(String chartNumber);
     
     /**
      *  Get the "id" accountEntry.

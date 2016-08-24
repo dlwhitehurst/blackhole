@@ -19,8 +19,8 @@
             <td width="50%">{{genAccount.name}}</td>
             <td width="40%">
     			    <div class="dc-container">
-    			         <div class="debit-acct-no-border">{{debitbalances | trialBalance: genAccount.cno | currency}}</div>
-                   <div class="credit-acct-no-border">{{creditbalances | trialBalance: genAccount.cno | currency}}</div>
+    			         <div class="debit-acct-no-border">{{debitbalances | trialBalance: genAccount.cno | mycurrency }}</div>
+                   <div class="credit-acct-no-border">{{creditbalances | trialBalance: genAccount.cno | mycurrency }}</div>
               </div>
     		    </td>
           </tr>

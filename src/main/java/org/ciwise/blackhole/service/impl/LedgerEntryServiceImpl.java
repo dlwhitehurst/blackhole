@@ -45,21 +45,9 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
     @Inject
     private LedgerEntrySearchRepository ledgerEntrySearchRepository;
 
-//    @Inject
-//    private AccountEntryRepository accountEntryRepository;
-    
-//    @Inject
-//    private AccountEntrySearchRepository accountEntrySearchRepository;
-
     @Inject
     private AccountEntryService accountEntryService;
 
-//    @Inject
-//    private GenAccountRepository genAccountRepository;
-    
-//    @Inject
-//    private GenAccountSearchRepository genAccountSearchRepository;
-    
     /**
      * Save a Ledger.
      * 
@@ -76,12 +64,9 @@ public class LedgerEntryServiceImpl implements LedgerEntryService {
         AccountEntry debitAccountEntry = loadDebitAccountData(ledgerEntry);
         AccountEntry creditAccountEntry = loadCreditAccountData(ledgerEntry);
 
-        Page<AccountEntry> debitAccountEntries = accountEntryService.findByCno(ledgerEntry.getDacctno(),new PageRequest(0,1000)); 
-        Page<AccountEntry> creditAccountEntries = accountEntryService.findByCno(ledgerEntry.getCacctno(), new PageRequest(0,1000));
+        List<AccountEntry> debitList = accountEntryService.findByCno(ledgerEntry.getDacctno()); 
+        List<AccountEntry> creditList = accountEntryService.findByCno(ledgerEntry.getCacctno());
         
-        List<AccountEntry> debitList = debitAccountEntries.getContent();
-        List<AccountEntry> creditList = creditAccountEntries.getContent();
-       
         System.out.println("The size of the debit list=" + debitList.size());
         System.out.println("The size of the credit list=" + debitList.size());
         

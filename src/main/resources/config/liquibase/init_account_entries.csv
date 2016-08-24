@@ -32,3 +32,4 @@ id;entrydate;transaction;postingref;debit;credit;debitbalance;creditbalance;note
 31;2016-08-15;Initial Balance;0;null;null;0.00;null;null;580
 32;2016-08-15;Initial Balance;0;null;null;0.00;null;null;585
 33;2016-08-15;Initial Balance;0;null;null;0.00;null;null;590
+34;2016-08-15;Initial Balance;0;null;null;null;0.00;null;325
