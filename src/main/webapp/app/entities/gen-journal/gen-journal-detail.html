@@ -1,0 +1,55 @@
+
+<div>
+    <h2><span translate="blackholeApp.genJournal.detail.title">General Journal Entry</span> {{vm.genJournal.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="blackholeApp.genJournal.entrydate">Entrydate</span></dt>
+        <dd>
+            <span>{{vm.genJournal.entrydate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genJournal.transaction">Transaction</span></dt>
+        <dd>
+            <span>{{vm.genJournal.transaction}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genJournal.dacctno">Dacctno</span></dt>
+        <dd>
+            <span>{{vm.genJournal.dacctno}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genJournal.cacctno">Cacctno</span></dt>
+        <dd>
+            <span>{{vm.genJournal.cacctno}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genJournal.dadebit">Dadebit</span></dt>
+        <dd>
+            <span>{{vm.genJournal.dadebit}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genJournal.dacredit">Dacredit</span></dt>
+        <dd>
+            <span>{{vm.genJournal.dacredit}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genJournal.cadebit">Cadebit</span></dt>
+        <dd>
+            <span>{{vm.genJournal.cadebit}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genJournal.cacredit">Cacredit</span></dt>
+        <dd>
+            <span>{{vm.genJournal.cacredit}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genJournal.notes">Notes</span></dt>
+        <dd>
+            <span>{{vm.genJournal.notes}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="ledger-entry-detail.edit({id:vm.ledgerEntry.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

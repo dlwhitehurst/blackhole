@@ -1,8 +1,8 @@
 package org.ciwise.blackhole.web.rest;
 
 import org.ciwise.blackhole.BlackholeApp;
-import org.ciwise.blackhole.domain.AccountEntry;
-import org.ciwise.blackhole.service.AccountEntryService;
+import org.ciwise.blackhole.domain.GenLedger;
+import org.ciwise.blackhole.service.GenLedgerService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Test class for the AccountEntryResource REST controller.
  *
- * @see AccountEntryResource
+ * @see GenLedgerResource
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = BlackholeApp.class)
@@ -69,7 +69,7 @@ public class AccountEntryResourceIntTest {
     private static final String UPDATED_CNO = "BBBBB";
 
     @Inject
-    private AccountEntryService accountEntryService;
+    private GenLedgerService accountEntryService;
     
     @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -79,12 +79,12 @@ public class AccountEntryResourceIntTest {
 
     private MockMvc restAccountEntryMockMvc;
 
-    private AccountEntry accountEntry;
+    private GenLedger accountEntry;
 
     @PostConstruct
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        AccountEntryResource accountEntryResource = new AccountEntryResource();
+        GenLedgerResource accountEntryResource = new GenLedgerResource();
         ReflectionTestUtils.setField(accountEntryResource, "accountEntryService", accountEntryService);
 
         this.restAccountEntryMockMvc = MockMvcBuilders.standaloneSetup(accountEntryResource)
@@ -95,7 +95,7 @@ public class AccountEntryResourceIntTest {
     @Before
     public void initTest() {
         //accountEntrySearchRepository.deleteAll();
-        accountEntry = new AccountEntry();
+        accountEntry = new GenLedger();
         accountEntry.setEntrydate(DEFAULT_ENTRYDATE);
         accountEntry.setTransaction(DEFAULT_TRANSACTION);
         accountEntry.setReconcile(DEFAULT_RECONCILE);
@@ -121,11 +121,11 @@ public class AccountEntryResourceIntTest {
                 .andExpect(status().isCreated());
 
         // Validate the AccountEntry in the database
-        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
-        List<AccountEntry> accountEntries = accountPageEntries.getContent();
+        Page<GenLedger> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
+        List<GenLedger> accountEntries = accountPageEntries.getContent();
 
         assertThat(accountEntries).hasSize(databaseSizeBeforeCreate + 1);
-        AccountEntry testAccountEntry = accountEntries.get(accountEntries.size() - 1);
+        GenLedger testAccountEntry = accountEntries.get(accountEntries.size() - 1);
         assertThat(testAccountEntry.getEntrydate()).isEqualTo(DEFAULT_ENTRYDATE);
         assertThat(testAccountEntry.getTransaction()).isEqualTo(DEFAULT_TRANSACTION);
         assertThat(testAccountEntry.isReconcile()).isEqualTo(DEFAULT_RECONCILE);
@@ -202,7 +202,7 @@ public class AccountEntryResourceIntTest {
         int databaseSizeBeforeUpdate = accountEntryService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Update the accountEntry
-        AccountEntry updatedAccountEntry = new AccountEntry();
+        GenLedger updatedAccountEntry = new GenLedger();
         updatedAccountEntry.setId(accountEntry.getId());
         updatedAccountEntry.setEntrydate(UPDATED_ENTRYDATE);
         updatedAccountEntry.setTransaction(UPDATED_TRANSACTION);
@@ -221,11 +221,11 @@ public class AccountEntryResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate the AccountEntry in the database
-        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
-        List<AccountEntry> accountEntries = accountPageEntries.getContent();
+        Page<GenLedger> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
+        List<GenLedger> accountEntries = accountPageEntries.getContent();
         
         assertThat(accountEntries).hasSize(databaseSizeBeforeUpdate);
-        AccountEntry testAccountEntry = accountEntries.get(accountEntries.size() - 1);
+        GenLedger testAccountEntry = accountEntries.get(accountEntries.size() - 1);
         assertThat(testAccountEntry.getEntrydate()).isEqualTo(UPDATED_ENTRYDATE);
         assertThat(testAccountEntry.getTransaction()).isEqualTo(UPDATED_TRANSACTION);
         assertThat(testAccountEntry.isReconcile()).isEqualTo(UPDATED_RECONCILE);
@@ -253,8 +253,8 @@ public class AccountEntryResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate the database is empty
-        Page<AccountEntry> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
-        List<AccountEntry> accountEntries = accountPageEntries.getContent();
+        Page<GenLedger> accountPageEntries = accountEntryService.findAll(new PageRequest(0,1000));
+        List<GenLedger> accountEntries = accountPageEntries.getContent();
 
         assertThat(accountEntries).hasSize(databaseSizeBeforeDelete - 1);
     }

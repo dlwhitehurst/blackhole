@@ -1,0 +1,30 @@
+{
+    "blackholeApp": {
+        "genJournal" : {
+            "home": {
+                "title": "General Journal",
+                "createLabel": "Entry",
+                "createOrEditLabel": "Create or edit a General Journal entry",
+                "search": "Search for General Journal entry"
+            },
+            "created": "A new General Journal entry is created with identifier {{ param }}",
+            "updated": "A General Journal entry is updated with identifier {{ param }}",
+            "deleted": "A General Journal entry is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete General Journal entry {{ id }}?"
+            },
+            "detail": {
+                "title": "General Journal Entry"
+            },
+            "entrydate": "Entrydate",
+            "transaction": "Transaction",
+            "dacctno": "Debit Account",
+            "cacctno": "Credit Account",
+            "dadebit": "DD",
+            "dacredit": "DC",
+            "cadebit": "CD",
+            "cacredit": "CC",
+            "notes": "Notes"
+        }
+    }
+}

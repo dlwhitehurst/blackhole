@@ -11,8 +11,8 @@
             },
             "entities": {
                 "main": "Financials",
-                "ledgerEntry": "General Journal",
-                "accountEntry": "General Ledger",
+                "genJournal": "General Journal",
+                "genLedger": "General Ledger",
                 "genAccount": "Chart of Accounts",
                 "idea": "Ideas"
             },

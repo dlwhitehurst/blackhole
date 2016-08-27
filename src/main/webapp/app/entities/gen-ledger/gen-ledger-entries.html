@@ -1,0 +1,99 @@
+<div>
+    <h2 translate="blackholeApp.genLedger.home.title">General Ledger</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-success" ui-sref="account-entry.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs"  translate="blackholeApp.genLedger.home.createLabel">
+                        Create new General Ledger Entry
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'blackholeApp.genLedger.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-success" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-success" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table custom-table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="entrydate"><span translate="blackholeApp.genLedger.entrydate">Entrydate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="transaction"><span translate="blackholeApp.genLedger.transaction">Transaction</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="reconcile"><span translate="blackholeApp.genLedger.reconcile">Reconcile</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="postingref"><span translate="blackholeApp.genLedger.postingref">Postingref</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th><span translate="blackholeApp.genLedger.debitcredit">D/C</span></th>
+                    <th><span translate="blackholeApp.genLedger.debitcreditbalance">D/C/Balance</span></th>
+                    <th jh-sort-by="cno"><span translate="blackholeApp.genLedger.cno">Cno</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="genLedger in vm.genLedgerEntries track by genLedger.id" class="base-class" ng-class="myVar">
+                    <td><a ui-sref="account-entry-detail({id:genLedger.id})">{{genLedger.id}}</a></td>
+                        <td>{{genLedger.entrydate | date:'shortDate'}}</td>
+                    <td width="200px">{{genLedger.transaction}}</td>
+                    <td><span ng-class="{{genLedger.reconcile}} ? 'glyphicon glyphicon-ok' : ''"></span></td>
+                    <td>{{genLedger.postingref}}</td>
+                    <td width="250px">
+		   	              <div class="dc-container">
+			                  <div class="debit-acct">{{genLedger.debit | mycurrency}}</div>
+			                  <div class="credit-acct">{{genLedger.credit | mycurrency}}</div>
+			                </div>
+		                </td>
+                    <td width="250px">
+		   	              <div class="dc-container">
+			                  <div ng-class="{{genLedger.debitbalance | boolNegative}} ? 'debit-red' : 'debit'" class="debit">{{genLedger.debitbalance | mycurrency}}</div>
+			                  <div ng-class="{{genLedger.creditbalance | boolNegative}} ? 'credit-red' : 'credit'" class="credit">{{genLedger.creditbalance | mycurrency}}</div>
+			                </div>
+		                </td>
+                    <td width="250px">{{genAccounts | chartName:genLedger.cno}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="account-entry-detail({id:genLedger.id})"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="account-entry.edit({id:genLedger.id})"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="account-entry.delete({id:genLedger.id})"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

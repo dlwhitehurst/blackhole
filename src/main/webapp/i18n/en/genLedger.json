@@ -1,0 +1,33 @@
+{
+    "blackholeApp": {
+        "genLedger" : {
+            "home": {
+                "title": "General Ledger",
+                "createLabel": "Entry",
+                "createOrEditLabel": "Create or edit a General Ledger entry",
+                "search": "Search for Ledger Entry"
+            },
+            "created": "A new General Ledger entry is created with identifier {{ param }}",
+            "updated": "A General Ledger entry is updated with identifier {{ param }}",
+            "deleted": "A General Ledger entry is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete General Ledger entry {{ id }}?"
+            },
+            "detail": {
+                "title": "General Ledger Entry"
+            },
+            "entrydate": "Entrydate",
+            "transaction": "Transaction",
+            "reconcile": "Bal",
+            "postingref": "Ref",
+            "debit": "Debit",
+            "credit": "Credit",
+            "debitbalance": "Debit Balance",
+            "creditbalance": "Credit Balance",
+            "debitcredit": "D/C",
+            "debitcreditbalance": "D/C Balance",
+            "notes": "Notes",
+            "cno": "Acct"
+        }
+    }
+}

@@ -13,9 +13,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.ciwise.blackhole.domain.AccountEntry;
+import org.ciwise.blackhole.domain.GenLedger;
 import org.ciwise.blackhole.domain.GenAccount;
-import org.ciwise.blackhole.service.AccountEntryService;
+import org.ciwise.blackhole.service.GenLedgerService;
 import org.ciwise.blackhole.service.GenAccountService;
 import org.ciwise.blackhole.service.TrialBalanceService;
 import org.ciwise.blackhole.service.dto.AccountBalance;
@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class TrialBalanceServiceImpl implements TrialBalanceService {
 
     @Inject
-    private AccountEntryService accountEntryService;
+    private GenLedgerService accountEntryService;
 
     @Inject
     private GenAccountService genAccountService;
@@ -53,12 +53,12 @@ public class TrialBalanceServiceImpl implements TrialBalanceService {
         for (GenAccount genAcct: genAccounts) {
             
             // get all entries for unique chart number
-            List<AccountEntry> accountEntries = accountEntryService.findByCno(genAcct.getCno());
+            List<GenLedger> accountEntries = accountEntryService.findByCno(genAcct.getCno());
 
-            AccountEntry entryLatest = new AccountEntry();
+            GenLedger entryLatest = new GenLedger();
                 int maxId = 0;
                 
-                for (AccountEntry entry: accountEntries) {
+                for (GenLedger entry: accountEntries) {
                     if (entry.getId().intValue() > maxId) {
                         maxId = entry.getId().intValue();
                         entryLatest.setDebitbalance(entry.getDebitbalance());

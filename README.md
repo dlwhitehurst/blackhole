@@ -5,7 +5,7 @@
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 With two goals in mind, I started Blackhole to learn AngularJS and the modern-side of web development. And, I needed an application to keep
 records for my consulting business. Blackhole provides a lot of functionality and a dead-simple double-entry accounting system that includes
-reports. I only support US currency now, but I have plans to internationalize the entire application and allow the customization of any default
+reports. We only support US currency now, but we do have plans to internationalize the entire application and allow the customization of any default
 currency.
 
 Currently, the application has a general journal that writes to the ledger accounts when the journal entry is created. General ledger features
@@ -15,14 +15,19 @@ search text box of the ledger entries page and see only the cash account. Select
 entry and posting order of the ledger account. A chart of accounts is created by default, but they can be changed or customized. At any time you can
 select Reports/Trial Balance to check your work. The other reports are currently being created now.
 
-Blackhole was written for me but you can download the source at the Github link below. It may suit your needs as a traveling entrepreneur, independent
-consultant, or small-business.
+David L. Whitehurst, CEO/Principal Consultant for CI Wise Inc.
 
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
-1. [Node.js][]: We use Node to run a development web server and build the project.
+1. [MySQL][]: We use MySQL Community as our choice of relational database. You can download and install a version
+   for Windows, OS-X, or Linux. Their site will provide instrucions and configuration for your machine.
+
+After installing MySQL, you will need to create an empty database called "blackhole". The database user and
+password will be configured in your Spring config files at src/main/resources/config.
+
+2. [Node.js][]: We use Node to run a development web server and build the project.
    Depending on your system, you can install Node either from source or as a pre-packaged bundle.
 
 After installing Node, you should be able to run the following command to install development tools (like
@@ -84,6 +89,7 @@ To setup this project in Jenkins, use the following configuration:
 * Post-build Actions
     * Publish JUnit test result report / Test Report XMLs: `build/test-results/*.xml`
 
+[MySQL]: https://dev.mysql.com/downloads/mysql/
 [JHipster]: https://jhipster.github.io/
 [Node.js]: https://nodejs.org/
 [Bower]: http://bower.io/

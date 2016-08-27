@@ -5,17 +5,17 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.ciwise.blackhole.domain.AccountEntry;
+import org.ciwise.blackhole.domain.GenLedger;
 import org.ciwise.blackhole.domain.GenAccount;
-import org.ciwise.blackhole.domain.LedgerEntry;
+import org.ciwise.blackhole.domain.GenJournal;
 import org.ciwise.blackhole.domain.User;
-import org.ciwise.blackhole.repository.AccountEntryRepository;
+import org.ciwise.blackhole.repository.GenLedgerRepository;
 import org.ciwise.blackhole.repository.GenAccountRepository;
-import org.ciwise.blackhole.repository.LedgerEntryRepository;
+import org.ciwise.blackhole.repository.GenJournalRepository;
 import org.ciwise.blackhole.repository.UserRepository;
-import org.ciwise.blackhole.repository.search.AccountEntrySearchRepository;
+import org.ciwise.blackhole.repository.search.GenLedgerSearchRepository;
 import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
-import org.ciwise.blackhole.repository.search.LedgerEntrySearchRepository;
+import org.ciwise.blackhole.repository.search.GenJournalSearchRepository;
 import org.ciwise.blackhole.repository.search.UserSearchRepository;
 import org.elasticsearch.indices.IndexAlreadyExistsException;
 import org.slf4j.Logger;
@@ -35,10 +35,10 @@ public class ElasticsearchIndexService {
     private final Logger log = LoggerFactory.getLogger(ElasticsearchIndexService.class);
 
     @Inject
-    private AccountEntryRepository accountEntryRepository;
+    private GenLedgerRepository accountEntryRepository;
 
     @Inject
-    private AccountEntrySearchRepository accountEntrySearchRepository;
+    private GenLedgerSearchRepository accountEntrySearchRepository;
 
     @Inject
     private GenAccountRepository genAccountRepository;
@@ -47,10 +47,10 @@ public class ElasticsearchIndexService {
     private GenAccountSearchRepository genAccountSearchRepository;
 
     @Inject
-    private LedgerEntryRepository ledgerEntryRepository;
+    private GenJournalRepository ledgerEntryRepository;
 
     @Inject
-    private LedgerEntrySearchRepository ledgerEntrySearchRepository;
+    private GenJournalSearchRepository ledgerEntrySearchRepository;
 
     @Inject
     private UserRepository userRepository;
@@ -64,9 +64,9 @@ public class ElasticsearchIndexService {
     @Async
     @Timed
     public void reindexAll() {
-        reindexForClass(AccountEntry.class, accountEntryRepository, accountEntrySearchRepository);
+        reindexForClass(GenLedger.class, accountEntryRepository, accountEntrySearchRepository);
         reindexForClass(GenAccount.class, genAccountRepository, genAccountSearchRepository);
-        reindexForClass(LedgerEntry.class, ledgerEntryRepository, ledgerEntrySearchRepository);
+        reindexForClass(GenJournal.class, ledgerEntryRepository, ledgerEntrySearchRepository);
         reindexForClass(User.class, userRepository, userSearchRepository);
 
         log.info("Elasticsearch: Successfully performed reindexing");

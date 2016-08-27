@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span translate="blackholeApp.genLedger.detail.title">Account Entry</span> {{vm.genLedger.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="blackholeApp.genLedger.entrydate">Entrydate</span></dt>
+        <dd>
+            <span>{{vm.genLedger.entrydate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.transaction">Transaction</span></dt>
+        <dd>
+            <span>{{vm.genLedger.transaction}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.reconcile">Reconcile</span></dt>
+        <dd>
+            <span>{{vm.genLedger.reconcile}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.postingref">Postingref</span></dt>
+        <dd>
+            <span>{{vm.genLedger.postingref}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.debit">Debit</span></dt>
+        <dd>
+            <span>{{vm.genLedger.debit}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.credit">Credit</span></dt>
+        <dd>
+            <span>{{vm.genLedger.credit}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.debitbalance">Debitbalance</span></dt>
+        <dd>
+            <span>{{vm.genLedger.debitbalance}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.creditbalance">Creditbalance</span></dt>
+        <dd>
+            <span>{{vm.genLedger.creditbalance}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.notes">Notes</span></dt>
+        <dd>
+            <span>{{vm.genLedger.notes}}</span>
+        </dd>
+        <dt><span translate="blackholeApp.genLedger.cno">Cno</span></dt>
+        <dd>
+            <span>{{vm.genLedger.cno}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="account-entry-detail.edit({id:vm.genLedger.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

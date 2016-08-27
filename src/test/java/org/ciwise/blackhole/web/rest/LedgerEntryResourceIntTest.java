@@ -1,8 +1,8 @@
 package org.ciwise.blackhole.web.rest;
 
 import org.ciwise.blackhole.BlackholeApp;
-import org.ciwise.blackhole.domain.LedgerEntry;
-import org.ciwise.blackhole.service.LedgerEntryService;
+import org.ciwise.blackhole.domain.GenJournal;
+import org.ciwise.blackhole.service.GenJournalService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Test class for the LedgerEntryResource REST controller.
  *
- * @see LedgerEntryResource
+ * @see GenJournalResource
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = BlackholeApp.class)
@@ -65,7 +65,7 @@ public class LedgerEntryResourceIntTest {
     private static final String UPDATED_NOTES = "BBBBB";
 
     @Inject
-    private LedgerEntryService ledgerEntryService;
+    private GenJournalService ledgerEntryService;
 
     @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -75,12 +75,12 @@ public class LedgerEntryResourceIntTest {
 
     private MockMvc restLedgerEntryMockMvc;
 
-    private LedgerEntry ledgerEntry;
+    private GenJournal ledgerEntry;
 
     @PostConstruct
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        LedgerEntryResource ledgerEntryResource = new LedgerEntryResource();
+        GenJournalResource ledgerEntryResource = new GenJournalResource();
         ReflectionTestUtils.setField(ledgerEntryResource, "ledgerEntryService", ledgerEntryService);
 
         this.restLedgerEntryMockMvc = MockMvcBuilders.standaloneSetup(ledgerEntryResource)
@@ -91,7 +91,7 @@ public class LedgerEntryResourceIntTest {
     @Before
     public void initTest() {
         //ledgerEntrySearchRepository.deleteAll();
-        ledgerEntry = new LedgerEntry();
+        ledgerEntry = new GenJournal();
         ledgerEntry.setEntrydate(DEFAULT_ENTRYDATE);
         ledgerEntry.setTransaction(DEFAULT_TRANSACTION);
         ledgerEntry.setDacctno(DEFAULT_DACCTNO);
@@ -116,11 +116,11 @@ public class LedgerEntryResourceIntTest {
                 .andExpect(status().isCreated());
 
         // Validate the LedgerEntry in the database
-        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
-        List<LedgerEntry> ledgerEntries = ledgerPageEntries.getContent();
+        Page<GenJournal> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
+        List<GenJournal> ledgerEntries = ledgerPageEntries.getContent();
 
         assertThat(ledgerEntries).hasSize(databaseSizeBeforeCreate + 1);
-        LedgerEntry testLedgerEntry = ledgerEntries.get(ledgerEntries.size() - 1);
+        GenJournal testLedgerEntry = ledgerEntries.get(ledgerEntries.size() - 1);
         assertThat(testLedgerEntry.getEntrydate()).isEqualTo(DEFAULT_ENTRYDATE);
         assertThat(testLedgerEntry.getTransaction()).isEqualTo(DEFAULT_TRANSACTION);
         assertThat(testLedgerEntry.getDacctno()).isEqualTo(DEFAULT_DACCTNO);
@@ -194,7 +194,7 @@ public class LedgerEntryResourceIntTest {
         int databaseSizeBeforeUpdate = ledgerEntryService.findAll(new PageRequest(0,1000)).getContent().size();
 
         // Update the ledgerEntry
-        LedgerEntry updatedLedgerEntry = new LedgerEntry();
+        GenJournal updatedLedgerEntry = new GenJournal();
         updatedLedgerEntry.setId(ledgerEntry.getId());
         updatedLedgerEntry.setEntrydate(UPDATED_ENTRYDATE);
         updatedLedgerEntry.setTransaction(UPDATED_TRANSACTION);
@@ -212,11 +212,11 @@ public class LedgerEntryResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate the LedgerEntry in the database
-        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
-        List<LedgerEntry> ledgerEntries = ledgerPageEntries.getContent();
+        Page<GenJournal> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
+        List<GenJournal> ledgerEntries = ledgerPageEntries.getContent();
 
         assertThat(ledgerEntries).hasSize(databaseSizeBeforeUpdate);
-        LedgerEntry testLedgerEntry = ledgerEntries.get(ledgerEntries.size() - 1);
+        GenJournal testLedgerEntry = ledgerEntries.get(ledgerEntries.size() - 1);
         assertThat(testLedgerEntry.getEntrydate()).isEqualTo(UPDATED_ENTRYDATE);
         assertThat(testLedgerEntry.getTransaction()).isEqualTo(UPDATED_TRANSACTION);
         assertThat(testLedgerEntry.getDacctno()).isEqualTo(UPDATED_DACCTNO);
@@ -244,8 +244,8 @@ public class LedgerEntryResourceIntTest {
 
 
         // Validate the database is empty
-        Page<LedgerEntry> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
-        List<LedgerEntry> ledgerEntries = ledgerPageEntries.getContent();
+        Page<GenJournal> ledgerPageEntries = ledgerEntryService.findAll(new PageRequest(0,1000));
+        List<GenJournal> ledgerEntries = ledgerPageEntries.getContent();
 
         assertThat(ledgerEntries).hasSize(databaseSizeBeforeDelete - 1);
     }
