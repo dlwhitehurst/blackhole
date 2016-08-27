@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the AccountEntry entity.
+ * Performance test for the GenLedger entity.
  */
-class AccountEntryGatlingTest extends Simulation {
+class GenLedgerGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -37,7 +37,7 @@ class AccountEntryGatlingTest extends Simulation {
         "X-CSRF-TOKEN" -> "${csrf_token}"
     )
 
-    val scn = scenario("Test the AccountEntry entity")
+    val scn = scenario("Test the GenLedger entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -59,26 +59,26 @@ class AccountEntryGatlingTest extends Simulation {
         .check(headerRegex("Set-Cookie", "CSRF-TOKEN=(.*); [P,p]ath=/").saveAs("csrf_token")))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all accountEntries")
-            .get("/api/account-entries")
+            exec(http("Get all genLedger entries")
+            .get("/api/gen-ledger-entries")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new accountEntry")
-            .post("/api/account-entries")
+            .exec(http("Create new genLedger entry")
+            .post("/api/gen-ledger-entries")
             .headers(headers_http_authenticated)
             .body(StringBody("""{"id":null, "entrydate":"2020-01-01T00:00:00.000Z", "transaction":"SAMPLE_TEXT", "reconcile":null, "postingref":null, "debit":"SAMPLE_TEXT", "credit":"SAMPLE_TEXT", "debitbalance":"SAMPLE_TEXT", "creditbalance":"SAMPLE_TEXT", "notes":"SAMPLE_TEXT", "cno":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_accountEntry_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_genLedger_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created accountEntry")
-                .get("${new_accountEntry_url}")
+                exec(http("Get created genLedger entry")
+                .get("${new_genLedger_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created accountEntry")
-            .delete("${new_accountEntry_url}")
+            .exec(http("Delete created genLedger entry")
+            .delete("${new_genLedger_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

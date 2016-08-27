@@ -2,9 +2,9 @@
 
 describe('Controller Tests', function() {
 
-    describe('AccountEntry Management Detail Controller', function() {
+    describe('GenLedger Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockAccountEntry;
+        var MockEntity, MockPreviousState, MockGenLedger;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -12,25 +12,25 @@ describe('Controller Tests', function() {
             $scope = $rootScope.$new();
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
-            MockAccountEntry = jasmine.createSpy('MockAccountEntry');
-            
+            MockGenLedger = jasmine.createSpy('MockGenLedger');
+
 
             var locals = {
                 '$scope': $scope,
                 '$rootScope': $rootScope,
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
-                'AccountEntry': MockAccountEntry
+                'GenLedger': MockGenLedger
             };
             createController = function() {
-                $injector.get('$controller')("AccountEntryDetailController", locals);
+                $injector.get('$controller')("GenLedgerDetailController", locals);
             };
         }));
 
 
         describe('Root Scope Listening', function() {
             it('Unregisters root scope listener upon scope destruction', function() {
-                var eventType = 'blackholeApp:accountEntryUpdate';
+                var eventType = 'blackholeApp:genLedgerUpdate';
 
                 createController();
                 expect($rootScope.$$listenerCount[eventType]).toEqual(1);
