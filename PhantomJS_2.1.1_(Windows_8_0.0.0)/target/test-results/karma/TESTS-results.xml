@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<testsuite name="PhantomJS 2.1.1 (Windows 8 0.0.0)" package="" timestamp="2016-08-27T02:37:19" id="0" hostname="David-Asus" tests="43" errors="0" failures="0" time="2.386">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
+  </properties>
+  <testcase name="Controller Tests ActivationController calls Auth.activateAccount with the key from stateParams" time="0.268" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests ActivationController should set set success to OK upon successful activation" time="0.059" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests ActivationController should set set error to ERROR upon activation failure" time="0.095" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Directive Tests Password strength Should display the password strength bar" time="0.088" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Directive Tests"/>
+  <testcase name="Directive Tests Password strength Should change the first 2 points of the strength bar" time="0.075" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Directive Tests"/>
+  <testcase name="Directive Tests Password strength Should change the first 4 points of the strength bar" time="0.056" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Directive Tests"/>
+  <testcase name="Controller Tests PasswordController should show error if passwords do not match" time="0.043" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests PasswordController should call Auth.changePassword when passwords match" time="0.064" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests PasswordController should set success to OK upon success" time="0.049" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests PasswordController should notify of error if change password fails" time="0.045" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RegisterController should ensure the two passwords entered match" time="0.04" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RegisterController should update success to OK after creating an account" time="0.046" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RegisterController should notify of user existence upon 400/login already in use" time="0.055" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RegisterController should notify of email existence upon 400/e-mail address already in use" time="0.052" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RegisterController should notify of generic error" time="0.06" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests ResetFinishController should define its initial state" time="0.041" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests ResetFinishController registers a timeout handler set set focus" time="0.04" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RequestResetController should define its initial state" time="0.04" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RequestResetController registers a timeout handler set set focus" time="0.039" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RequestResetController notifies of success upon successful requestReset" time="0.049" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RequestResetController notifies of unknown email upon e-mail address not registered/400" time="0.047" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests RequestResetController notifies of error upon error response" time="0.046" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests SessionsController should define its initial state" time="0.045" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests SessionsController should call delete on Sessions to invalidate a session" time="0.045" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests SessionsController should call delete on Sessions and notify of error" time="0.045" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests SessionsController should call notify of success upon session invalidation" time="0.064" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests SettingsController should send the current identity upon save" time="0.055" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests SettingsController should notify of success upon successful save" time="0.045" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests SettingsController should notify of error upon failed save" time="0.043" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController baseName and subSystemName should return the basename when it has no sub system" time="0.038" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController baseName and subSystemName should return the basename when it has sub systems" time="0.037" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController baseName and subSystemName should return the sub system name" time="0.037" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController baseName and subSystemName should return the subsystem when it has multiple keys" time="0.038" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController transformHealthData should flatten empty health data" time="0.038" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController transformHealthData should flatten health data with no subsystems" time="0.04" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController transformHealthData should flatten health data with subsystems at level 1, main system has no additional information" time="0.039" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController transformHealthData should flatten health data with subsystems at level 1, main system has additional information" time="0.039" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests JhiHealthCheckController transformHealthData should flatten health data with subsystems at level 1, main system has additional error" time="0.071" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests LoginController should set remember Me" time="0.044" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests GenAccount Management Detail Controller Root Scope Listening Unregisters root scope listener upon scope destruction" time="0.052" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests GenJournal Management Detail Controller Root Scope Listening Unregisters root scope listener upon scope destruction" time="0.045" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Controller Tests GenLedger Management Detail Controller Root Scope Listening Unregisters root scope listener upon scope destruction" time="0.044" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Controller Tests"/>
+  <testcase name="Service Tests Auth should call backend on logout then call authServerProvider.logout" time="0.085" classname="PhantomJS_2_1_1_(Windows_8_0_0_0).Service Tests"/>
+  <system-out>
+    <![CDATA[PhantomJS 2.1.1 (Windows 8 0.0.0) DUMP: 'background-color: rgb(153, 255, 0);'
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

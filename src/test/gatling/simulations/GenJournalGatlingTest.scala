@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the LedgerEntry entity.
+ * Performance test for the GenJournal entity.
  */
-class LedgerEntryGatlingTest extends Simulation {
+class GenJournalGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -37,7 +37,7 @@ class LedgerEntryGatlingTest extends Simulation {
         "X-CSRF-TOKEN" -> "${csrf_token}"
     )
 
-    val scn = scenario("Test the LedgerEntry entity")
+    val scn = scenario("Test the GenJournal entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -59,26 +59,26 @@ class LedgerEntryGatlingTest extends Simulation {
         .check(headerRegex("Set-Cookie", "CSRF-TOKEN=(.*); [P,p]ath=/").saveAs("csrf_token")))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all ledgerEntries")
-            .get("/api/ledger-entries")
+            exec(http("Get all genJournal entries")
+            .get("/api/gen-journal-entries")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new ledgerEntry")
-            .post("/api/ledger-entries")
+            .exec(http("Create new genJournal entry")
+            .post("/api/gen-journal-entries")
             .headers(headers_http_authenticated)
             .body(StringBody("""{"id":null, "entrydate":"2020-01-01T00:00:00.000Z", "transaction":"SAMPLE_TEXT", "dacctno":"SAMPLE_TEXT", "cacctno":"SAMPLE_TEXT", "dadebit":"SAMPLE_TEXT", "dacredit":"SAMPLE_TEXT", "cadebit":"SAMPLE_TEXT", "cacredit":"SAMPLE_TEXT", "notes":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_ledgerEntry_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_genJournal_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created ledgerEntry")
-                .get("${new_ledgerEntry_url}")
+                exec(http("Get created genJournal entry")
+                .get("${new_genJournal_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created ledgerEntry")
-            .delete("${new_ledgerEntry_url}")
+            .exec(http("Delete created genJournal entry")
+            .delete("${new_genJournal_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }
