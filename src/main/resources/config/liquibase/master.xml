@@ -9,6 +9,9 @@
     <include file="classpath:config/liquibase/changelog/20160813191416_added_entity_GenLedger.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160815000000_added_entity_GenAccount.xml" relativeToChangelogFile="false"/>
 
+    <include file="classpath:config/liquibase/changelog/20160828053420_added_entity_JournalAccount.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160828053422_added_entity_constraints_JournalAccount.xml" relativeToChangelogFile="false"/>
+
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
