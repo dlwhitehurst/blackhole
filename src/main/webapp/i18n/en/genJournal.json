@@ -20,6 +20,8 @@
             "transaction": "Transaction",
             "dacctno": "Debit Account",
             "cacctno": "Credit Account",
+            "debitaccountname": "Debit Account Name",
+            "creditaccountname": "Credit Account Name",
             "dadebit": "DD",
             "dacredit": "DC",
             "cadebit": "CD",

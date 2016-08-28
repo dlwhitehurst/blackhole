@@ -128,6 +128,8 @@
                                 transaction: null,
                                 dacctno: null,
                                 cacctno: null,
+                                debitaccountname: null,
+                                creditaccountname: null,
                                 dadebit: null,
                                 dacredit: null,
                                 cadebit: null,

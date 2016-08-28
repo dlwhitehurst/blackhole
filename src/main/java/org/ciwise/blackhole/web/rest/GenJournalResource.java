@@ -54,12 +54,12 @@ public class GenJournalResource {
     public ResponseEntity<GenJournal> createGeneralJournalEntry(@RequestBody GenJournal genJournalEntry) throws URISyntaxException {
         log.debug("REST request to save GenJournal : {}", genJournalEntry);
         if (genJournalEntry.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("genJournalEntry", "idexists", "A new genJournal cannot already have an ID")).body(null);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("genJournal", "idexists", "A new genJournal cannot already have an ID")).body(null);
         }
   
         GenJournal result = genJournalService.save(genJournalEntry);
         return ResponseEntity.created(new URI("/api/gen-journal-entries/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("genJournalEntry", result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert("genJournal", result.getId().toString()))
             .body(result);
     }
 
@@ -85,7 +85,7 @@ public class GenJournalResource {
         GenJournal result = genJournalService.save(genJournalEntry);
 
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("genJournalEntry", genJournalEntry.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert("genJournal", genJournalEntry.getId().toString()))
             .body(result);
     }
 

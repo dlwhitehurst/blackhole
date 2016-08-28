@@ -58,7 +58,7 @@ public class GenLedgerResource {
         }
         GenLedger result = genLedgerService.save(genLedgerEntry);
         return ResponseEntity.created(new URI("/api/gen-ledger-entries/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("genLedgerEntry", result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert("genLedger", result.getId().toString()))
             .body(result);
     } 
 
@@ -82,7 +82,7 @@ public class GenLedgerResource {
         }
         GenLedger result = genLedgerService.save(genLedgerEntry);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("genLedgerEntry", genLedgerEntry.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert("genLedger", genLedgerEntry.getId().toString()))
             .body(result);
     }
 
@@ -138,7 +138,7 @@ public class GenLedgerResource {
     public ResponseEntity<Void> deleteGeneralLedgerEntry(@PathVariable Long id) {
         log.debug("REST request to delete GenLedger entry : {}", id);
         genLedgerService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("genLedgerEntry", id.toString())).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("genLedger", id.toString())).build();
     }
 
     /**

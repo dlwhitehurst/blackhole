@@ -49,12 +49,12 @@
                         <td>{{genJournal.entrydate | date:'mediumDate'}}</td>
                     <td>{{genJournal.transaction}}</td>
 		    <td>
-          {{genAccounts | chartName: genJournal.dacctno}}
+          {{genJournal.dacctno}} - {{genJournal.debitaccountname}}
 			    <div class="dc-container">
 			    <div class="debit-acct">{{genJournal.dadebit | currency}}</div><div class="credit-acct">{{genJournal.dacredit | currency}}</div></div>
 		    </td>
 		    <td>
-          {{genAccounts | chartName: genJournal.cacctno}}
+          {{genJournal.cacctno}} - {{genJournal.creditaccountname}}
 			    <div class="dc-container">
 			    <div class="debit">{{genJournal.cadebit | currency}}</div><div class="credit">{{genJournal.cacredit | currency}}</div></div>
 		    </td>

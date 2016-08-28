@@ -65,23 +65,23 @@
 			                  <div ng-class="{{genLedger.creditbalance | boolNegative}} ? 'credit-red' : 'credit'" class="credit">{{genLedger.creditbalance | mycurrency}}</div>
 			                </div>
 		                </td>
-                    <td width="250px">{{genAccounts | chartName:genLedger.cno}}</td>
+                    <td width="250px">{{genLedger.accountname}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="account-entry-detail({id:genLedger.id})"
+                                    ui-sref="gen-ledger-detail({id:genLedger.id})"
                                     class="btn btn-default">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="account-entry.edit({id:genLedger.id})"
+                                    ui-sref="gen-ledger.edit({id:genLedger.id})"
                                     class="btn btn-default">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="account-entry.delete({id:genLedger.id})"
+                                    ui-sref="gen-ledger.delete({id:genLedger.id})"
                                     class="btn btn-default">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>

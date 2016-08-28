@@ -24,50 +24,54 @@
             <column name="entrydate" type="date">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="transaction" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="reconcile" type="bit">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="postingref" type="bigint">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="debit" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="credit" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="debitbalance" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="creditbalance" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="notes" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="cno" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
+            <column name="accountname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
- 
+
         <loadData encoding="UTF-8"
                   file="config/liquibase/init_ledger_entries.csv"
                   separator=";"
                   tableName="gen_ledger"/>
-        
+
     </changeSet>
 </databaseChangeLog>

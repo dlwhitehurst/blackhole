@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) CI Wise Inc.  All rights reserved.  http://www.ciwise.com
+ * The software in this package is published under the terms of the Apache
+ * version 2.0 license, a copy of which has been included with this distribution
+ * in the LICENSE.md file.
+ *
+ */
+
 package org.ciwise.blackhole.domain;
 
 import org.hibernate.annotations.Cache;
@@ -35,6 +43,12 @@ public class GenJournal implements Serializable {
 
     @Column(name = "cacctno")
     private String cacctno;
+
+    @Column(name = "debitaccountname")
+    private String debitaccountname;
+
+    @Column(name = "creditaccountname")
+    private String creditaccountname;
 
     @Column(name = "dadebit")
     private String dadebit;
@@ -159,6 +173,8 @@ public class GenJournal implements Serializable {
             ", transaction='" + transaction + "'" +
             ", dacctno='" + dacctno + "'" +
             ", cacctno='" + cacctno + "'" +
+            ", debitaccountname='" + debitaccountname + "'" +
+            ", creditaccountname='" + creditaccountname + "'" +
             ", dadebit='" + dadebit + "'" +
             ", dacredit='" + dacredit + "'" +
             ", cadebit='" + cadebit + "'" +
@@ -166,4 +182,21 @@ public class GenJournal implements Serializable {
             ", notes='" + notes + "'" +
             '}';
     }
+
+    public String getDebitaccountname() {
+        return debitaccountname;
+    }
+
+    public void setDebitaccountname(String debitaccountname) {
+        this.debitaccountname = debitaccountname;
+    }
+
+    public String getCreditaccountname() {
+        return creditaccountname;
+    }
+
+    public void setCreditaccountname(String creditaccountname) {
+        this.creditaccountname = creditaccountname;
+    }
+
 }

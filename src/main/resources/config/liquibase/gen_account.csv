@@ -1,35 +1,36 @@
 id;name;type;dc;cno
 1;Cash;Asset;Debit;100
-2;Equipment;Asset;Debit;110
-3;Accounts Receivable;Asset;Debit;120
-4;Office Supplies;Expense;Debit;500
-5;Office Machines;Expense;Debit;501
-6;Capital Expenses;Expense;Debit;502
-7;NC Secretary of State;Expense;Debit;503
-8;NC Dept of Revenue;Expense;Debit;504
-9;Rent;Expense;Debit;505
-10;Electric;Expense;Debit;506
-11;Medical;Expense;Debit;507
-12;Miscellaneous;Expense;Debit;508
-13;Startup One Time;Expense;Debit;509
-14;Books and Periodicals;Expense;Debit;510
-15;Education;Expense;Debit;515
-16;Software;Expense;Debit;520
-17;Network and Hosting;Expense;Debit;530
-18;Online Advertising;Expense;Debit;535
-19;Liability Insurance;Expense;Debit;540
-20;Workers Compensation;Expense;Debit;550
-21;Postage;Expense;Debit;560
-22;Shipping;Expense;Debit;570
-23;Meals;Expense;Debit;580
-24;Travel;Expense;Debit;585
-25;Auto;Expense;Debit;590
-26;NC Taxes Payable;Liability;Credit;200
-27;IRS Taxes Payable;Liability;Credit;201
-28;Expenses Payable;Liability;Credit;205
-29;Capital;Equity;Credit;300
-30;Retained Earnings;Equity;Credit;310
-31;Shareholder Drawing;Equity;Credit;320
-32;Shareholder Equity;Equity;Credit;325
-33;Income-Revenue;Revenue;Credit;400
-34;Interest Earned;Revenue;Credit;410
+2;Savings;Asset;Debit;101
+3;Equipment;Asset;Debit;110
+4;Accounts Receivable;Asset;Debit;120
+5;Office Supplies;Expense;Debit;500
+6;Office Machines;Expense;Debit;501
+7;Capital Expenses;Expense;Debit;502
+8;NC Secretary of State;Expense;Debit;503
+9;NC Dept of Revenue;Expense;Debit;504
+10;Rent;Expense;Debit;505
+11;Electric;Expense;Debit;506
+12;Medical;Expense;Debit;507
+13;Miscellaneous;Expense;Debit;508
+14;Startup One Time;Expense;Debit;509
+15;Books and Periodicals;Expense;Debit;510
+16;Education;Expense;Debit;515
+17;Software;Expense;Debit;520
+18;Network and Hosting;Expense;Debit;530
+19;Online Advertising;Expense;Debit;535
+20;Liability Insurance;Expense;Debit;540
+21;Workers Compensation;Expense;Debit;550
+22;Postage;Expense;Debit;560
+23;Shipping;Expense;Debit;570
+24;Meals;Expense;Debit;580
+25;Travel;Expense;Debit;585
+26;Auto;Expense;Debit;590
+27;NC Taxes Payable;Liability;Credit;200
+28;IRS Taxes Payable;Liability;Credit;201
+29;Expenses Payable;Liability;Credit;205
+30;Capital;Equity;Credit;300
+31;Retained Earnings;Equity;Credit;310
+32;Shareholder Drawing;Equity;Credit;320
+33;Shareholder Equity;Equity;Credit;325
+34;Income-Revenue;Revenue;Credit;400
+35;Interest Earned;Revenue;Credit;410

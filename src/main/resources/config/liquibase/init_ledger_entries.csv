@@ -1,35 +1,36 @@
-id;entrydate;transaction;postingref;debit;credit;debitbalance;creditbalance;notes;cno
-1;2016-08-15;Initial Balance;0;null;null;0.00;null;null;100
-2;2016-08-15;Initial Balance;0;null;null;0.00;null;null;110
-3;2016-08-15;Initial Balance;0;null;null;0.00;null;null;120
-4;2016-08-15;Initial Balance;0;null;null;null;0.00;null;200
-5;2016-08-15;Initial Balance;0;null;null;null;0.00;null;201
-6;2016-08-15;Initial Balance;0;null;null;null;0.00;null;205
-7;2016-08-15;Initial Balance;0;null;null;null;0.00;null;300
-8;2016-08-15;Initial Balance;0;null;null;null;0.00;null;310
-9;2016-08-15;Initial Balance;0;null;null;null;0.00;null;320
-10;2016-08-15;Initial Balance;0;null;null;null;0.00;null;400
-11;2016-08-15;Initial Balance;0;null;null;null;0.00;null;410
-12;2016-08-15;Initial Balance;0;null;null;0.00;null;null;500
-13;2016-08-15;Initial Balance;0;null;null;0.00;null;null;501
-14;2016-08-15;Initial Balance;0;null;null;0.00;null;null;502
-15;2016-08-15;Initial Balance;0;null;null;0.00;null;null;503
-16;2016-08-15;Initial Balance;0;null;null;0.00;null;null;504
-17;2016-08-15;Initial Balance;0;null;null;0.00;null;null;505
-18;2016-08-15;Initial Balance;0;null;null;0.00;null;null;506
-19;2016-08-15;Initial Balance;0;null;null;0.00;null;null;507
-20;2016-08-15;Initial Balance;0;null;null;0.00;null;null;508
-21;2016-08-15;Initial Balance;0;null;null;0.00;null;null;509
-22;2016-08-15;Initial Balance;0;null;null;0.00;null;null;510
-23;2016-08-15;Initial Balance;0;null;null;0.00;null;null;515
-24;2016-08-15;Initial Balance;0;null;null;0.00;null;null;520
-25;2016-08-15;Initial Balance;0;null;null;0.00;null;null;530
-26;2016-08-15;Initial Balance;0;null;null;0.00;null;null;535
-27;2016-08-15;Initial Balance;0;null;null;0.00;null;null;540
-28;2016-08-15;Initial Balance;0;null;null;0.00;null;null;550
-29;2016-08-15;Initial Balance;0;null;null;0.00;null;null;560
-30;2016-08-15;Initial Balance;0;null;null;0.00;null;null;570
-31;2016-08-15;Initial Balance;0;null;null;0.00;null;null;580
-32;2016-08-15;Initial Balance;0;null;null;0.00;null;null;585
-33;2016-08-15;Initial Balance;0;null;null;0.00;null;null;590
-34;2016-08-15;Initial Balance;0;null;null;null;0.00;null;325
+id;entrydate;transaction;postingref;debit;credit;debitbalance;creditbalance;notes;cno;accountname
+1;2016-08-15;Initial Balance;0;null;null;0.00;null;null;100;Cash
+2;2016-08-15;Initial Balance;0;null;null;0.00;null;null;101;Savings
+3;2016-08-15;Initial Balance;0;null;null;0.00;null;null;110;Equipment
+4;2016-08-15;Initial Balance;0;null;null;0.00;null;null;120;Accounts Receivable
+5;2016-08-15;Initial Balance;0;null;null;0.00;null;null;500;Office Supplies
+6;2016-08-15;Initial Balance;0;null;null;0.00;null;null;501;Office Machines
+7;2016-08-15;Initial Balance;0;null;null;0.00;null;null;502;Capital Expenses
+8;2016-08-15;Initial Balance;0;null;null;0.00;null;null;503;NC Secretary of State
+9;2016-08-15;Initial Balance;0;null;null;0.00;null;null;504;NC Dept of Revenue
+10;2016-08-15;Initial Balance;0;null;null;0.00;null;null;505;Rent
+11;2016-08-15;Initial Balance;0;null;null;0.00;null;null;506;Electric
+12;2016-08-15;Initial Balance;0;null;null;0.00;null;null;507;Medical
+13;2016-08-15;Initial Balance;0;null;null;0.00;null;null;508;Miscellaneous
+14;2016-08-15;Initial Balance;0;null;null;0.00;null;null;509;Startup One Time
+15;2016-08-15;Initial Balance;0;null;null;0.00;null;null;510;Books and Periodicals
+16;2016-08-15;Initial Balance;0;null;null;0.00;null;null;515;Education
+17;2016-08-15;Initial Balance;0;null;null;0.00;null;null;520;Software
+18;2016-08-15;Initial Balance;0;null;null;0.00;null;null;530;Network and Hosting
+19;2016-08-15;Initial Balance;0;null;null;0.00;null;null;535;Online Advertising
+20;2016-08-15;Initial Balance;0;null;null;0.00;null;null;540;Liability Insurance
+21;2016-08-15;Initial Balance;0;null;null;0.00;null;null;550;Workers Compensation
+22;2016-08-15;Initial Balance;0;null;null;0.00;null;null;560;Postage
+23;2016-08-15;Initial Balance;0;null;null;0.00;null;null;570;Shipping
+24;2016-08-15;Initial Balance;0;null;null;0.00;null;null;580;Meals
+25;2016-08-15;Initial Balance;0;null;null;0.00;null;null;585;Travel
+26;2016-08-15;Initial Balance;0;null;null;0.00;null;null;590;Auto
+27;2016-08-15;Initial Balance;0;null;null;null;0.00;null;200;NC Taxes Payable
+28;2016-08-15;Initial Balance;0;null;null;null;0.00;null;201;IRS Taxes Payable
+29;2016-08-15;Initial Balance;0;null;null;null;0.00;null;205;Expenses Payable
+30;2016-08-15;Initial Balance;0;null;null;null;0.00;null;300;Capital
+31;2016-08-15;Initial Balance;0;null;null;null;0.00;null;310;Retained Earnings
+32;2016-08-15;Initial Balance;0;null;null;null;0.00;null;320;Shareholder Drawing
+33;2016-08-15;Initial Balance;0;null;null;null;0.00;null;325;Shareholder Equity
+34;2016-08-15;Initial Balance;0;null;null;null;0.00;null;400;Income-Revenue
+35;2016-08-15;Initial Balance;0;null;null;null;0.00;null;410;Interest Earned

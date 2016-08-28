@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.*;
 import java.util.List;
 
 /**
- * Spring Data JPA repository for the LedgerEntry entity.
+ * Spring Data JPA repository for the GenJournal entity.
  */
 @SuppressWarnings("unused")
 public interface GenJournalRepository extends JpaRepository<GenJournal,Long> {

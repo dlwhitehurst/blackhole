@@ -24,39 +24,47 @@
             <column name="entrydate" type="date">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="transaction" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="dacctno" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="cacctno" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
+            <column name="debitaccountname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="creditaccountname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="dadebit" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="dacredit" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="cadebit" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="cacredit" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="notes" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
     </changeSet>

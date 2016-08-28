@@ -198,6 +198,7 @@ public class GenJournalServiceImpl implements GenJournalService {
         creditAccountEntry.setDebit(genJournal.getCadebit());
         creditAccountEntry.setCredit(genJournal.getCacredit());
         creditAccountEntry.setPostingref(genJournal.getId());
+        creditAccountEntry.setAccountname(genJournal.getCreditaccountname());
         return creditAccountEntry;
     }
 
@@ -214,6 +215,7 @@ public class GenJournalServiceImpl implements GenJournalService {
         debitAccountEntry.setDebit(genJournal.getDadebit());
         debitAccountEntry.setCredit(genJournal.getDacredit());
         debitAccountEntry.setPostingref(genJournal.getId());
+        debitAccountEntry.setAccountname(genJournal.getDebitaccountname());
         return debitAccountEntry;
     }
 
