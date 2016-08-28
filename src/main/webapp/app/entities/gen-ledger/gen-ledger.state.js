@@ -134,7 +134,7 @@
                                 creditbalance: null,
                                 notes: null,
                                 cno: null,
-                                accountname: null,
+                                accountName: null,
                                 id: null
                             };
                         }
