@@ -14,8 +14,9 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.Objects;
+
 
 /**
  * A GenJournal Object.
@@ -33,7 +34,7 @@ public class GenJournal implements Serializable {
     private Long id;
 
     @Column(name = "entrydate")
-    private LocalDate entrydate;
+    private ZonedDateTime entrydate;
 
     @Column(name = "transaction")
     private String transaction;
@@ -73,11 +74,11 @@ public class GenJournal implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getEntrydate() {
+    public ZonedDateTime getEntrydate() {
         return entrydate;
     }
 
-    public void setEntrydate(LocalDate entrydate) {
+    public void setEntrydate(ZonedDateTime entrydate) {
         this.entrydate = entrydate;
     }
 
