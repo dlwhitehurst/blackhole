@@ -4,6 +4,7 @@ import org.ciwise.blackhole.service.AuditEventService;
 
 import java.time.LocalDate;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
+
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
