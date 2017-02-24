@@ -46,7 +46,7 @@
             <tbody>
                 <tr ng-repeat="genJournal in vm.genJournalEntries track by genJournal.id" class="base-class" ng-class="myVar">
                     <td><a ui-sref="gen-journal-detail({id:genJournal.id})">{{genJournal.id}}</a></td>
-                        <td>{{genJournal.entrydate | date:'mediumDate'}}</td>
+                        <td>{{genJournal.entrydate | date:'shortDate'}}</td>
                     <td>{{genJournal.transaction}}</td>
 		    <td>
           {{genJournal.dacctno}} - {{genJournal.debitaccountname}}

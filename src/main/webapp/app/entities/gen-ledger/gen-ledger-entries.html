@@ -49,7 +49,7 @@
             <tbody>
                 <tr ng-repeat="genLedger in vm.genLedgerEntries track by genLedger.id" class="base-class" ng-class="myVar">
                     <td><a ui-sref="account-entry-detail({id:genLedger.id})">{{genLedger.id}}</a></td>
-                        <td>{{genLedger.entrydate | date:'shortDate'}}</td>
+                        <td>{{genLedger.entrydate|date:'mediumDate'}}</td>
                     <td width="200px">{{genLedger.transaction}}</td>
                     <td><span ng-class="{{genLedger.reconcile}} ? 'glyphicon glyphicon-ok' : ''"></span></td>
                     <td>{{genLedger.postingref}}</td>

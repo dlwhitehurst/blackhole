@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="control-label" translate="blackholeApp.genLedger.entrydate" for="field_entrydate">Entrydate</label>
                 <div class="input-group">
-                    <input id="field_entrydate" type="text" class="form-control" name="entrydate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.genLedger.entrydate" is-open="vm.datePickerOpenStatus.entrydate"
+                    <input id="field_entrydate" type="text" class="form-control" name="entrydate" datetime-picker="{{datetimeformat}}" ng-model="vm.genLedger.entrydate" is-open="vm.datePickerOpenStatus.entrydate"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('entrydate')"><i class="glyphicon glyphicon-calendar"></i></button>
