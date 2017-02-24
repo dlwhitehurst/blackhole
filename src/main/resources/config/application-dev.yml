@@ -22,8 +22,8 @@ spring:
     datasource:
         url: jdbc:mysql://localhost:3306/blackhole-dev?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
-        username: root 
-        password: TurkeyBird0706 
+        username: someuser 
+        password: somepassword 
         hikari:
             data-source-properties:
                 cachePrepStmts: true
