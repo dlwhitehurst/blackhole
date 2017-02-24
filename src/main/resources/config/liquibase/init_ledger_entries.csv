@@ -1,36 +1,43 @@
 id;entrydate;transaction;postingref;debit;credit;debitbalance;creditbalance;notes;cno;accountname
-1;2016-08-15;Initial Balance;0;null;null;0.00;null;null;100;Cash
-2;2016-08-15;Initial Balance;0;null;null;0.00;null;null;101;Savings
-3;2016-08-15;Initial Balance;0;null;null;0.00;null;null;110;Equipment
-4;2016-08-15;Initial Balance;0;null;null;0.00;null;null;120;Accounts Receivable
-5;2016-08-15;Initial Balance;0;null;null;0.00;null;null;500;Office Supplies
-6;2016-08-15;Initial Balance;0;null;null;0.00;null;null;501;Office Machines
-7;2016-08-15;Initial Balance;0;null;null;0.00;null;null;502;Capital Expenses
-8;2016-08-15;Initial Balance;0;null;null;0.00;null;null;503;NC Secretary of State
-9;2016-08-15;Initial Balance;0;null;null;0.00;null;null;504;NC Dept of Revenue
-10;2016-08-15;Initial Balance;0;null;null;0.00;null;null;505;Rent
-11;2016-08-15;Initial Balance;0;null;null;0.00;null;null;506;Electric
-12;2016-08-15;Initial Balance;0;null;null;0.00;null;null;507;Medical
-13;2016-08-15;Initial Balance;0;null;null;0.00;null;null;508;Miscellaneous
-14;2016-08-15;Initial Balance;0;null;null;0.00;null;null;509;Startup One Time
-15;2016-08-15;Initial Balance;0;null;null;0.00;null;null;510;Books and Periodicals
-16;2016-08-15;Initial Balance;0;null;null;0.00;null;null;515;Education
-17;2016-08-15;Initial Balance;0;null;null;0.00;null;null;520;Software
-18;2016-08-15;Initial Balance;0;null;null;0.00;null;null;530;Network and Hosting
-19;2016-08-15;Initial Balance;0;null;null;0.00;null;null;535;Online Advertising
-20;2016-08-15;Initial Balance;0;null;null;0.00;null;null;540;Liability Insurance
-21;2016-08-15;Initial Balance;0;null;null;0.00;null;null;550;Workers Compensation
-22;2016-08-15;Initial Balance;0;null;null;0.00;null;null;560;Postage
-23;2016-08-15;Initial Balance;0;null;null;0.00;null;null;570;Shipping
-24;2016-08-15;Initial Balance;0;null;null;0.00;null;null;580;Meals
-25;2016-08-15;Initial Balance;0;null;null;0.00;null;null;585;Travel
-26;2016-08-15;Initial Balance;0;null;null;0.00;null;null;590;Auto
-27;2016-08-15;Initial Balance;0;null;null;null;0.00;null;200;NC Taxes Payable
-28;2016-08-15;Initial Balance;0;null;null;null;0.00;null;201;IRS Taxes Payable
-29;2016-08-15;Initial Balance;0;null;null;null;0.00;null;205;Expenses Payable
-30;2016-08-15;Initial Balance;0;null;null;null;0.00;null;300;Capital
-31;2016-08-15;Initial Balance;0;null;null;null;0.00;null;310;Retained Earnings
-32;2016-08-15;Initial Balance;0;null;null;null;0.00;null;320;Shareholder Drawing
-33;2016-08-15;Initial Balance;0;null;null;null;0.00;null;325;Shareholder Equity
-34;2016-08-15;Initial Balance;0;null;null;null;0.00;null;400;Income-Revenue
-35;2016-08-15;Initial Balance;0;null;null;null;0.00;null;410;Interest Earned
+1;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;100;Cash
+2;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;101;Tax
+3;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;102;Savings
+4;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;103;Accounts Receivable
+5;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;500;Office Expense
+6;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;501;Startup Expense
+7;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;502;Operating Expense
+8;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;503;Expenses Reimbursable
+9;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;504;Banking Expense
+10;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;505;Training Expense
+11;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;506;Network/Hosting Expense
+12;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;507;Software Expense
+13;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;508;Meals/Entertainment Expense
+14;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;509;Books/Periodicals Expense
+15;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;510;Marketing Expense
+16;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;511;Advertising Expense
+17;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;512;Salaries Expense
+18;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;513;Postage Expense
+19;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;514;Shipping Expense
+20;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;515;Travel Expense
+21;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;516;Auto Expense
+22;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;517;Fed Tax Expense
+23;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;518;NC Tax Expense
+24;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;519;Social Security Expense
+25;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;520;Medicare Expense
+26;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;521;FUTA Expense
+27;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;0.00;null;null;522;SUTA Expense
+28;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;200;Fed Tax Payable
+29;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;201;NC Tax Payable
+30;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;202;Social Security Payable
+31;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;203;Medicare Payable
+32;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;204;FUTA Payable
+33;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;205;SUTA Payable
+34;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;206;Expenses Payable
+35;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;207;Debt Payable
+36;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;300;Capital
+37;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;301;Retained Earnings
+38;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;302;Shareholder Drawing
+39;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;400;Income-Revenue
+40;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;401;Reimbursed;Revenue
+41;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;402;Accrued Earnings
+42;2017-02-23T19:53:17.790Z;Initial Balance;0;null;null;null;0.00;null;403;Interest Earned

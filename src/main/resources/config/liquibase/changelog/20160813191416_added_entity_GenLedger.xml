@@ -21,7 +21,7 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="entrydate" type="date">
+            <column name="entrydate" type="timestamp">
                 <constraints nullable="true" />
             </column>
 
@@ -67,11 +67,12 @@
 
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-
+        <dropDefaultValue tableName="gen_ledger" columnName="entrydate" columnDataType="datetime"/>
         <loadData encoding="UTF-8"
                   file="config/liquibase/init_ledger_entries.csv"
                   separator=";"
-                  tableName="gen_ledger"/>
-
+                  tableName="gen_ledger">
+          <column name="entrydate" type="timestamp"/>
+        </loadData>
     </changeSet>
 </databaseChangeLog>
