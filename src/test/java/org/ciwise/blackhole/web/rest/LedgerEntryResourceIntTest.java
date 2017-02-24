@@ -1,36 +1,42 @@
 package org.ciwise.blackhole.web.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 import org.ciwise.blackhole.BlackholeApp;
 import org.ciwise.blackhole.domain.GenJournal;
 import org.ciwise.blackhole.service.GenJournalService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 /**
@@ -45,8 +51,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class LedgerEntryResourceIntTest {
 
 
-    private static final LocalDate DEFAULT_ENTRYDATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_ENTRYDATE = LocalDate.now(ZoneId.systemDefault());
+//    private static final LocalDate DEFAULT_ENTRYDATE = LocalDate.ofEpochDay(0L);
+//    private static final LocalDate UPDATED_ENTRYDATE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final ZonedDateTime DEFAULT_ENTRYDATE = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
+    private static final ZonedDateTime UPDATED_ENTRYDATE = ZonedDateTime.now();
+
     private static final String DEFAULT_TRANSACTION = "AAAAA";
     private static final String UPDATED_TRANSACTION = "BBBBB";
     private static final String DEFAULT_DACCTNO = "AAAAA";
