@@ -1,34 +1,41 @@
 package org.ciwise.blackhole.web.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 import org.ciwise.blackhole.BlackholeApp;
 import org.ciwise.blackhole.domain.GenAccount;
 import org.ciwise.blackhole.service.GenAccountService;
+import org.ciwise.blackhole.service.dto.SnapshotAccount;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+//import org.springframework.boot.test.IntegrationTest;
+//import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 /**
@@ -36,10 +43,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @see GenAccountResource
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = BlackholeApp.class)
-@WebAppConfiguration
-@IntegrationTest
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes = BlackholeApp.class)
+//@WebAppConfiguration
+//@IntegrationTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = BlackholeApp.class)
 public class GenAccountResourceIntTest {
 
     private static final String DEFAULT_NAME = "AAAAA";
@@ -88,7 +97,7 @@ public class GenAccountResourceIntTest {
     @Test
     @Transactional
     public void createGenAccount() throws Exception {
-        int databaseSizeBeforeCreate = genAccountService.findAll(new PageRequest(0,1000)).getContent().size();
+        int databaseSizeBeforeCreate = genAccountService.findAll().size();
 
         // Create the GenAccount
 
@@ -98,8 +107,8 @@ public class GenAccountResourceIntTest {
                 .andExpect(status().isCreated());
 
         // Validate the GenAccount in the database
-        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
-        List<GenAccount> genAccounts = genPageAccounts.getContent();
+        //Page<SnapshotAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
+        List<GenAccount> genAccounts = genAccountService.findAll();
         
         assertThat(genAccounts).hasSize(databaseSizeBeforeCreate + 1);
         GenAccount testGenAccount = genAccounts.get(genAccounts.size() - 1);
@@ -158,7 +167,7 @@ public class GenAccountResourceIntTest {
 
         // Initialize the database
         genAccountService.save(genAccount);
-        int databaseSizeBeforeUpdate = genAccountService.findAll(new PageRequest(0,1000)).getContent().size();
+        int databaseSizeBeforeUpdate = genAccountService.findAll().size();
         
         // Update the genAccount
         GenAccount updatedGenAccount = new GenAccount();
@@ -174,8 +183,8 @@ public class GenAccountResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate the GenAccount in the database
-        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
-        List<GenAccount> genAccounts = genPageAccounts.getContent();
+        //Page<SnapshotAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
+        List<GenAccount> genAccounts = genAccountService.findAll();
         
         assertThat(genAccounts).hasSize(databaseSizeBeforeUpdate);
         GenAccount testGenAccount = genAccounts.get(genAccounts.size() - 1);
@@ -192,7 +201,7 @@ public class GenAccountResourceIntTest {
         // Initialize the database
         genAccountService.save(genAccount);
 
-        int databaseSizeBeforeDelete = genAccountService.findAll(new PageRequest(0,1000)).getContent().size();
+        int databaseSizeBeforeDelete = genAccountService.findAll().size();
 
         // Get the genAccount
         restGenAccountMockMvc.perform(delete("/api/gen-accounts/{id}", genAccount.getId())
@@ -201,8 +210,8 @@ public class GenAccountResourceIntTest {
 
 
         // Validate the database is empty
-        Page<GenAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
-        List<GenAccount> genAccounts = genPageAccounts.getContent();
+        //Page<SnapshotAccount> genPageAccounts = genAccountService.findAll(new PageRequest(0,1000));
+        List<GenAccount> genAccounts = genAccountService.findAll();
         assertThat(genAccounts).hasSize(databaseSizeBeforeDelete - 1);
     }
 
