@@ -1,11 +1,14 @@
 package org.ciwise.blackhole.service.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
+
+import org.ciwise.blackhole.domain.GenAccount;
 
 public class SnapshotAccount implements Serializable {
 
 	/**
-	 * 
+	 * unique serial identifier
 	 */
 	private static final long serialVersionUID = -1432490132110037987L;
 
@@ -68,4 +71,37 @@ public class SnapshotAccount implements Serializable {
 	public void setBalance(String balance) {
 		this.balance = balance;
 	}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SnapshotAccount snapAccount = (SnapshotAccount) o;
+        if(snapAccount.id == null || id == null) {
+            return false;
+        }
+        return Objects.equals(id, snapAccount.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "SnapshotAccount{" +
+            "id=" + id +
+            ", name='" + name + "'" +
+            ", type='" + type + "'" +
+            ", dc='" + dc + "'" +
+            ", cno='" + cno + "'" +
+            ", balance='" + balance + "'" +
+            '}';
+    }
+	
 }

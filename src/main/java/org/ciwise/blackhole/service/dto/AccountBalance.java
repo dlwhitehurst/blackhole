@@ -9,6 +9,9 @@
 package org.ciwise.blackhole.service.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
+
+import org.ciwise.blackhole.domain.GenAccount;
 
 /**
  *  @author <a href="mailto:david@ciwise.com">David L. Whitehurst</a>
@@ -22,8 +25,11 @@ public class AccountBalance implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String accountName;
+    
     private String cno;
+    
     private String balance;
+    
     private String type;
     
     public String getAccountName() {
@@ -49,6 +55,37 @@ public class AccountBalance implements Serializable {
     }
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AccountBalance balance = (AccountBalance) o;
+        if(balance.cno == null || cno == null) {
+            return false;
+        }
+        return Objects.equals(cno, balance.cno);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(cno);
+    }
+
+    @Override
+    public String toString() {
+        return "AccountBalance{" +
+            //"id=" + id +
+            "name='" + accountName + "'" +
+            ", type='" + type + "'" +
+            ", cno='" + cno + "'" +
+            ", balance='" + balance + "'" +
+            '}';
     }
     
 }

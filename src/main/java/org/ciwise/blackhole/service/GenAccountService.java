@@ -31,14 +31,15 @@ public interface GenAccountService {
 
     /**
      *  Get all the genAccounts (unpaged).
-     *  
+	 *
      *  @return the list of genAccounts
      */
     List<GenAccount> findAll();
     
     /**
      * Get all genAccounts with current balance
-     * @return
+     * 
+     * @return the list of snapshotAccounts
      */
     List<SnapshotAccount> findAllSnapshots();
     
@@ -64,6 +65,5 @@ public interface GenAccountService {
      *  @return the list of entities
      */
     Page<GenAccount> search(String query, Pageable pageable);
-    
 
 }
