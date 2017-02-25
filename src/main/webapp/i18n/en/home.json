@@ -7,11 +7,9 @@
         },
         "question": "If you have any question about the Blackhole application:",
         "link": {
-            "homepage": "Blackhole Homepage",
-            "stackoverflow": "Blackhole on Stack Overflow",
-            "bugtracker": "Blackhole Issues",
-            "chat": "Blackhole Public Chat Room",
-            "follow": "Follow @ci_wise on Twitter"
+            "issues": "Blackhole Issues",
+            "website": "CI Wise Inc.",
+            "email": "david@ciwise.com"
         },
         "like": "If you like the Blackhole application, don't forget to feed us another star on",
         "github": "GitHub"
