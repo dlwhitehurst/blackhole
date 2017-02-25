@@ -19,6 +19,7 @@
             "name": "Name",
             "type": "Type",
             "dc": "Debit/Credit",
+            "balance": "Current Balance",
             "cno": "CID"
         }
     }

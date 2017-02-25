@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.GenAccount;
 import org.ciwise.blackhole.service.GenAccountService;
+import org.ciwise.blackhole.service.dto.SnapshotAccount;
 import org.ciwise.blackhole.web.rest.util.HeaderUtil;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -89,20 +90,17 @@ public class GenAccountResource {
     /**
      * GET  /gen-accounts : get all the genAccounts.
      *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of genAccounts in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     * @return the list of genAccounts
      */
     @RequestMapping(value = "/gen-accounts",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<GenAccount>> getAllGenAccounts(Pageable pageable)
+    public List<SnapshotAccount> getAllGenAccounts()
         throws URISyntaxException {
         log.debug("REST request to get a page of GenAccounts");
-        Page<GenAccount> page = genAccountService.findAll(pageable); 
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/gen-accounts");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        List<SnapshotAccount> snaps = genAccountService.findAllSnapshots(); 
+        return snaps;
     }
 
     /**

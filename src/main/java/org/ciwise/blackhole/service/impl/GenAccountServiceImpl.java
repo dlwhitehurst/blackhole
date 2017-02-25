@@ -10,6 +10,7 @@ package org.ciwise.blackhole.service.impl;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,9 +19,13 @@ import org.ciwise.blackhole.domain.GenAccount;
 import org.ciwise.blackhole.repository.GenAccountRepository;
 import org.ciwise.blackhole.repository.search.GenAccountSearchRepository;
 import org.ciwise.blackhole.service.GenAccountService;
+import org.ciwise.blackhole.service.TrialBalanceService;
+import org.ciwise.blackhole.service.dto.AccountBalance;
+import org.ciwise.blackhole.service.dto.SnapshotAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +45,9 @@ public class GenAccountServiceImpl implements GenAccountService {
     
     @Inject
     private GenAccountSearchRepository genAccountSearchRepository;
+
+    @Inject
+    private TrialBalanceService trialBalanceService;
     
     /**
      * Save a GenAccount.
@@ -55,16 +63,31 @@ public class GenAccountServiceImpl implements GenAccountService {
     }
 
     /**
-     *  Get all the genAccounts.
+     *  Get all the genAccounts (unpaged).
      *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     *  @return the list of accounts
      */
-    @Transactional(readOnly = true) 
-    public Page<GenAccount> findAll(Pageable pageable) {
-        log.debug("Request to get all LedgerEntries");
-        Page<GenAccount> result = genAccountRepository.findAll(pageable); 
-        return result;
+    public List<SnapshotAccount> findAllSnapshots() {
+        List<SnapshotAccount> snaps = new ArrayList<SnapshotAccount>();
+    	List<GenAccount> result = findAll();
+
+    	List<AccountBalance> balances = trialBalanceService.getAllAccountBalances();
+        for (GenAccount account: result) {
+        	SnapshotAccount sAccount = new SnapshotAccount();
+        	sAccount.setId(account.getId());
+        	sAccount.setCno(account.getCno());
+        	sAccount.setName(account.getName());
+        	sAccount.setDc(account.getDc());
+        	sAccount.setType(account.getType());
+        	
+            for (AccountBalance balance: balances){
+            	if (account.getName().equals(balance.getAccountName())) {
+            		sAccount.setBalance(balance.getBalance());
+            	}
+            }
+            snaps.add(sAccount);
+        }
+        return snaps;
     }
 
     /**
@@ -78,8 +101,7 @@ public class GenAccountServiceImpl implements GenAccountService {
         log.debug("Request to get all LedgerEntries (unpaged)");
         List<GenAccount> result = genAccountRepository.findAll(); 
         return result;
-    }
-    
+    }    
     /**
      *  Get one genAccount by id.
      *

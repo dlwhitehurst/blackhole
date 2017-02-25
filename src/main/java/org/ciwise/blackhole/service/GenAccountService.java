@@ -11,6 +11,7 @@ package org.ciwise.blackhole.service;
 import java.util.List;
 
 import org.ciwise.blackhole.domain.GenAccount;
+import org.ciwise.blackhole.service.dto.SnapshotAccount;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Pageable;
  *
  */
 public interface GenAccountService {
+	
     /**
      * Save a GenAccount.
      * 
@@ -28,20 +30,17 @@ public interface GenAccountService {
     GenAccount save(GenAccount genAccount);
 
     /**
-     *  Get all the genAccounts.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of genAccounts
-     */
-    Page<GenAccount> findAll(Pageable pageable);
-
-    /**
      *  Get all the genAccounts (unpaged).
      *  
-     *  @param pageable the pagination information
      *  @return the list of genAccounts
      */
     List<GenAccount> findAll();
+    
+    /**
+     * Get all genAccounts with current balance
+     * @return
+     */
+    List<SnapshotAccount> findAllSnapshots();
     
     /**
      *  Get the "id" GenAccount.
@@ -65,5 +64,6 @@ public interface GenAccountService {
      *  @return the list of entities
      */
     Page<GenAccount> search(String query, Pageable pageable);
+    
 
 }

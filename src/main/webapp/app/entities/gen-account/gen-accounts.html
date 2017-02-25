@@ -11,45 +11,30 @@
                     </span>
                 </button>
             </div>
-            <div class="col-xs-8 no-padding-right">
-                <form name="searchForm" class="form-inline">
-                    <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'blackholeApp.genAccount.home.search' | translate }}">
-                        <span  class="input-group-btn width-min" >
-                            <button class="btn btn-success" ng-click="vm.search(vm.searchQuery)">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
-                            <button class="btn btn-success" ng-click="vm.clear()">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
     <br/>
     <div class="table-responsive">
-        <table class="jh-table table custom-table-striped">
+        <table class="custom-table-striped">
             <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="cno"><span translate="blackholeApp.genAccount.cno">Cno</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span translate="blackholeApp.genAccount.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="type"><span translate="blackholeApp.genAccount.type">Type</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="dc"><span translate="blackholeApp.genAccount.dc">Dc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="blackholeApp.genAccount.cno">Cno</span></th>
+                    <th><span translate="blackholeApp.genAccount.name">Name</span></th>
+                    <th><span translate="blackholeApp.genAccount.type">Type</span></th>
+                    <th><span translate="blackholeApp.genAccount.dc">Dc</span></th>
+                    <th><span translate="blackholeApp.genAccount.balance">Balance</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="genAccount in vm.genAccounts track by genAccount.id">
-                    <td><a ui-sref="gen-account-detail({id:genAccount.id})">{{genAccount.id}}</a></td>
+                <tr ng-repeat="genAccount in genAccounts track by genAccount.id">
+                    <td width="5%"><a ui-sref="gen-account-detail({id:genAccount.id})">{{genAccount.id}}</a></td>
                     <td width="8%">{{genAccount.cno}}</td>
-                    <td>{{genAccount.name}}</td>
-                    <td>{{genAccount.type}}</td>
-                    <td>{{genAccount.dc}}</td>
+                    <td width="400px">{{genAccount.name}}</td>
+                    <td width="10%">{{genAccount.type}}</td>
+                    <td width="10%">{{genAccount.dc}}</td>
+                    <td width="10%">{{genAccount.balance}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
@@ -75,9 +60,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="text-center">
-        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
     </div>
 </div>
