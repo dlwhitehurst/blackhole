@@ -35,6 +35,21 @@ public class TrialBalanceResource {
     
     @Inject
     private TrialBalanceService trialBalanceService;
+
+    /**
+     * GET /allbalances : get all the AccountBalance objects (current).
+     *
+     */
+    @RequestMapping(value = "/allbalances",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<AccountBalance> getAllBalances() {
+        log.debug("REST request to get all AccountBalances");
+        List<AccountBalance> balances = trialBalanceService.getAllAccountBalances(); 
+        return balances;
+    }
+    
     
     /**
      * GET /debitbalances : get all the Debit AccountBalance objects (current).
