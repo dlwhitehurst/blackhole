@@ -19,6 +19,7 @@ import org.ciwise.blackhole.service.GenLedgerService;
 import org.ciwise.blackhole.service.GenAccountService;
 import org.ciwise.blackhole.service.TrialBalanceService;
 import org.ciwise.blackhole.service.dto.AccountBalance;
+import org.ciwise.blackhole.service.dto.SnapshotAccount;
 import org.ciwise.blackhole.service.util.CurrencyUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,10 +33,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class TrialBalanceServiceImpl implements TrialBalanceService {
 
     @Inject
-    private GenLedgerService accountEntryService;
+    private GenLedgerService ledgerService;
 
     @Inject
-    private GenAccountService genAccountService;
+    private GenAccountService accountService;
     
     /* (non-Javadoc)
      * @see org.ciwise.blackhole.service.TrialBalanceService#getAllAccountBalances()
@@ -47,13 +48,13 @@ public class TrialBalanceServiceImpl implements TrialBalanceService {
         List<AccountBalance> balances = new ArrayList<AccountBalance>();
         
         // get chart numbers for iteration
-        List<GenAccount> genAccounts = genAccountService.findAll();
+        List<GenAccount> genAccounts = accountService.findAll();
         
         // load all chart numbers 
         for (GenAccount genAcct: genAccounts) {
             
             // get all entries for unique chart number
-            List<GenLedger> accountEntries = accountEntryService.findByCno(genAcct.getCno());
+            List<GenLedger> accountEntries = ledgerService.findByCno(genAcct.getCno());
 
             GenLedger entryLatest = new GenLedger();
                 int maxId = 0;
@@ -70,6 +71,7 @@ public class TrialBalanceServiceImpl implements TrialBalanceService {
                 // write AccountBalance object and add to List<AccountBalance>
                 AccountBalance balanceObj = new AccountBalance();
                 balanceObj.setCno(entryLatest.getCno());
+                balanceObj.setAccountName(genAcct.getName());
 
                 if (entryLatest.getDebitbalance() != null) {
                     if (entryLatest.getDebitbalance().contains("(")) {
