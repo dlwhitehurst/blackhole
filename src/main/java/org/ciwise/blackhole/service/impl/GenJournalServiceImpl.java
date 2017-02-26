@@ -10,6 +10,7 @@ package org.ciwise.blackhole.service.impl;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -267,4 +268,12 @@ public class GenJournalServiceImpl implements GenJournalService {
         log.debug("Request to search for a page of GenJournal entries for query {}", query);
         return genJournalSearchRepository.search(queryStringQuery(query), pageable);
     }
+
+	@Override
+	public GenJournal getLatestEntry() {
+		log.debug("Request to retrieve last or latest journal entrydate");
+		Long max = genJournalRepository.getMaxId();
+		GenJournal obj = genJournalRepository.findOne(max);
+		return obj;
+	}
 }

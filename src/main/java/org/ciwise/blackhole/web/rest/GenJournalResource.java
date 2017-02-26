@@ -2,6 +2,7 @@ package org.ciwise.blackhole.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.GenJournal;
 import org.ciwise.blackhole.service.GenJournalService;
+import org.ciwise.blackhole.service.dto.AccountBalance;
 import org.ciwise.blackhole.web.rest.util.HeaderUtil;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -170,5 +172,14 @@ public class GenJournalResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/lastentry",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+        @Timed
+        public GenJournal getLastEntry() {
+            log.debug("REST request to get last,latest,or most recent journal entry");
+            GenJournal latest = genJournalService.getLatestEntry(); 
+            return latest;
+        }
 
 }

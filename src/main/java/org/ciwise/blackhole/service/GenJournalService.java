@@ -8,6 +8,8 @@
 
 package org.ciwise.blackhole.service;
 
+import java.time.ZonedDateTime;
+
 import org.ciwise.blackhole.domain.GenJournal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -56,4 +58,9 @@ public interface GenJournalService {
      */
     Page<GenJournal> search(String query, Pageable pageable);
 
+    /**
+     * Gets the last,latest, or most recent journal entry
+     * @return
+     */
+    GenJournal getLatestEntry();
 }

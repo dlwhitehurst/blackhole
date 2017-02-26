@@ -1,7 +1,7 @@
 {
     "blackholeApp": {
           "trial" : {
-            "title": "Trial Balance",
+            "title": "Trial Balance for",
             "acct-name": "Account",
             "cno": "CID",
             "balance": "Balances"

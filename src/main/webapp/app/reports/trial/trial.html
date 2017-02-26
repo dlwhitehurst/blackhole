@@ -1,8 +1,5 @@
 <div class="ng-cloak">
-    <h2 translate="blackholeApp.trial.title">Trial Balance</h2>
-    <div>
-      {{today | date:'yyyy-MM-dd'}}
-    </div>
+    <h2><span translate="blackholeApp.trial.title">Trial Balance for</span> {{lastEntry.entrydate | date:'mediumDate'}}</h2>
     <hr>
     <div>
       <table class="custom-table-striped">
