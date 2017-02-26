@@ -99,10 +99,18 @@ Main page styles
 
 .hipster {
     display: inline-block;
-    width: 400px; /* 347px; */
+    width: 400px; 
     height: 497px;
     margin-top: 26px;
     background: url("../images/blackhole.png") no-repeat center top;
+    background-size: contain;
+}
+
+.usa-flag {
+    display: inline-block;
+    width: 23px; 
+    height: 12px;
+    background: url("../images/usa-small.svg.png") no-repeat center top;
     background-size: contain;
 }
 
