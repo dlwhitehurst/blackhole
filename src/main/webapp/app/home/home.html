@@ -4,18 +4,18 @@
             <span class="hipster img-responsive img-rounded"></span>
         </div>
         <div class="col-md-8">
-            <h1 translate="home.title">Welcome to the Blackhole</h1>
+            <h1 translate="home.title">Welcome to the Blackhole Application</h1>
 	           <p>The Blackhole application provides a dead-simple, web-accessible, textbook-style, double-entry financial accounting system
                that can be hosted in the cloud and accessed anywhere in the world. Blackhole can be used to capture your financial transactions
                real-time. You can basically carry your daybook in your pocket now and use it on your data phone. The application is useable
                on any internet-capable device. Once you've captured the data, the four basic, globally common, reports
                are available with the click of a menu selection.</p>
 
-             <p>Currently, the Blackhole application only supports US currency <span class="usa-flag"></span>. It will, however soon support other currencies
+            <p>Currently, the Blackhole application only supports US currency <span class="usa-flag"></span>. It will, however soon support other currencies
                and languages too.</p>
-            <!--
+               
             <p class="lead" translate="home.subtitle">Don't get too close, we might just save your data too!</p>
-          -->
+            
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-warning" ng-switch-when="true" translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
