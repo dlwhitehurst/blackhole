@@ -31,27 +31,15 @@
         </div>
         <div class="form-group">
             <label class="control-label" translate="blackholeApp.genJournal.dacctno" for="field_dacctno">Dacctno</label>
-            <select class="form-control" ng-model="vm.genJournal.dacctno" name="dacctno" id="field_dacctno">
-         				<option ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno}}">{{genAccount.name}}</option>
-         		</select>
-        </div>
-        <div class="form-group">
-          <label class="control-label" translate="blackholeApp.genJournal.debitaccountname" for="field_debitaccountname">Debit Account Name</label>
-          <input type="text" class="form-control" name="transaction" id="field_debitaccountname"
-                  ng-model="vm.genJournal.debitaccountname"
-                   />
+            <select class="form-control" name="dacctno" id="field_dacctno" ng-model="vm.genJournal.dacctno" ng-change="GetDebitAccountSelect()">
+         		<option ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno}}">{{genAccount.name}}</option>
+         	</select>
         </div>
         <div class="form-group">
             <label class="control-label" translate="blackholeApp.genJournal.cacctno" for="field_cacctno">Cacctno</label>
-            <select class="form-control" ng-model="vm.genJournal.cacctno" name="cacctno" id="field_cacctno">
-         				<option ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno}}">{{genAccount.name}}</option>
-         		</select>
-        </div>
-        <div class="form-group">
-          <label class="control-label" translate="blackholeApp.genJournal.creditaccountname" for="field_creditaccountname">Credit Account Name</label>
-          <input type="text" class="form-control" name="transaction" id="field_creditaccountname"
-                  ng-model="vm.genJournal.creditaccountname"
-                   />
+            <select class="form-control" ng-model="vm.genJournal.cacctno" name="cacctno" id="field_cacctno" ng-change="GetCreditAccountSelect()">
+         		<option ng-repeat="genAccount in genAccounts track by genAccount.cno" value="{{genAccount.cno}}">{{genAccount.name}}</option>
+         	</select>
         </div>
         <div class="form-group">
             <label class="control-label" translate="blackholeApp.genJournal.dadebit" for="field_dadebit">Dadebit</label>

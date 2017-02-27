@@ -16,7 +16,25 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         $scope.genAccounts = GenAccount.query({size:200});
+        
+        $scope.GetDebitAccountSelect = function (genAccount) {
+            var cno = vm.genJournal.dacctno;
+            var name = $.grep($scope.genAccounts, function (genAccount) {
+                return genAccount.cno == cno;
+            })[0].name;
+        	vm.genJournal.dacctno = cno;
+        	vm.genJournal.debitaccountname = name;
+        }        
 
+        $scope.GetCreditAccountSelect = function (genAccount) {
+            var cno = vm.genJournal.cacctno;
+            var name = $.grep($scope.genAccounts, function (genAccount) {
+                return genAccount.cno == cno;
+            })[0].name;
+        	vm.genJournal.cacctno = cno;
+        	vm.genJournal.creditaccountname = name;
+        }        
+        
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
@@ -30,7 +48,7 @@
             if (vm.genJournal.id !== null) {
                 GenJournal.update(vm.genJournal, onSaveSuccess, onSaveError);
             } else {
-                GenJournal.save(vm.genJournal, onSaveSuccess, onSaveError);
+            	GenJournal.save(vm.genJournal, onSaveSuccess, onSaveError);
             }
         }
 
