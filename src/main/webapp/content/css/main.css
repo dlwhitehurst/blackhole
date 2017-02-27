@@ -599,6 +599,11 @@ border:1px solid red;
 .custom-success-alert {
   color:red;
 }
+
+.red-text {
+  color:red;	
+}
+
 .white-text {
   color: white;
 }
