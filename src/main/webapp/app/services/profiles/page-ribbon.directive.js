@@ -23,6 +23,11 @@
                     scope.ribbonEnv = response.ribbonEnv;
                     element.addClass(response.ribbonEnv);
                     element.removeClass('hidden');
+                    if (response.inProduction) {
+                    	element.addClass('background-color-green');
+                    } else {
+                    	element.addClass('background-color-red');
+                    }
                 }
             });
         }

@@ -66,7 +66,7 @@ jhipster:
     swagger:
         title: BlackHole API
         description: BlackHole API documentation
-        version: 0.0.1
+        version: 0.1.0
         termsOfServiceUrl:
         contactName: David L. Whitehurst
         contactUrl: https://ciwise.com
@@ -75,4 +75,4 @@ jhipster:
         licenseUrl: https://www.apache.org/licenses/LICENSE-2.0
     ribbon:
         # comma separated list of profiles to show a ribbon on the GUI
-        displayOnActiveProfiles: dev
+        displayOnActiveProfiles: dev,prod

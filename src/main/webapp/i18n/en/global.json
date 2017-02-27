@@ -83,7 +83,8 @@
             "id": "ID"
         },
         "ribbon": {
-            "dev":"Development"
+            "dev":"Development",
+            "prod":"Production"
         }
     },
     "entity": {

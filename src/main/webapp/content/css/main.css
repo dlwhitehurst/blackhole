@@ -15,7 +15,7 @@ Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 Developement Ribbon
 ========================================================================== */
 .ribbon {
-    background-color: #a00;
+    /* background-color: #a00; */ 
     box-shadow: 0 0 10px #888;
     left: -3.5em;
     moz-box-shadow: 0 0 10px #888;
@@ -47,6 +47,13 @@ Developement Ribbon
     pointer-events: none;
 }
 
+.background-color-green {
+	background-color: #0a0;
+}
+
+.background-color-red {
+	background-color: #a00;
+}
 /* ==========================================================================
 Version number in navbar
 ========================================================================== */
