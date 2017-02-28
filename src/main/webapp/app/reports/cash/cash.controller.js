@@ -4,9 +4,10 @@
     angular
         .module('blackholeApp')
         .controller('CashController', CashController);
-    CashController.$inject = ['$scope', '$state'];
+    CashController.$inject = ['$scope', '$state', 'LastEntry'];
 
-    function CashController ($scope, $state) {
+    function CashController ($scope, $state, LastEntry) {
         var vm = this;
+        $scope.lastEntry = LastEntry.get();
     }
 })();
