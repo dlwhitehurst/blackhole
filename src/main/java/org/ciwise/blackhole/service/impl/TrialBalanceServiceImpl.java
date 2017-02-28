@@ -13,13 +13,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.ciwise.blackhole.domain.GenLedger;
 import org.ciwise.blackhole.domain.GenAccount;
-import org.ciwise.blackhole.service.GenLedgerService;
+import org.ciwise.blackhole.domain.GenLedger;
 import org.ciwise.blackhole.service.GenAccountService;
+import org.ciwise.blackhole.service.GenLedgerService;
 import org.ciwise.blackhole.service.TrialBalanceService;
 import org.ciwise.blackhole.service.dto.AccountBalance;
-import org.ciwise.blackhole.service.dto.SnapshotAccount;
 import org.ciwise.blackhole.service.util.CurrencyUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

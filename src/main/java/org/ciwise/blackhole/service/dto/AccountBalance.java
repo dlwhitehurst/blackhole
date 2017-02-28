@@ -11,8 +11,6 @@ package org.ciwise.blackhole.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
-import org.ciwise.blackhole.domain.GenAccount;
-
 /**
  *  @author <a href="mailto:david@ciwise.com">David L. Whitehurst</a>
  *
