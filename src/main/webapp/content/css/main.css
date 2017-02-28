@@ -59,7 +59,7 @@ Version number in navbar
 ========================================================================== */
 .navbar-version {
     font-size: 10px;
-    color: #0ab; 
+    color: #000; 
 }
 
 /* ==========================================================================
@@ -109,7 +109,7 @@ Main page styles
     width: 400px; 
     height: 497px;
     margin-top: 26px;
-    background: url("../images/blackhole.png") no-repeat center top;
+    background: url("../images/wise.png") no-repeat center top;
     background-size: contain;
 }
 
@@ -592,7 +592,7 @@ border:1px solid red;
 }
 
 .custom-table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #9DDA84; /* #B0DAA0; /*#F2F0E5; /* #D8D9D8; */
+  background-color: #fddc98 /* #9DDA84; /* #B0DAA0; /*#F2F0E5; /* #D8D9D8; */
 }
 
 .journal-table-striped > tbody > tr:nth-of-type(odd) {
