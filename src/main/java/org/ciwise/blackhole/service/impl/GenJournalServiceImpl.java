@@ -10,7 +10,6 @@ package org.ciwise.blackhole.service.impl;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.inject.Inject;

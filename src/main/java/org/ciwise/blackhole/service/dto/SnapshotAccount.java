@@ -3,8 +3,6 @@ package org.ciwise.blackhole.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
-import org.ciwise.blackhole.domain.GenAccount;
-
 public class SnapshotAccount implements Serializable {
 
 	/**

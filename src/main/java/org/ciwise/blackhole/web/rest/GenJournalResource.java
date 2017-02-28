@@ -2,7 +2,6 @@ package org.ciwise.blackhole.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +9,6 @@ import javax.inject.Inject;
 
 import org.ciwise.blackhole.domain.GenJournal;
 import org.ciwise.blackhole.service.GenJournalService;
-import org.ciwise.blackhole.service.dto.AccountBalance;
 import org.ciwise.blackhole.web.rest.util.HeaderUtil;
 import org.ciwise.blackhole.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;

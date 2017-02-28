@@ -8,8 +8,6 @@
 
 package org.ciwise.blackhole.service;
 
-import java.time.ZonedDateTime;
-
 import org.ciwise.blackhole.domain.GenJournal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
