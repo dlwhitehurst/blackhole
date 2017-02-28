@@ -16,35 +16,18 @@ import org.ciwise.blackhole.service.dto.AccountBalance;
  *  @author <a href="mailto:david@ciwise.com">David L. Whitehurst</a>
  *
  */
-public interface TrialBalanceService {
+public interface IncomeStatementService {
+	
+	/**
+	 * 
+	 * @return
+	 */
+	List<AccountBalance> getRevenueAccountBalances();
 
 	/**
 	 * 
 	 * @return
 	 */
-    List<AccountBalance> getAllAccountBalances();
-    
-    /**
-     * 
-     * @return
-     */
-    List<AccountBalance> getDebitAccountBalances();
-    
-    /**
-     * 
-     * @return
-     */
-    List<AccountBalance> getCreditAccountBalances();
-    
-    /**
-     * 
-     * @return
-     */
-    AccountBalance getDebitAccountsTotal();
-    
-    /**
-     * 
-     * @return
-     */
-    AccountBalance getCreditAccountsTotal();
+	List<AccountBalance> getExpenseAccountBalances();
+
 }
