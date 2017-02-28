@@ -16,7 +16,6 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        //data.entrydate = DateUtils.convertLocalDateFromServer(data.entrydate);
                         data.entrydate = DateUtils.convertDateTimeFromServer(data.entrydate);
                     }
                     return data;
@@ -25,7 +24,6 @@
             'update': {
                 method: 'PUT',
                 transformRequest: function (data) {
-                      // data.entrydate = DateUtils.convertLocalDateToServer(data.entrydate);
                       data.entrydate = DateUtils.convertDateTimeFromServer(data.entrydate);
                     return angular.toJson(data);
                 }
