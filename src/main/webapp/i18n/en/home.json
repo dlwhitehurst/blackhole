@@ -1,17 +1,18 @@
 {
     "home": {
-        "title": "Welcome to the Blackhole Application",
+        "title": "Welcome to Wise Accounting",
         "subtitle": "Don't get too close, we might just save your data too!",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
-        "question": "If you have any question about the Blackhole application:",
+        "question": "If you have any questions regarding Wise Accounting, please contact us:",
         "link": {
             "issues": "Blackhole Issues",
             "website": "CI Wise Inc.",
             "email": "david@ciwise.com"
         },
-        "like": "If you like the Blackhole application, don't forget to feed us another star on",
-        "github": "GitHub"
+        "credit": "Our logo image was created by",
+        "logo": "http://www.hipsterlogogenerator.com/",
+        "end": "Gimp, Brittany M. Santore, and David L. Whitehurst"
     }
 }
