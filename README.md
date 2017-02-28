@@ -1,5 +1,6 @@
 # blackhole
 
+
 [![Build status](https://travis-ci.org/dlwhitehurst/blackhole.svg?branch=master)](https://travis-ci.org/dlwhitehurst/blackhole)
 
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
